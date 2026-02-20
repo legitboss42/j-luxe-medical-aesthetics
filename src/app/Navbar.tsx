@@ -24,11 +24,11 @@ export default function Navbar() {
     { href: "/blog", label: "BLOG" },
     { href: "/pricing", label: "PRICING" },
     { href: "/training", label: "TRAINING" },
-    { href: "/shop", label: "SHOP" },
-    { href: "/gallery", label: "GALLERY" },
-    { href: "/refer-a-friend", label: "REFER A FRIEND" },
     { href: "/contact-us", label: "CONTACT US" },
   ];
+
+  const desktopLeftLinks = navLinks.slice(0, Math.ceil(navLinks.length / 2));
+  const desktopRightLinks = navLinks.slice(Math.ceil(navLinks.length / 2));
 
   return (
     <header className="fixed top-0 w-full z-50 bg-black border-b border-neutral-900">
@@ -113,37 +113,25 @@ export default function Navbar() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 xl:px-8 py-4">
-          <div className="flex items-center justify-center gap-5 xl:gap-7 text-white font-bold uppercase tracking-wide text-[13px] xl:text-[15px]">
-            <Link
-              href="/"
-              className="whitespace-nowrap text-[#D4AF37] hover:text-[#f0c24f] transition-colors"
-            >
-              HOME
-            </Link>
-            <Link
-              href="/about-us"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors"
-            >
-              ABOUT US
-            </Link>
-            <Link
-              href="/treatment"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
-            >
-              TREATMENT
-              <ChevronDown className="w-4 h-4" />
-            </Link>
-            <Link href="/blog" className="whitespace-nowrap hover:text-[#D4AF37] transition-colors">
-              BLOG
-            </Link>
-            <Link
-              href="/pricing"
-              className="whitespace-nowrap text-[#D4AF37] hover:text-[#f0c24f] transition-colors"
-            >
-              PRICING
-            </Link>
+          <div className="flex items-center text-white font-bold uppercase tracking-wide text-[13px] xl:text-[15px]">
+            <div className="flex-1 flex items-center justify-end gap-5 xl:gap-7 pr-5 xl:pr-7">
+              {desktopLeftLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
+                    link.href === "/" || link.href === "/pricing"
+                      ? "text-[#D4AF37] hover:text-[#f0c24f]"
+                      : "hover:text-[#D4AF37]"
+                  }`}
+                >
+                  {link.label}
+                  {link.hasChevron && <ChevronDown className="w-4 h-4" />}
+                </Link>
+              ))}
+            </div>
 
-            <Link href="/" className="mx-2 shrink-0 flex items-center justify-center">
+            <Link href="/" className="shrink-0 flex items-center justify-center">
               <div className="relative w-20 h-20 rounded-full border border-[#D4AF37] bg-black/80 overflow-hidden">
                 <Image
                   src="/images/logo.png"
@@ -155,33 +143,22 @@ export default function Navbar() {
               </div>
             </Link>
 
-            <Link
-              href="/training"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors"
-            >
-              TRAINING
-            </Link>
-            <Link href="/shop" className="whitespace-nowrap hover:text-[#D4AF37] transition-colors">
-              SHOP
-            </Link>
-            <Link
-              href="/gallery"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors"
-            >
-              GALLERY
-            </Link>
-            <Link
-              href="/refer-a-friend"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors"
-            >
-              REFER A FRIEND
-            </Link>
-            <Link
-              href="/contact-us"
-              className="whitespace-nowrap hover:text-[#D4AF37] transition-colors"
-            >
-              CONTACT US
-            </Link>
+            <div className="flex-1 flex items-center justify-start gap-5 xl:gap-7 pl-5 xl:pl-7">
+              {desktopRightLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
+                    link.href === "/"
+                      ? "text-[#D4AF37] hover:text-[#f0c24f]"
+                      : "hover:text-[#D4AF37]"
+                  }`}
+                >
+                  {link.label}
+                  {link.hasChevron && <ChevronDown className="w-4 h-4" />}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
