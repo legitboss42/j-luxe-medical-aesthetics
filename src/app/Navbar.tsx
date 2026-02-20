@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileTreatmentOpen, setIsMobileTreatmentOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: "HOME" },
@@ -25,6 +26,22 @@ export default function Navbar() {
     { href: "/pricing", label: "PRICING" },
     { href: "/training", label: "TRAINING" },
     { href: "/contact-us", label: "CONTACT US" },
+  ];
+
+  const treatmentDropdownLinks = [
+    { href: "/treatment", label: "All Treatments" },
+    { href: "/facials", label: "Facials" },
+    { href: "/body-sculpting-2", label: "Body Sculpting" },
+    { href: "/fillers", label: "Dermal Fillers" },
+    { href: "/anti-wrinkle-injection", label: "Anti-Wrinkle" },
+    { href: "/skin-boosters-mesotherapy", label: "Skin Boosters" },
+    { href: "/prp-treatment", label: "PRP Treatment" },
+    { href: "/body-sculpting-2#fat-dissolving", label: "Fat Dissolving" },
+    { href: "/teeth-whitening", label: "Teeth Whitening" },
+    { href: "/exosomes", label: "Exosomes" },
+    { href: "/chemical-peels", label: "Chemical Peels" },
+    { href: "/iv-vitamin-drip", label: "IV Vitamin Drip" },
+    { href: "/waxing", label: "Waxing" },
   ];
 
   const desktopLeftLinks = navLinks.slice(0, Math.ceil(navLinks.length / 2));
@@ -57,7 +74,12 @@ export default function Navbar() {
             BOOK NOW
           </Link>
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setIsOpen(!isOpen);
+              if (isOpen) {
+                setIsMobileTreatmentOpen(false);
+              }
+            }}
             className="text-white hover:text-[#D4AF37] transition-colors p-2"
             aria-label="Toggle Menu"
           >
@@ -116,18 +138,44 @@ export default function Navbar() {
           <div className="flex items-center text-white font-bold uppercase tracking-wide text-[13px] xl:text-[15px]">
             <div className="flex-1 flex items-center justify-end gap-5 xl:gap-7 pr-5 xl:pr-7">
               {desktopLeftLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
-                    link.href === "/" || link.href === "/pricing"
-                      ? "text-[#D4AF37] hover:text-[#f0c24f]"
-                      : "hover:text-[#D4AF37]"
-                  }`}
-                >
-                  {link.label}
-                  {link.hasChevron && <ChevronDown className="w-4 h-4" />}
-                </Link>
+                link.hasChevron ? (
+                  <div key={link.href} className="relative group/treatment">
+                    <Link
+                      href={link.href}
+                      className="whitespace-nowrap transition-colors inline-flex items-center gap-1 hover:text-[#D4AF37]"
+                    >
+                      {link.label}
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover/treatment:rotate-180 group-focus-within/treatment:rotate-180" />
+                    </Link>
+                    <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[360px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover/treatment:pointer-events-auto group-hover/treatment:visible group-hover/treatment:opacity-100 group-focus-within/treatment:pointer-events-auto group-focus-within/treatment:visible group-focus-within/treatment:opacity-100">
+                      <div className="rounded-2xl border border-[#D4AF37]/25 bg-[#0b0b0b]/95 p-4 shadow-2xl backdrop-blur-sm">
+                        <div className="grid grid-cols-2 gap-2">
+                          {treatmentDropdownLinks.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="rounded-lg border border-white/10 bg-black/35 px-3 py-2 text-[11px] uppercase tracking-[0.12em] text-gray-200 transition-colors hover:border-[#D4AF37]/45 hover:text-[#D4AF37]"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
+                      link.href === "/" || link.href === "/pricing"
+                        ? "text-[#D4AF37] hover:text-[#f0c24f]"
+                        : "hover:text-[#D4AF37]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
 
@@ -171,25 +219,73 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-[#0a0a0a] z-40 flex flex-col items-center justify-center pt-20 h-screen lg:hidden"
+            className="fixed inset-0 bg-[#0a0a0a] z-40 flex flex-col items-center justify-center pt-20 h-screen overflow-y-auto lg:hidden"
           >
-            <ul className="text-center space-y-8 text-2xl font-serif">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
-                  >
-                    {link.label}
-                    {link.hasChevron && <ChevronDown className="w-4 h-4" />}
-                  </Link>
-                </li>
-              ))}
+            <ul className="text-center space-y-8 text-2xl font-serif py-10">
+              {navLinks.map((link) =>
+                link.hasChevron ? (
+                  <li key={link.href}>
+                    <button
+                      type="button"
+                      onClick={() => setIsMobileTreatmentOpen(!isMobileTreatmentOpen)}
+                      className="hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isMobileTreatmentOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isMobileTreatmentOpen && (
+                        <motion.ul
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="mt-4 space-y-2 overflow-hidden"
+                        >
+                          {treatmentDropdownLinks.map((item) => (
+                            <li key={item.href}>
+                              <Link
+                                href={item.href}
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setIsMobileTreatmentOpen(false);
+                                }}
+                                className="block rounded-full border border-white/20 bg-black/45 px-4 py-2 text-sm font-sans font-semibold uppercase tracking-[0.12em] text-gray-200 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+                              >
+                                {item.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                ) : (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileTreatmentOpen(false);
+                      }}
+                      className="hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ),
+              )}
               <li>
                 <Link
                   href="/booking"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsMobileTreatmentOpen(false);
+                  }}
                   className="cta-button inline-block mt-4 border border-[#D4AF37] text-[#D4AF37] py-3 px-8 rounded-full text-lg hover:bg-[#D4AF37] hover:text-black transition-colors"
                 >
                   Book Consultation
