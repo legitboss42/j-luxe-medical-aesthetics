@@ -1,0 +1,17 @@
+import type { Metadata } from "next";
+import {
+  buildTreatmentMetadata,
+  treatmentSeoConfigs,
+} from "../../lib/seo/treatment-seo";
+
+export const metadata: Metadata = buildTreatmentMetadata(
+  treatmentSeoConfigs.bodySculpting2,
+);
+
+export default function BodySculptingLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return children;
+}
