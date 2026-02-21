@@ -259,12 +259,12 @@ export default function ReferAFriendPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37] md:text-sm">
                 J Luxe Loyalty Programme
               </p>
-              <h1 className="text-4xl font-serif font-bold uppercase leading-[0.95] md:text-6xl">
+              <h1 className="text-4xl font-serif font-bold uppercase leading-[0.92] tracking-[0.012em] md:text-6xl">
                 Refer A Friend,
                 <br />
                 Share The Luxury.
               </h1>
-              <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-gray-200 md:text-base lg:mx-0">
+              <p className="mx-auto mt-6 max-w-[54ch] text-sm leading-relaxed text-gray-200 md:text-base lg:mx-0">
                 Generate your personalized referral link in seconds and introduce your friends to a{" "}
                 <span className="text-[#D4AF37]">{primaryKeyword}</span>.
               </p>
@@ -319,18 +319,18 @@ export default function ReferAFriendPage() {
               <UsersRound className="h-3.5 w-3.5" />
               Auto Link Generator
             </p>
-            <h2 className="mt-4 text-3xl font-serif font-bold uppercase leading-tight">
+            <h2 className="mt-4 max-w-[16ch] text-3xl font-serif font-bold uppercase leading-[1.02]">
               Type Name,
               <span className="text-[#D4AF37]"> Link Creates Itself</span>
             </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-gray-300">
+            <p className="mt-3 max-w-[50ch] text-sm leading-relaxed text-gray-300">
               Your name appears in the URL and every referral is trackable through a unique
               identifier.
             </p>
 
             <div className="mt-5">
-              <div className="grid grid-cols-1 gap-3 lg:grid-cols-12 lg:items-end">
-                <div className="lg:col-span-8">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-12 md:items-end">
+                <div className="md:col-span-8">
                   <label htmlFor="referrerName" className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400">
                     Your Full Name
                   </label>
@@ -344,7 +344,7 @@ export default function ReferAFriendPage() {
                     className="w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20"
                   />
                 </div>
-                <div className="lg:col-span-4">
+                <div className="md:col-span-4">
                   <button
                     type="button"
                     onClick={copyLink}

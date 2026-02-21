@@ -112,7 +112,7 @@ const treatments: Treatment[] = [
     desc: "Improve skin texture and tone with our professional grade peels.",
     href: "/chemical-peels",
     imageSrc: "/images/chemical-peels.png",
-    objectPosition: "object-center",
+    objectPosition: "object-[58%_34%]",
     vibe: "Texture Refinement",
   },
   {
@@ -121,7 +121,7 @@ const treatments: Treatment[] = [
     desc: "Replenish your body with essential vitamins, minerals, and nutrients.",
     href: "/iv-vitamin-drip",
     imageSrc: "/images/iv-vitamin-drip.png",
-    objectPosition: "object-center",
+    objectPosition: "object-[44%_34%]",
     vibe: "Wellness Infusion",
   },
   {
@@ -311,7 +311,7 @@ export default function TreatmentPage() {
 
               <motion.h1
                 variants={revealItem}
-                className="text-4xl md:text-6xl font-serif font-bold leading-[0.94] uppercase"
+                className="text-4xl md:text-6xl font-serif font-bold leading-[0.92] tracking-[0.012em] uppercase max-w-[14ch]"
               >
                 Redefining Beauty,
                 <br />
@@ -322,7 +322,7 @@ export default function TreatmentPage() {
 
               <motion.p
                 variants={revealItem}
-                className="mt-6 text-gray-200 text-base md:text-lg max-w-2xl"
+                className="mt-6 max-w-[44ch] text-gray-200/95 text-base md:text-lg leading-relaxed"
               >
                 Discover expert non-surgical aesthetic treatments in East London,
                 including dermal fillers, anti-wrinkle injections, skin boosters,
@@ -397,11 +397,11 @@ export default function TreatmentPage() {
           <p className="text-[#D4AF37] tracking-[0.2em] uppercase text-xs md:text-sm font-semibold mb-3">
             Trusted Aesthetics Specialists in East London
           </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold leading-tight">
+          <h2 className="mx-auto max-w-[18ch] text-3xl md:text-5xl font-serif font-bold leading-[0.98]">
             Aesthetic Treatments in
             <span className="text-[#D4AF37]"> Hackney, London</span>
           </h2>
-          <p className="mt-5 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-5 text-gray-300 max-w-[60ch] mx-auto leading-relaxed">
             From lip filler and anti-wrinkle injections to advanced body contouring
             and skin rejuvenation, every treatment is consultation-led and designed
             for balanced, confidence-first results.
@@ -417,23 +417,34 @@ export default function TreatmentPage() {
         >
           {treatments.map((treatment, index) => (
             <Link key={treatment.id} href={treatment.href} className="block group">
+              {/*
+                Some larger PNGs can appear blank while Next image optimization resolves.
+                For known heavy assets, we bypass optimization and eager-load for reliability.
+              */}
+              {(() => {
+                const forceDirectImage =
+                  treatment.id === "chemical-peels" || treatment.id === "iv-drip";
+
+                return (
               <motion.article
                 variants={revealItem}
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="relative overflow-hidden rounded-[32px] md:rounded-full border border-white/15 bg-black/45 shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
               >
-                <div className="absolute inset-y-0 right-0 w-[58%] md:w-[42%]">
+                <div className="absolute inset-y-0 right-0 w-[58%] md:w-[46%]">
                   <Image
                     src={treatment.imageSrc}
                     alt={`${treatment.title} treatment at J Luxe Medical Aesthetics in Hackney, London`}
                     fill
+                    unoptimized={forceDirectImage}
+                    loading={forceDirectImage ? "eager" : "lazy"}
                     className={`object-cover ${treatment.objectPosition ?? "object-center"} transition-transform duration-700 group-hover:scale-105`}
                     sizes="(min-width: 1024px) 42vw, (min-width: 768px) 55vw, 85vw"
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/78 to-black/35 group-hover:from-black/85 group-hover:via-black/68 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/76 to-black/28 group-hover:from-black/85 group-hover:via-black/66 transition-colors duration-300" />
                 <div className="absolute inset-y-0 right-[40%] hidden md:block w-20 bg-gradient-to-r from-black/75 to-transparent" />
                 <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#D4AF37]/20" />
                 <div className="pointer-events-none absolute left-8 bottom-5 h-20 w-20 rounded-full bg-[#D4AF37]/12 blur-2xl" />
@@ -448,7 +459,7 @@ export default function TreatmentPage() {
                     </p>
                   </div>
 
-                  <h3 className="mt-4 text-2xl md:text-3xl font-serif font-bold tracking-wide text-white">
+                  <h3 className="mt-4 text-2xl md:text-3xl font-serif font-bold leading-[1.04] tracking-[0.01em] text-white">
                     {treatment.title}
                   </h3>
                   <p className="mt-2 text-sm md:text-base text-gray-200 max-w-xl leading-relaxed">
@@ -461,6 +472,8 @@ export default function TreatmentPage() {
                   </span>
                 </div>
               </motion.article>
+                );
+              })()}
             </Link>
           ))}
         </motion.div>
@@ -509,14 +522,14 @@ export default function TreatmentPage() {
               </motion.p>
               <motion.h2
                 variants={revealItem}
-                className="mt-4 text-3xl md:text-4xl font-serif font-bold leading-tight"
+                className="mt-4 max-w-[16ch] text-3xl md:text-4xl font-serif font-bold leading-[1.02]"
               >
                 Ready To Start Your
                 <span className="text-[#D4AF37]"> Personalized Glow Plan?</span>
               </motion.h2>
               <motion.p
                 variants={revealItem}
-                className="mt-4 max-w-3xl text-sm md:text-base text-gray-300 leading-relaxed"
+                className="mt-4 max-w-[54ch] text-sm md:text-base text-gray-300 leading-relaxed"
               >
                 Tell us your goals and we will guide you to the right treatment path.
                 Our Hackney team offers consultation-led care with natural-looking,
@@ -686,7 +699,7 @@ export default function TreatmentPage() {
               className="border border-neutral-800 bg-neutral-900 md:min-h-[360px]"
             />
 
-            <p className="mt-5 text-sm text-gray-300 max-w-3xl">
+            <p className="mt-5 text-sm text-gray-300 max-w-3xl leading-relaxed">
               Visit our medical aesthetics clinic in Hackney, London for
               consultation-led treatment planning and elegant, natural-looking
               outcomes.

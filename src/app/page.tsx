@@ -219,7 +219,7 @@ export default function HomePage() {
 
               <motion.h1
                 variants={heroItem}
-                className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold leading-[0.95]"
+                className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold leading-[0.92] tracking-[0.015em] max-w-[12ch]"
               >
                 LONDON MEDICAL
                 <br />
@@ -233,7 +233,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={heroItem}
-                className="text-gray-200 text-base md:text-lg mt-6 max-w-2xl"
+                className="mt-6 max-w-[44ch] text-base md:text-lg text-gray-200/95 leading-relaxed"
               >
                 Discover expert non-surgical aesthetic treatments in East London,
                 including dermal fillers, anti-wrinkle injections, skin boosters,
@@ -242,7 +242,7 @@ export default function HomePage() {
 
               <motion.div
                 variants={heroItem}
-                className="mt-8 flex flex-wrap items-center gap-3 text-xs md:text-sm uppercase tracking-wide"
+                className="mt-8 flex flex-wrap items-center gap-3 text-xs md:text-sm uppercase tracking-[0.12em]"
               >
                 <span className="border border-[#D4AF37]/70 bg-black/35 px-3 py-2 rounded-full text-[#D4AF37]">
                   Medical-Led
@@ -269,10 +269,10 @@ export default function HomePage() {
                 <p className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] mb-3">
                   Your Glow Starts Here
                 </p>
-                <h2 className="text-2xl md:text-3xl font-serif font-bold leading-tight mb-4">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold leading-[1.05] tracking-[0.01em] mb-4">
                   Dermal Fillers, Anti-Wrinkle and Skin Treatments
                 </h2>
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-300 mb-6 max-w-[36ch] leading-relaxed">
                   Book a consultation with our Hackney team and receive a
                   personalized plan designed around your facial and body goals.
                 </p>
@@ -328,7 +328,7 @@ export default function HomePage() {
 
               <motion.h2
                 variants={revealItem}
-                className="text-3xl md:text-5xl font-serif font-bold leading-tight"
+                className="max-w-[16ch] text-3xl md:text-5xl font-serif font-bold leading-[0.98]"
               >
                 Non-Surgical Facial and Body
                 <span className="text-[#D4AF37]"> Treatments in London</span>
@@ -336,7 +336,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={revealItem}
-                className="text-gray-300 leading-relaxed mt-6 max-w-2xl"
+                className="mt-6 max-w-[50ch] text-gray-300 leading-relaxed"
               >
                 From lip filler and anti-wrinkle injections to advanced body
                 contouring and skin rejuvenation, we combine clinical precision

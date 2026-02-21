@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Facebook,
@@ -17,6 +18,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileTreatmentOpen, setIsMobileTreatmentOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { href: "/", label: "HOME" },
@@ -48,8 +50,37 @@ export default function Navbar() {
   const desktopLeftLinks = navLinks.slice(0, Math.ceil(navLinks.length / 2));
   const desktopRightLinks = navLinks.slice(Math.ceil(navLinks.length / 2));
 
+  const treatmentPaths = [
+    "/treatment",
+    "/facials",
+    "/body-sculpting-2",
+    "/fillers",
+    "/anti-wrinkle-injection",
+    "/skin-boosters-mesotherapy",
+    "/prp-treatment",
+    "/teeth-whitening",
+    "/exosomes",
+    "/chemical-peels",
+    "/iv-vitamin-drip",
+    "/waxing",
+  ];
+
+  const normalizeHref = (href: string) => href.split("#")[0];
+
+  const isTreatmentActive = treatmentPaths.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+
+  const isActiveLink = (href: string, hasChevron?: boolean) => {
+    if (hasChevron && href === "/treatment") return isTreatmentActive;
+
+    const cleanHref = normalizeHref(href);
+    if (cleanHref === "/") return pathname === "/";
+    return pathname === cleanHref || pathname.startsWith(`${cleanHref}/`);
+  };
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-black border-b border-neutral-900">
+    <header className="sticky top-0 w-full z-50 bg-black border-b border-neutral-900">
       {/* Mobile header */}
       <div className="lg:hidden max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 z-50">
@@ -143,7 +174,11 @@ export default function Navbar() {
                   <div key={link.href} className="relative group/treatment">
                     <Link
                       href={link.href}
-                      className="whitespace-nowrap transition-colors inline-flex items-center gap-1 hover:text-[#D4AF37]"
+                      className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
+                        isActiveLink(link.href, link.hasChevron)
+                          ? "text-[#D4AF37]"
+                          : "hover:text-[#D4AF37]"
+                      }`}
                     >
                       {link.label}
                       <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover/treatment:rotate-180 group-focus-within/treatment:rotate-180" />
@@ -155,7 +190,11 @@ export default function Navbar() {
                             <Link
                               key={item.href}
                               href={item.href}
-                              className="rounded-lg border border-white/10 bg-black/35 px-3 py-2 text-[11px] uppercase tracking-[0.12em] text-gray-200 transition-colors hover:border-[#D4AF37]/45 hover:text-[#D4AF37]"
+                              className={`rounded-lg border bg-black/35 px-3 py-2 text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                                isActiveLink(item.href)
+                                  ? "border-[#D4AF37]/45 text-[#D4AF37]"
+                                  : "border-white/10 text-gray-200 hover:border-[#D4AF37]/45 hover:text-[#D4AF37]"
+                              }`}
                             >
                               {item.label}
                             </Link>
@@ -169,8 +208,8 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
-                      link.href === "/" || link.href === "/pricing"
-                        ? "text-[#D4AF37] hover:text-[#f0c24f]"
+                      isActiveLink(link.href, link.hasChevron)
+                        ? "text-[#D4AF37]"
                         : "hover:text-[#D4AF37]"
                     }`}
                   >
@@ -198,8 +237,8 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`whitespace-nowrap transition-colors inline-flex items-center gap-1 ${
-                    link.href === "/"
-                      ? "text-[#D4AF37] hover:text-[#f0c24f]"
+                    isActiveLink(link.href, link.hasChevron)
+                      ? "text-[#D4AF37]"
                       : "hover:text-[#D4AF37]"
                   }`}
                 >
@@ -229,7 +268,11 @@ export default function Navbar() {
                     <button
                       type="button"
                       onClick={() => setIsMobileTreatmentOpen(!isMobileTreatmentOpen)}
-                      className="hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
+                      className={`transition-colors inline-flex items-center gap-1 ${
+                        isActiveLink(link.href, link.hasChevron)
+                          ? "text-[#D4AF37]"
+                          : "hover:text-[#D4AF37]"
+                      }`}
                     >
                       {link.label}
                       <ChevronDown
@@ -255,7 +298,11 @@ export default function Navbar() {
                                   setIsOpen(false);
                                   setIsMobileTreatmentOpen(false);
                                 }}
-                                className="block rounded-full border border-white/20 bg-black/45 px-4 py-2 text-sm font-sans font-semibold uppercase tracking-[0.12em] text-gray-200 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+                                className={`block rounded-full border bg-black/45 px-4 py-2 text-sm font-sans font-semibold uppercase tracking-[0.12em] transition-colors ${
+                                  isActiveLink(item.href)
+                                    ? "border-[#D4AF37] text-[#D4AF37]"
+                                    : "border-white/20 text-gray-200 hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                                }`}
                               >
                                 {item.label}
                               </Link>
@@ -273,7 +320,11 @@ export default function Navbar() {
                         setIsOpen(false);
                         setIsMobileTreatmentOpen(false);
                       }}
-                      className="hover:text-[#D4AF37] transition-colors inline-flex items-center gap-1"
+                      className={`transition-colors inline-flex items-center gap-1 ${
+                        isActiveLink(link.href, link.hasChevron)
+                          ? "text-[#D4AF37]"
+                          : "hover:text-[#D4AF37]"
+                      }`}
                     >
                       {link.label}
                     </Link>

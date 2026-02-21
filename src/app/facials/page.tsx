@@ -272,13 +272,13 @@ export default function FacialsPage() {
               </motion.p>
               <motion.h1
                 variants={revealItem}
-                className="text-4xl font-serif font-bold uppercase leading-[0.94] md:text-6xl"
+                className="text-4xl font-serif font-bold uppercase leading-[0.92] tracking-[0.012em] md:text-6xl"
               >
-                Facials Treatment
+                Facial Treatments
               </motion.h1>
               <motion.p
                 variants={revealItem}
-                className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-gray-200 lg:mx-0 md:text-base"
+                className="mx-auto mt-5 max-w-[50ch] text-sm leading-relaxed text-gray-200 lg:mx-0 md:text-base"
               >
                 Discover consultation-led facials at our medical aesthetics clinic in Hackney
                 London, including Hydrafacial, deep extraction, glow facials, and advanced
@@ -436,7 +436,7 @@ export default function FacialsPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
               J Luxe Medical Aesthetics
             </p>
-            <h2 className="mt-3 text-3xl font-serif font-bold uppercase md:text-4xl">About Facials</h2>
+            <h2 className="mt-3 text-3xl font-serif font-bold uppercase leading-[1.02] tracking-[0.01em] md:text-4xl">About Facials</h2>
             <p className="mt-4 text-sm leading-relaxed text-gray-300 md:text-base">
               At our medical aesthetics clinic in Hackney London, facials are delivered with
               clinical precision and luxury-level care. Every appointment begins with skin
@@ -473,7 +473,7 @@ export default function FacialsPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37] md:text-sm">
               J Luxe Medical Aesthetics
             </p>
-            <h2 className="mt-3 text-3xl font-serif font-bold uppercase md:text-5xl">Facial Treatments</h2>
+            <h2 className="mx-auto mt-3 max-w-[18ch] text-3xl font-serif font-bold uppercase leading-[0.98] md:text-5xl">Facial Treatments</h2>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
               Browse our complete facial menu with live pricing and direct Vagaro booking links.
               All facial treatments are consultation-led and customized to your skin goals.

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -7,9 +7,19 @@ import Footer from "./Footer";
 const siteUrl = "https://jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
-// Font configurations for a premium feel
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+// Premium font pairing: editorial serif + clean luxury sans
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -66,10 +76,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen antialiased`}>
+      <body
+        className={`${manrope.variable} ${cormorant.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen antialiased`}
+      >
         <Navbar />
-        {/* Offset for fixed navbar (mobile vs desktop header heights) */}
-        <main className="flex-grow pt-20 lg:pt-[230px]">
+        {/* Sticky header sits in flow, so no manual top offset needed */}
+        <main className="flex-grow">
           {children}
         </main>
         <Footer />
