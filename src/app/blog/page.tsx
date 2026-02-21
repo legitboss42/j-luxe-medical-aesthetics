@@ -322,10 +322,10 @@ export default function BlogHubPage() {
       </section>
 
       {/* FILTERS */}
-      <section className="sticky top-20 z-30 border-b border-neutral-800 bg-[#0a0a0a]/88 backdrop-blur-md lg:top-[230px]">
+      <section className="sticky top-20 z-30 border-b border-neutral-800 bg-[#0a0a0a]/88 backdrop-blur-md lg:top-[172px]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/45 to-transparent" />
         <div className="mx-auto max-w-7xl px-4 py-4 md:px-8">
-          <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
+          <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1 lg:justify-center lg:overflow-visible lg:pb-0">
             {categories.map((category) => {
               const isActive = activeCategory === category;
               return (
