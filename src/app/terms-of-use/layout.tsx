@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | J Luxe Medical Aesthetics Clinic in Hackney, London",
+  title: "Terms of Use | J Luxe Aesthetics Hackney",
   description:
-    "Read the Terms of Use for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London, including booking, deposits, cancellations, refunds, clinical safety, and consent requirements.",
+    "Read the terms of use for J Luxe Medical Aesthetics in Hackney London, including booking, deposits, cancellations, refunds, consent, and safety standards.",
   alternates: {
     canonical: "/terms-of-use",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "aesthetic clinic cancellation policy London",
   ],
   openGraph: {
-    title: "Terms of Use | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Terms of Use | J Luxe Aesthetics Hackney",
     description:
       "Understand booking, consent, refunds, and safety policies at a medical aesthetics clinic in Hackney London.",
     url: "/terms-of-use",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terms of Use | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Terms of Use | J Luxe Aesthetics Hackney",
     description:
       "Understand booking, consent, refunds, and safety policies at a medical aesthetics clinic in Hackney London.",
     images: ["/images/heroImagePrompt.png"],

@@ -195,7 +195,7 @@ export default function BodySculptingPage() {
     bodyServicesItems.find((item) => item.name.includes("Body Sculpting Fusion"))?.link ??
     bodyServicesItems[0]?.link ??
     allItems[0]?.link ??
-    "/booking";
+    "/pricing";
   const fatDissolvingBookingUrl = fatDissolvingItems[0]?.link ?? bookingUrl;
   const minimumFatDissolvingPrice = useMemo(() => {
     const prices = fatDissolvingItems
@@ -543,7 +543,7 @@ export default function BodySculptingPage() {
             aesthetics clinic in Hackney London.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <a href={bookingUrl} target={bookingUrl.startsWith("http") ? "_blank" : undefined} rel={bookingUrl.startsWith("http") ? "noreferrer" : undefined} className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]">
+            <a href="/pricing" className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]">
               Book Now
               <ArrowRight className="h-4 w-4" />
             </a>

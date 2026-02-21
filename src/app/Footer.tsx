@@ -1,15 +1,13 @@
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Facebook,
-  Instagram,
   Mail,
   MapPin,
-  MessageCircle,
   Phone,
   Sparkles,
   Star,
 } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 
 const quickLinks = [
   { href: "/about-us", label: "About Us" },
@@ -26,6 +24,13 @@ const treatmentLinks = [
   { href: "/facials", label: "Luxury Facials" },
   { href: "/treatment", label: "All Treatments" },
 ];
+
+const socialLinks = {
+  instagram: "https://www.instagram.com/jluxemedicalaesthetics/",
+  tiktok: "https://www.tiktok.com/@jluxemedicalaesthetics",
+  facebook: "https://www.facebook.com/p/J-Luxe-Medical-Aesthetics-61562872448958/",
+  whatsapp: "https://wa.me/447883050603",
+};
 
 export default function Footer() {
   return (
@@ -53,7 +58,7 @@ export default function Footer() {
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-bold text-black hover:bg-[#f0c24f] transition-colors"
               >
                 BOOK CONSULTATION
@@ -87,25 +92,40 @@ export default function Footer() {
 
             <div className="mt-6 flex items-center gap-3">
               <a
-                href="#"
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noreferrer"
                 aria-label="Instagram"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#feda75] via-[#fa7e1e] to-[#d62976] text-white hover:brightness-110 transition-all"
               >
-                <Instagram className="h-4 w-4" />
+                <FaInstagram className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href={socialLinks.tiktok}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+              >
+                <FaTiktok className="h-4 w-4" />
+              </a>
+              <a
+                href={socialLinks.facebook}
+                target="_blank"
+                rel="noreferrer"
                 aria-label="Facebook"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1877f2] text-white hover:brightness-110 transition-all"
               >
-                <Facebook className="h-4 w-4" />
+                <FaFacebookF className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href={socialLinks.whatsapp}
+                target="_blank"
+                rel="noreferrer"
                 aria-label="WhatsApp"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white hover:brightness-110 transition-all"
               >
-                <MessageCircle className="h-4 w-4" />
+                <FaWhatsapp className="h-4 w-4" />
               </a>
             </div>
           </div>

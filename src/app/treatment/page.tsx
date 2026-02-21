@@ -331,7 +331,7 @@ export default function TreatmentPage() {
 
               <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   className="cta-button inline-flex items-center gap-2 bg-[#D4AF37] text-black font-bold py-3 px-7 rounded-full hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -549,7 +549,7 @@ export default function TreatmentPage() {
               </motion.div>
               <motion.div whileHover={{ y: -2, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   className="cta-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] text-black font-bold py-3 px-6 hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -742,7 +742,7 @@ export default function TreatmentPage() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center justify-center gap-2 rounded-full bg-[#D4AF37] text-black font-bold py-3 px-6 hover:bg-yellow-500 transition-colors"
               >
                 BOOK CONSULTATION

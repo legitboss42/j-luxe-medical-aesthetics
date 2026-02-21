@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Booking and Cancellation Policy | J Luxe Medical Aesthetics in Hackney, London",
+  title: "Booking & Cancellation Policy | J Luxe Aesthetics Hackney",
   description:
-    "Read the Booking and Cancellation Policy for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London, including deposit terms, late arrivals, no-shows, refunds, and payment rules.",
+    "Read J Luxe Medical Aesthetics booking and cancellation policy in Hackney London, including deposits, late arrivals, no-shows, refunds, and payment terms.",
   alternates: {
     canonical: "/booking-cancellation-policy",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "medical aesthetics no show policy London",
   ],
   openGraph: {
-    title: "Booking and Cancellation Policy | J Luxe Medical Aesthetics in Hackney, London",
+    title: "Booking & Cancellation Policy | J Luxe Aesthetics Hackney",
     description:
       "Understand booking, deposit, cancellation, no-show, and payment terms at a medical aesthetics clinic in Hackney London.",
     url: "/booking-cancellation-policy",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Booking and Cancellation Policy | J Luxe Medical Aesthetics in Hackney, London",
+    title: "Booking & Cancellation Policy | J Luxe Aesthetics Hackney",
     description:
       "Understand booking, deposit, cancellation, no-show, and payment terms at a medical aesthetics clinic in Hackney London.",
     images: ["/images/heroImagePrompt.png"],

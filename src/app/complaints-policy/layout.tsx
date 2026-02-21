@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Complaints Policy | J Luxe Medical Aesthetics Clinic in Hackney, London",
+  title: "Complaints Policy | J Luxe Aesthetics Hackney",
   description:
-    "Read the Complaints Policy for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London, including complaint process, timelines, escalation routes, and behavior standards.",
+    "Read the complaints policy for J Luxe Medical Aesthetics in Hackney London, including response timelines, escalation routes, and conduct standards.",
   alternates: {
     canonical: "/complaints-policy",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "medical aesthetics service complaints London",
   ],
   openGraph: {
-    title: "Complaints Policy | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Complaints Policy | J Luxe Aesthetics Hackney",
     description:
       "Understand complaint handling, response timelines, and escalation pathways at a medical aesthetics clinic in Hackney London.",
     url: "/complaints-policy",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Complaints Policy | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Complaints Policy | J Luxe Aesthetics Hackney",
     description:
       "Understand complaint handling, response timelines, and escalation pathways at a medical aesthetics clinic in Hackney London.",
     images: ["/images/heroImagePrompt.png"],

@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# J Luxe Medical Aesthetics Website
 
-## Getting Started
+This is the production website for **J Luxe Medical Aesthetics** in Hackney, London.
+It is built with **Next.js App Router** and includes service pages, blog content, referral flow, and legal pages.
 
-First, run the development server:
+## Tech Stack
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
 
+## Run Locally
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App URL: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What Each Page Stands For
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Main Pages
+- `/`  
+  Main homepage. Introduces the clinic, highlights key treatments, and drives visitors to book.
+- `/about-us`  
+  Brand story and trust page. Explains the clinic approach and practitioner credibility.
+- `/treatment`  
+  Treatment directory page. Entry point to all individual treatment pages.
+- `/pricing`  
+  Full treatment pricing list and booking intent page.
+- `/contact-us`  
+  Contact and enquiry page with clinic details and location messaging.
+- `/blog`  
+  Blog hub with category filters and featured content.
+- `/blog/[slug]`  
+  Individual article page rendered from markdown content.
+- `/training`  
+  Academy/training offer page for education services.
+- `/refer-a-friend`  
+  Referral landing page where users generate and share referral links.
 
-## Learn More
+### Treatment Service Pages
+- `/facials`  
+  Facial treatment information, options, FAQs, and booking CTAs.
+- `/fillers`  
+  Dermal fillers page with consultation, treatment pathways, and safety framing.
+- `/anti-wrinkle-injection`  
+  Anti-wrinkle treatment page focused on lines, dosage planning, and results.
+- `/skin-boosters-mesotherapy`  
+  Skin booster and mesotherapy page for hydration and skin quality outcomes.
+- `/prp-treatment`  
+  PRP treatment page for regenerative face/hair support.
+- `/body-sculpting-2`  
+  Body contouring page including fat-dissolving treatment context.
+- `/chemical-peels`  
+  Chemical peels page covering indications, aftercare, and treatment journey.
+- `/exosomes`  
+  Exosome therapy page for advanced skin regeneration positioning.
+- `/iv-vitamin-drip`  
+  IV vitamin drip page for wellness and recovery-focused treatment options.
+- `/teeth-whitening`  
+  Teeth whitening page with treatment benefits and suitability notes.
+- `/waxing`  
+  Waxing service page with area-based service breakdown.
 
-To learn more about Next.js, take a look at the following resources:
+### Legal / Trust Pages
+- `/terms-of-use`  
+  Service terms, treatment expectations, and client responsibilities.
+- `/privacy-policy`  
+  Data handling, GDPR principles, and client privacy commitments.
+- `/complaints-policy`  
+  Complaint process, response timelines, and escalation options.
+- `/booking-cancellation-policy`  
+  Booking deposits, cancellation windows, lateness, and refund rules.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Utility Routes
+- `/robots.txt` from `src/app/robots.ts`
+- `/sitemap.xml` from `src/app/sitemap.ts`
+- `/api/referrals/track` for referral tracking
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Blog Content Location
+- Blog files: `content/blog/*.md`
+- Internal templates should start with `_` so they are not listed publicly.
+- Blog data parsing logic: `src/lib/blog.ts`
 
-## Deploy on Vercel
+## SEO Tools
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Blog SEO checks:
+```bash
+npm run blog:seo-audit
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All-page SEO audit (JSON + PDF):
+```bash
+npm run seo:audit-pages
+```
+
+## Export README to PDF
+```bash
+npm run readme:pdf
+```
+
+Output:
+- `reports/readme-site-guide.pdf`
+
+## Core Layout Files
+- `src/app/layout.tsx` - global app shell and metadata defaults.
+- `src/app/Navbar.tsx` - navigation and desktop/mobile menu behavior.
+- `src/app/Footer.tsx` - footer links, contact details, and social links.
+- `src/app/globals.css` - global visual styling and typography rules.

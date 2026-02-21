@@ -344,7 +344,7 @@ export default function TermsOfUsePage() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
               >
                 Book Consultation

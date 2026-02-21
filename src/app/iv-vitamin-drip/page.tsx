@@ -149,7 +149,7 @@ export default function IvVitaminDripPage() {
   const bookingUrl =
     ivItems.find((item) => /basic hydration/i.test(item.name))?.link ??
     ivItems[0]?.link ??
-    "/booking";
+    "/pricing";
   const vitaminCBookingUrl = vitaminCItems[0]?.link ?? bookingUrl;
   const brighteningBookingUrl = brighteningItems[0]?.link ?? bookingUrl;
 
@@ -549,9 +549,7 @@ export default function IvVitaminDripPage() {
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={bookingUrl}
-              target={bookingUrl.startsWith("http") ? "_blank" : undefined}
-              rel={bookingUrl.startsWith("http") ? "noreferrer" : undefined}
+              href="/pricing"
               className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
             >
               Book Now

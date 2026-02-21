@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Training Academy | J Luxe Medical Aesthetics in Hackney, London",
+  title: "Training Academy | J Luxe Aesthetics Hackney",
   description:
-    "Join the J Luxe Virtual Academy from a medical aesthetics clinic in Hackney London for CPD-accredited aesthetics training in injectables, clinical safety, and business strategy.",
+    "Join the J Luxe Virtual Academy in Hackney London for CPD-led aesthetics training in injectables, clinical safety, and business strategy.",
   alternates: {
     canonical: "/training",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "aesthetics business training",
   ],
   openGraph: {
-    title: "Training Academy | J Luxe Medical Aesthetics in Hackney, London",
+    title: "Training Academy | J Luxe Aesthetics Hackney",
     description:
       "CPD-accredited virtual aesthetics training from a medical aesthetics clinic in Hackney London.",
     url: "/training",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Training Academy | J Luxe Medical Aesthetics in Hackney, London",
+    title: "Training Academy | J Luxe Aesthetics Hackney",
     description:
       "CPD-accredited virtual aesthetics training from a medical aesthetics clinic in Hackney London.",
     images: ["/images/heroImagePrompt.png"],

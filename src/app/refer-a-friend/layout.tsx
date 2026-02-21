@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
+  title: "Refer a Friend | J Luxe Aesthetics Hackney",
   description:
-    "Create a personal, trackable refer-a-friend link at J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London, and unlock treatment discounts for both you and your referral.",
+    "Create a trackable refer-a-friend link with J Luxe Medical Aesthetics in Hackney London and unlock treatment discounts for you and your referral.",
   alternates: {
     canonical: "/refer-a-friend",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "dermal fillers referral London",
   ],
   openGraph: {
-    title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Refer a Friend | J Luxe Aesthetics Hackney",
     description:
       "Generate a personal, trackable referral link and share luxury treatment discounts at J Luxe Medical Aesthetics in Hackney, London.",
     url: "/refer-a-friend",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Refer a Friend | J Luxe Aesthetics Hackney",
     description:
       "Generate a personal, trackable referral link and share treatment discounts at J Luxe Medical Aesthetics in Hackney, London.",
     images: ["/images/glowCta.png"],

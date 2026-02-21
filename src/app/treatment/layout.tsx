@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 export const metadata: Metadata = {
-  title: "Treatments | J Luxe Medical Aesthetics Clinic in Hackney, London",
+  title: "Treatments | J Luxe Aesthetics Hackney",
   description:
-    "Discover expert non-surgical treatments at J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London offering dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
+    "Discover non-surgical treatments at J Luxe Medical Aesthetics in Hackney London, including fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
   alternates: {
     canonical: "/treatment",
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "aesthetic treatments in London",
   ],
   openGraph: {
-    title: "Treatments | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Treatments | J Luxe Aesthetics Hackney",
     description:
       "Discover expert non-surgical treatments at a medical aesthetics clinic in Hackney London, including dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
     url: "/treatment",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Treatments | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Treatments | J Luxe Aesthetics Hackney",
     description:
       "Discover expert non-surgical treatments at a medical aesthetics clinic in Hackney London, including dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
     images: ["/images/heroImagePrompt.png"],

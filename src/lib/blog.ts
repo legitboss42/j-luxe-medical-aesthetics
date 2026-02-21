@@ -163,10 +163,14 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const processed = await remark()
       .use(html, { sanitize: false })
       .process(markdownWithLead);
+    const normalizedHtml = processed
+      .toString()
+      .replace(/<h1(\b[^>]*)>/g, "<h2$1>")
+      .replace(/<\/h1>/g, "</h2>");
 
     return {
       ...summary,
-      htmlContent: processed.toString(),
+      htmlContent: normalizedHtml,
       metaTitle: (data as FrontmatterData).metaTitle,
       metaDescription: (data as FrontmatterData).metaDescription,
       secondaryKeywords: Array.isArray((data as FrontmatterData).secondaryKeywords)

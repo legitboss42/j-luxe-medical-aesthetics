@@ -841,7 +841,7 @@ export const pricingCategories: PricingCategory[] = [
       {
         name: "1 session to dissolve fillers",
         price: "From £200",
-        link: "https://jluxemedicalaesthetics.com/booking/",
+        link: "/pricing",
       },
     ],
   },

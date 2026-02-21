@@ -179,8 +179,16 @@ export default function HomePage() {
               alt="J Luxe Medical Aesthetics treatment room in Hackney, London"
               fill
               priority
-              className="object-contain object-right-top"
-              sizes="(min-width: 1024px) 60vw, (min-width: 768px) 72vw, 88vw"
+              className="object-contain object-right-top lg:hidden"
+              sizes="(min-width: 768px) 72vw, 88vw"
+            />
+            <Image
+              src="/images/heroBackgroundDesktop.png"
+              alt="J Luxe Medical Aesthetics luxury treatment room in Hackney, London"
+              fill
+              priority
+              className="hidden object-cover object-right-top lg:block"
+              sizes="60vw"
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 w-32 sm:w-44 md:w-56 lg:w-72 bg-gradient-to-r from-[#080808] via-[#080808]/70 to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 -left-8 w-16 bg-[#080808]/70 blur-2xl" />
@@ -279,7 +287,7 @@ export default function HomePage() {
 
                 <div className="flex flex-wrap gap-3">
                   <Link
-                    href="/booking"
+                    href="/pricing"
                     className="cta-button inline-block bg-[#D4AF37] text-black font-bold py-3 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300"
                   >
                     BOOK NOW
@@ -379,7 +387,7 @@ export default function HomePage() {
 
               <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   className="cta-button inline-block bg-[#D4AF37] text-black font-bold py-3 px-7 rounded-full hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -864,7 +872,7 @@ export default function HomePage() {
 
             <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button bg-[#D4AF37] text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-500 transition-colors"
               >
                 BOOK CONSULTATION
@@ -1104,7 +1112,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
-                    href="/booking"
+                    href="/pricing"
                     className="cta-button inline-block bg-[#D4AF37] text-black font-bold py-3 px-7 rounded-full hover:bg-yellow-500 transition-colors"
                   >
                     BOOK NOW

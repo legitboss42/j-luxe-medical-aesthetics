@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "J Luxe Medical Aesthetics | Premier Clinic in London",
   description:
-    "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering personalized non-surgical dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
+    "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering dermal fillers, anti-wrinkle injections, facials, and body sculpting.",
   alternates: {
     canonical: "/",
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "J Luxe Medical Aesthetics | Premier Clinic in London",
     description:
-      "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering personalized non-surgical dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
+      "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering dermal fillers, anti-wrinkle injections, facials, and body sculpting.",
     url: "/",
     siteName: "J Luxe Medical Aesthetics",
     images: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "J Luxe Medical Aesthetics | Premier Clinic in London",
     description:
-      "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering personalized non-surgical dermal fillers, anti-wrinkle injections, skin boosters, and body sculpting.",
+      "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering dermal fillers, anti-wrinkle injections, facials, and body sculpting.",
     images: ["/images/heroImagePrompt.png"],
   },
   robots: {

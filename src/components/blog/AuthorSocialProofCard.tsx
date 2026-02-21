@@ -74,7 +74,7 @@ export default function AuthorSocialProofCard({
               Contact Team
             </Link>
             <Link
-              href="/booking"
+              href="/pricing"
               className="inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500"
             >
               Book Consultation

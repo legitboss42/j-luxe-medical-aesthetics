@@ -200,7 +200,7 @@ export default function AboutPage() {
                 className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3"
               >
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   className="cta-button inline-flex items-center gap-2 border border-[#D4AF37] text-white font-bold py-3 px-8 rounded-full hover:bg-[#D4AF37] hover:text-black transition-colors text-sm uppercase tracking-[0.1em]"
                 >
                   Book Consultation
@@ -380,7 +380,7 @@ export default function AboutPage() {
 
             <motion.div variants={revealItem} className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-black font-bold py-3 px-6 text-xs uppercase tracking-[0.12em] hover:bg-yellow-500 transition-colors"
               >
                 Book Consultation
@@ -464,7 +464,7 @@ export default function AboutPage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 text-white font-bold py-3 px-6 text-xs uppercase tracking-[0.12em] hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
               >
                 Book Consultation
@@ -569,7 +569,7 @@ export default function AboutPage() {
                       Precision planning, natural-looking results, and elevated aftercare.
                     </p>
                     <Link
-                      href="/booking"
+                      href="/pricing"
                       className="cta-button inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/45 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
                     >
                       Start Consultation
@@ -752,7 +752,7 @@ export default function AboutPage() {
             </motion.ul>
             <motion.div variants={revealItem}>
               <Link
-                href="/booking"
+                href="/pricing"
                 className="cta-button inline-flex items-center gap-2 border border-white text-white py-3 px-8 rounded-full text-xs font-bold uppercase tracking-[0.14em] hover:bg-white hover:text-black transition-colors"
               >
                 Book Consultation
@@ -891,7 +891,7 @@ export default function AboutPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-black font-bold py-3 px-6 text-xs uppercase tracking-[0.12em] hover:bg-yellow-500 transition-colors"
                 >
                   Book Consultation

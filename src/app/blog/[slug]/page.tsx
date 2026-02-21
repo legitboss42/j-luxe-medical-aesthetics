@@ -194,7 +194,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/booking"
+              href="/pricing"
               className="cta-button inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500 transition-colors"
             >
               Book Consultation

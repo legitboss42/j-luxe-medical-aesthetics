@@ -6,14 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   ChevronDown,
-  Facebook,
-  Instagram,
   Menu,
-  MessageCircle,
-  Music2,
   X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +43,13 @@ export default function Navbar() {
     { href: "/iv-vitamin-drip", label: "IV Vitamin Drip" },
     { href: "/waxing", label: "Waxing" },
   ];
+
+  const socialLinks = {
+    instagram: "https://www.instagram.com/jluxemedicalaesthetics/",
+    tiktok: "https://www.tiktok.com/@jluxemedicalaesthetics",
+    facebook: "https://www.facebook.com/p/J-Luxe-Medical-Aesthetics-61562872448958/",
+    whatsapp: "https://wa.me/447883050603",
+  };
 
   const desktopLeftLinks = navLinks.slice(0, Math.ceil(navLinks.length / 2));
   const desktopRightLinks = navLinks.slice(Math.ceil(navLinks.length / 2));
@@ -100,7 +104,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3 z-50">
           <Link
-            href="/booking"
+            href="/pricing"
             className="cta-button bg-[#D4AF37] text-black text-xs font-extrabold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors"
           >
             BOOK NOW
@@ -125,32 +129,40 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-8 pt-4 pb-3 flex items-center justify-between border-b border-dashed border-neutral-700">
           <div className="flex items-center gap-3">
             <a
-              href="#"
+              href={socialLinks.instagram}
+              target="_blank"
+              rel="noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 rounded-full bg-[#D4AF37] text-black flex items-center justify-center hover:bg-[#f0c24f] transition-colors"
+              className="w-8 h-8 rounded-full bg-gradient-to-br from-[#feda75] via-[#fa7e1e] to-[#d62976] text-white flex items-center justify-center hover:brightness-110 transition-all"
             >
-              <Instagram className="w-4 h-4" />
+              <FaInstagram className="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href={socialLinks.tiktok}
+              target="_blank"
+              rel="noreferrer"
               aria-label="TikTok"
-              className="w-8 h-8 rounded-full bg-[#D4AF37] text-black flex items-center justify-center hover:bg-[#f0c24f] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#111] text-white border border-white/20 flex items-center justify-center hover:border-[#D4AF37] transition-colors"
             >
-              <Music2 className="w-4 h-4" />
+              <FaTiktok className="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href={socialLinks.facebook}
+              target="_blank"
+              rel="noreferrer"
               aria-label="Facebook"
-              className="w-8 h-8 rounded-full bg-[#D4AF37] text-black flex items-center justify-center hover:bg-[#f0c24f] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#1877f2] text-white flex items-center justify-center hover:brightness-110 transition-all"
             >
-              <Facebook className="w-4 h-4" />
+              <FaFacebookF className="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href={socialLinks.whatsapp}
+              target="_blank"
+              rel="noreferrer"
               aria-label="WhatsApp"
-              className="w-8 h-8 rounded-full bg-[#D4AF37] text-black flex items-center justify-center hover:bg-[#f0c24f] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:brightness-110 transition-all"
             >
-              <MessageCircle className="w-4 h-4" />
+              <FaWhatsapp className="w-4 h-4" />
             </a>
           </div>
 
@@ -159,7 +171,7 @@ export default function Navbar() {
           </p>
 
           <Link
-            href="/booking"
+            href="/pricing"
             className="cta-button bg-[#D4AF37] text-black font-extrabold uppercase tracking-wide py-3 px-8 rounded-full hover:bg-[#f0c24f] transition-colors"
           >
             Book a Treatment
@@ -333,7 +345,7 @@ export default function Navbar() {
               )}
               <li>
                 <Link
-                  href="/booking"
+                  href="/pricing"
                   onClick={() => {
                     setIsOpen(false);
                     setIsMobileTreatmentOpen(false);

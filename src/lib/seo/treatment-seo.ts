@@ -14,9 +14,9 @@ export type TreatmentSeoConfig = {
 export const treatmentSeoConfigs = {
   facials: {
     path: "/facials",
-    title: "Facials | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Facial Treatments | J Luxe Aesthetics Hackney",
     description:
-      "Discover luxury facials at J Luxe Medical Aesthetics in Hackney, London, including Hydrafacial, glow facials, acne facials, and advanced skin rejuvenation.",
+      "Book facials at J Luxe Medical Aesthetics Hackney, including Hydrafacial, acne facials, glow facials, and advanced skin rejuvenation plans.",
     primaryKeyword: "Hydrafacial London",
     secondaryKeywords: [
       "facials Hackney",
@@ -30,10 +30,9 @@ export const treatmentSeoConfigs = {
   },
   bodySculpting2: {
     path: "/body-sculpting-2",
-    title:
-      "Body Sculpting and Fat Dissolving Injections | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Body Sculpting & Fat Dissolving | J Luxe Aesthetics Hackney",
     description:
-      "Explore body sculpting and fat dissolving injections at J Luxe Medical Aesthetics in Hackney, London, including Lemon Bottle, Aqualyx, wood therapy, RF, vacuum, and EMS sculpt.",
+      "Explore body sculpting and fat dissolving injections at J Luxe Medical Aesthetics Hackney, including Lemon Bottle, Aqualyx, EMS sculpt, and contouring care.",
     primaryKeyword: "fat dissolving injections London",
     secondaryKeywords: [
       "body sculpting London",
@@ -51,9 +50,9 @@ export const treatmentSeoConfigs = {
   // Ready for treatment pages you generate next:
   antiWrinkleInjection: {
     path: "/anti-wrinkle-injection",
-    title: "Anti-Wrinkle Injections | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Anti-Wrinkle Injections | J Luxe Aesthetics Hackney",
     description:
-      "Explore anti-wrinkle injections (Botox) at J Luxe Medical Aesthetics in Hackney, London for smoother, natural-looking facial rejuvenation.",
+      "Book anti-wrinkle injections at J Luxe Medical Aesthetics Hackney for smoother expression lines, balanced dosing, and natural-looking results.",
     primaryKeyword: "Botox London",
     secondaryKeywords: [
       "anti wrinkle injections London",
@@ -67,9 +66,9 @@ export const treatmentSeoConfigs = {
   },
   fillers: {
     path: "/fillers",
-    title: "Dermal Fillers | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Dermal Fillers | J Luxe Aesthetics Hackney",
     description:
-      "Discover dermal fillers at J Luxe Medical Aesthetics in Hackney, London for lips, facial contouring, lip booster treatments, and filler dissolving options.",
+      "Discover dermal fillers at J Luxe Medical Aesthetics Hackney for lips, contouring, lip booster options, and safe filler dissolving support.",
     primaryKeyword: "Lip fillers London",
     secondaryKeywords: [
       "dermal fillers London",
@@ -84,9 +83,9 @@ export const treatmentSeoConfigs = {
   },
   skinBoostersMesotherapy: {
     path: "/skin-boosters-mesotherapy",
-    title: "Skin Boosters | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Skin Boosters | J Luxe Aesthetics Hackney",
     description:
-      "Explore skin booster, mesotherapy, and exosome-led rejuvenation treatments at J Luxe Medical Aesthetics in Hackney, London for hydration and skin quality.",
+      "Explore skin boosters and mesotherapy at J Luxe Medical Aesthetics Hackney for deep hydration, smoother texture, and stronger skin quality.",
     primaryKeyword: "Skin boosters London",
     secondaryKeywords: [
       "mesotherapy London",
@@ -100,9 +99,9 @@ export const treatmentSeoConfigs = {
   },
   prpTreatment: {
     path: "/prp-treatment",
-    title: "PRP Treatment | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "PRP Treatment | J Luxe Aesthetics Hackney",
     description:
-      "Book PRP Face and PRP Hair treatment at J Luxe Medical Aesthetics in Hackney, London for natural regenerative skin and hair support.",
+      "Book PRP treatment at J Luxe Medical Aesthetics Hackney for face and hair concerns, with regenerative protocols designed for natural progress.",
     primaryKeyword: "PRP treatment London",
     secondaryKeywords: [
       "PRP facial London",
@@ -116,9 +115,9 @@ export const treatmentSeoConfigs = {
   },
   fatDissolvingInjections: {
     path: "/fat-dissolving-injections",
-    title: "Fat Dissolving Injections | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Fat Dissolving Injections | J Luxe Aesthetics Hackney",
     description:
-      "Discover fat dissolving injections at J Luxe Medical Aesthetics in Hackney, London, including targeted contouring protocols.",
+      "Discover fat dissolving injections at J Luxe Medical Aesthetics Hackney with targeted contouring plans and consultation-led protocols.",
     primaryKeyword: "Lemon Bottle injections London",
     secondaryKeywords: [
       "fat dissolving injections London",
@@ -131,9 +130,9 @@ export const treatmentSeoConfigs = {
   },
   teethWhitening: {
     path: "/teeth-whitening",
-    title: "Teeth Whitening | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Teeth Whitening | J Luxe Aesthetics Hackney",
     description:
-      "Book professional teeth whitening at J Luxe Medical Aesthetics in Hackney, London for a brighter smile.",
+      "Book professional teeth whitening at J Luxe Medical Aesthetics Hackney for a brighter smile, reduced staining, and safe cosmetic results.",
     primaryKeyword: "Teeth whitening London",
     secondaryKeywords: [
       "laser teeth whitening London",
@@ -146,9 +145,9 @@ export const treatmentSeoConfigs = {
   },
   exosomes: {
     path: "/exosomes",
-    title: "Exosomes | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Exosome Therapy | J Luxe Aesthetics Hackney",
     description:
-      "Explore exosome treatments at J Luxe Medical Aesthetics in Hackney, London for advanced skin rejuvenation protocols.",
+      "Explore exosome therapy at J Luxe Medical Aesthetics Hackney for advanced skin regeneration, improved tone, and consultation-led rejuvenation plans.",
     primaryKeyword: "Exosome therapy London",
     secondaryKeywords: [
       "exosome facial London",
@@ -161,9 +160,9 @@ export const treatmentSeoConfigs = {
   },
   chemicalPeels: {
     path: "/chemical-peels",
-    title: "Chemical Peels | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Chemical Peels | J Luxe Aesthetics Hackney",
     description:
-      "Discover chemical peels at J Luxe Medical Aesthetics in Hackney, London for brighter tone, smoother texture, and skin renewal.",
+      "Discover chemical peels at J Luxe Medical Aesthetics Hackney to improve tone, refine texture, reduce pigmentation, and support healthy skin renewal.",
     primaryKeyword: "Chemical peel London",
     secondaryKeywords: [
       "BioRePeel London",
@@ -176,9 +175,9 @@ export const treatmentSeoConfigs = {
   },
   ivVitaminDrip: {
     path: "/iv-vitamin-drip",
-    title: "IV Vitamin Drip | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "IV Vitamin Drips | J Luxe Aesthetics Hackney",
     description:
-      "Book IV vitamin drip therapy at J Luxe Medical Aesthetics in Hackney, London for hydration, energy, and wellness support.",
+      "Book IV vitamin drips at J Luxe Medical Aesthetics Hackney for hydration, energy support, recovery, and personalized wellness protocols.",
     primaryKeyword: "IV drip London",
     secondaryKeywords: [
       "vitamin drip London",
@@ -191,9 +190,9 @@ export const treatmentSeoConfigs = {
   },
   waxing: {
     path: "/waxing",
-    title: "Waxing | J Luxe Medical Aesthetics Clinic in Hackney, London",
+    title: "Waxing Services | J Luxe Aesthetics Hackney",
     description:
-      "Explore professional waxing services at J Luxe Medical Aesthetics in Hackney, London including face, body, and intimate waxing.",
+      "Explore professional waxing services at J Luxe Medical Aesthetics Hackney for face, body, and intimate waxing with smooth, long-lasting results.",
     primaryKeyword: "Hollywood wax London",
     secondaryKeywords: [
       "full body waxing London",
