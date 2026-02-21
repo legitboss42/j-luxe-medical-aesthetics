@@ -328,7 +328,7 @@ export default function TermsOfUsePage() {
             <div className="mt-6 space-y-2 text-sm text-gray-200">
               <p>
                 <span className="font-semibold text-white">Email: </span>
-                jluxemedicalaesthetics@gmail.com
+                admin@jluxemedicalaesthetics.com
               </p>
               <p>
                 <span className="font-semibold text-white">Address: </span>

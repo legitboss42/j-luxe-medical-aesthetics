@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const businessName = "J Luxe Medical Aesthetics";
 const effectiveDate = "25 June 2025";
-const clinicEmail = "jluxemedicalaesthetics@gmail.com";
+const clinicEmail = "admin@jluxemedicalaesthetics.com";
 const clinicPhone = "+44 7883 050603";
 const clinicAddress = "81 Amhurst Road, Hackney, London E8 2AH";
 

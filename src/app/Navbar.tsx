@@ -25,6 +25,7 @@ export default function Navbar() {
     { href: "/blog", label: "BLOG" },
     { href: "/pricing", label: "PRICING" },
     { href: "/training", label: "TRAINING" },
+    { href: "/refer-a-friend", label: "REFER A FRIEND" },
     { href: "/contact-us", label: "CONTACT US" },
   ];
 

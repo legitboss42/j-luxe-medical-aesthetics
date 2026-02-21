@@ -13,7 +13,6 @@ import {
 
 const quickLinks = [
   { href: "/about-us", label: "About Us" },
-  { href: "/gallery", label: "Gallery" },
   { href: "/training", label: "Training Academy" },
   { href: "/refer-a-friend", label: "Refer a Friend" },
   { href: "/blog", label: "Blog" },
@@ -166,10 +165,10 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-[#D4AF37]" />
                 <a
-                  href="mailto:info@jluxemedicalaesthetics.com"
+                  href="mailto:admin@jluxemedicalaesthetics.com"
                   className="hover:text-[#D4AF37] transition-colors break-all"
                 >
-                  info@jluxemedicalaesthetics.com
+                  admin@jluxemedicalaesthetics.com
                 </a>
               </li>
             </ul>

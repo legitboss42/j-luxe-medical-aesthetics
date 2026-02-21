@@ -385,10 +385,10 @@ export default function HomePage() {
                   BOOK CONSULTATION
                 </Link>
                 <Link
-                  href="/gallery"
+                  href="/refer-a-friend"
                   className="cta-button inline-block border border-white/30 text-white font-bold py-3 px-7 rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
                 >
-                  VIEW RESULTS
+                  REFER A FRIEND
                 </Link>
               </motion.div>
             </div>

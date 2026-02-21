@@ -5,8 +5,8 @@ import Link from "next/link";
 const businessName = "J Luxe Medical Aesthetics";
 const effectiveDate = "25 June 2025";
 const clinicAddress = "81 Amhurst Road, Hackney, London E8 2AH";
-const bookingEmail = "bookings@jluxemedicalaesthetics.co.uk";
-const supportEmail = "jluxemedicalaesthetics@gmail.com";
+const bookingEmail = "admin@jluxemedicalaesthetics.com";
+const supportEmail = "admin@jluxemedicalaesthetics.com";
 const clinicPhoneDisplay = "07883050603";
 const clinicPhoneLink = "+447883050603";
 

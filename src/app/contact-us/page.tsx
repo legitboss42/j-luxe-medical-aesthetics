@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import MapEmbed from "../../components/MapEmbed";
 
 const googleBusinessName = "J Luxe Medical Aesthetics";
@@ -106,6 +107,17 @@ const fieldItem: Variants = {
   },
 };
 
+function normalizeReferralCode(value: string) {
+  return value
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^A-Z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 28);
+}
+
 function renderStars(rating: number, sizeClass = "w-4 h-4") {
   return Array.from({ length: 5 }).map((_, index) => (
     <Star
@@ -119,6 +131,9 @@ function renderStars(rating: number, sizeClass = "w-4 h-4") {
 
 export default function ContactPage() {
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success">("idle");
+  const [referralCode, setReferralCode] = useState("");
+  const searchParams = useSearchParams();
+  const incomingReferralParam = searchParams.get("ref") ?? "";
 
   const contactSchema = useMemo(
     () => ({
@@ -175,6 +190,10 @@ export default function ContactPage() {
       setSubmitState("success");
     }, 1400);
   };
+
+  useEffect(() => {
+    setReferralCode(normalizeReferralCode(incomingReferralParam));
+  }, [incomingReferralParam]);
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] font-sans text-white">
@@ -437,6 +456,15 @@ export default function ContactPage() {
               ))}
             </div>
 
+            {referralCode && (
+              <motion.div
+                variants={fieldItem}
+                className="relative z-10 mb-4 rounded-xl border border-[#D4AF37]/35 bg-[#17130a]/70 px-4 py-3 text-xs text-[#f5e4af]"
+              >
+                Referral code detected: <span className="font-semibold text-white">{referralCode}</span>
+              </motion.div>
+            )}
+
             <motion.form
               onSubmit={handleSubmit}
               className="relative z-10 space-y-4"
@@ -500,6 +528,21 @@ export default function ContactPage() {
                     className="w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20"
                   />
                 </motion.div>
+              </motion.div>
+
+              <motion.div variants={fieldItem} whileHover={{ y: -1 }} transition={{ duration: 0.2, ease: "easeOut" }}>
+                <label htmlFor="referralCode" className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400">
+                  Referral Code (Optional)
+                </label>
+                <input
+                  id="referralCode"
+                  name="referralCode"
+                  type="text"
+                  value={referralCode}
+                  onChange={(event) => setReferralCode(normalizeReferralCode(event.target.value))}
+                  placeholder="Example: JLUXE-JANE"
+                  className="w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20"
+                />
               </motion.div>
 
               <motion.div variants={fieldItem} whileHover={{ y: -1 }} transition={{ duration: 0.2, ease: "easeOut" }}>

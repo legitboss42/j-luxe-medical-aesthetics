@@ -5,7 +5,7 @@ import Link from "next/link";
 const effectiveDate = "25 June 2025";
 const businessName = "J Luxe Medical Aesthetics";
 const clinicAddress = "81 Amhurst Road, Hackney, London E8 2AH";
-const clinicEmail = "jluxemedicalaesthetics@gmail.com";
+const clinicEmail = "admin@jluxemedicalaesthetics.com";
 const clinicPhone = "+44 7883 050603";
 const icoUrl = "https://www.ico.org.uk";
 
@@ -107,7 +107,7 @@ const privacySections = [
     points: [
       "You have the right to access, correct, erase, restrict, object, and request portability of your personal data where applicable.",
       "You may withdraw consent at any time for consent-based processing.",
-      "To exercise rights, contact us at jluxemedicalaesthetics@gmail.com.",
+      `To exercise rights, contact us at ${clinicEmail}.`,
     ],
   },
   {
@@ -152,7 +152,7 @@ const privacySections = [
     title: "Contact for Data Concerns",
     points: [
       "Data Protection Lead: J Luxe Medical Aesthetics, 81 Amhurst Road, Hackney, London E8 2AH.",
-      "Email: jluxemedicalaesthetics@gmail.com.",
+      `Email: ${clinicEmail}.`,
       "Phone: +44 7883 050603.",
       `You may also raise a concern with the Information Commissioner's Office at ${icoUrl}.`,
     ],
