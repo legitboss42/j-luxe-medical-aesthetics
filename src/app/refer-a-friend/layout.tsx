@@ -5,7 +5,7 @@ const primaryKeyword = "medical aesthetics clinic in Hackney London";
 export const metadata: Metadata = {
   title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
   description:
-    "Join the J Luxe refer a friend program at a medical aesthetics clinic in Hackney London and unlock luxury treatment discounts for both you and your referral.",
+    "Create a personal, trackable refer-a-friend link at J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London, and unlock treatment discounts for both you and your referral.",
   alternates: {
     canonical: "/refer-a-friend",
   },
@@ -15,13 +15,15 @@ export const metadata: Metadata = {
     "Hackney aesthetic referral offer",
     "J Luxe refer a friend",
     "aesthetic treatment discount London",
+    "trackable referral link aesthetics",
+    "name based referral link clinic",
     "facial referral deal Hackney",
     "dermal fillers referral London",
   ],
   openGraph: {
     title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
     description:
-      "Refer your friends to J Luxe Medical Aesthetics in Hackney, London and enjoy treatment discounts on eligible services.",
+      "Generate a personal, trackable referral link and share luxury treatment discounts at J Luxe Medical Aesthetics in Hackney, London.",
     url: "/refer-a-friend",
     images: [
       {
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Refer a Friend | J Luxe Medical Aesthetics Clinic in Hackney, London",
     description:
-      "Refer your friends to J Luxe Medical Aesthetics in Hackney, London and enjoy treatment discounts on eligible services.",
+      "Generate a personal, trackable referral link and share treatment discounts at J Luxe Medical Aesthetics in Hackney, London.",
     images: ["/images/glowCta.png"],
   },
   robots: {

@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import MapEmbed from "../../components/MapEmbed";
 
@@ -132,8 +131,8 @@ function renderStars(rating: number, sizeClass = "w-4 h-4") {
 export default function ContactPage() {
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success">("idle");
   const [referralCode, setReferralCode] = useState("");
-  const searchParams = useSearchParams();
-  const incomingReferralParam = searchParams.get("ref") ?? "";
+  const [hasTrackedReferral, setHasTrackedReferral] = useState(false);
+  const [incomingReferralParam, setIncomingReferralParam] = useState("");
 
   const contactSchema = useMemo(
     () => ({
@@ -192,8 +191,42 @@ export default function ContactPage() {
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    setIncomingReferralParam(params.get("ref") ?? "");
+  }, []);
+
+  useEffect(() => {
     setReferralCode(normalizeReferralCode(incomingReferralParam));
   }, [incomingReferralParam]);
+
+  useEffect(() => {
+    if (!incomingReferralParam || hasTrackedReferral) return;
+
+    const normalized = normalizeReferralCode(incomingReferralParam);
+    if (!normalized) return;
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jluxe_referral_code", normalized);
+      localStorage.setItem("jluxe_referral_seen_at", new Date().toISOString());
+    }
+
+    fetch("/api/referrals/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "referral_visit",
+        ref: normalized,
+        source: "contact-page",
+        path: "/contact-us",
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(() => {
+      // tracking failures are non-blocking
+    });
+
+    setHasTrackedReferral(true);
+  }, [incomingReferralParam, hasTrackedReferral]);
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] font-sans text-white">
