@@ -259,6 +259,55 @@ main :where(.uppercase) {
   }
 }
 
+@keyframes intrigueSweep {
+  0%,
+  68%,
+  100% {
+    transform: translateX(-145%) skewX(-20deg);
+    opacity: 0;
+  }
+  78% {
+    transform: translateX(145%) skewX(-20deg);
+    opacity: 0.42;
+  }
+}
+
+.intrigue-card {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow, filter;
+  transition:
+    box-shadow 0.32s ease,
+    filter 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.intrigue-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 22%,
+    rgba(245, 231, 176, 0.18) 46%,
+    rgba(245, 231, 176, 0.36) 52%,
+    rgba(245, 231, 176, 0.18) 58%,
+    transparent 82%
+  );
+  transform: translateX(-145%) skewX(-20deg);
+  animation: intrigueSweep 8.8s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+.intrigue-card:hover {
+  box-shadow:
+    0 20px 46px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 175, 55, 0.28);
+  filter: saturate(1.03);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cta-button {
     animation: none;
@@ -273,5 +322,14 @@ main :where(.uppercase) {
   .cta-button:active {
     transform: none;
     box-shadow: none;
+  }
+
+  .intrigue-card {
+    transition: none;
+  }
+
+  .intrigue-card::after {
+    animation: none;
+    opacity: 0;
   }
 }

@@ -448,8 +448,8 @@ export default function HomePage() {
                       variants={revealItem}
                       animate={{ y: [0, -5, 0] }}
                       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
-                      whileHover={{ y: -8, scale: 1.03 }}
-                      className="group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
+                      whileHover={{ y: -8, scale: 1.03, rotateX: 2, rotateY: -4 }}
+                      className="intrigue-card group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-transparent to-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="relative mb-3 flex justify-center">
@@ -470,8 +470,8 @@ export default function HomePage() {
                       variants={revealItem}
                       animate={{ y: [0, -5, 0] }}
                       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.18 }}
-                      whileHover={{ y: -8, scale: 1.03 }}
-                      className="group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
+                      whileHover={{ y: -8, scale: 1.03, rotateX: 2, rotateY: -4 }}
+                      className="intrigue-card group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-transparent to-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="relative mb-3 flex justify-center">
@@ -492,8 +492,8 @@ export default function HomePage() {
                       variants={revealItem}
                       animate={{ y: [0, -5, 0] }}
                       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.36 }}
-                      whileHover={{ y: -8, scale: 1.03 }}
-                      className="group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
+                      whileHover={{ y: -8, scale: 1.03, rotateX: 2, rotateY: -4 }}
+                      className="intrigue-card group relative overflow-hidden rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#151515] to-[#090909] px-4 py-5 text-center"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-transparent to-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="relative mb-3 flex justify-center">
@@ -572,13 +572,13 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-120px" }}
             variants={revealStagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -10, scale: 1.02, rotate: -0.8 }}
+              whileHover={{ y: -10, scale: 1.02, rotate: -0.8, rotateX: 2, rotateY: -5 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#1a1409] via-[#0c0c0c] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+              className="intrigue-card group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#1a1409] via-[#0c0c0c] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
             >
               <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full border border-[#D4AF37]/25" />
               <div className="pointer-events-none absolute -left-10 bottom-12 h-24 w-24 rounded-full bg-[#D4AF37]/10 blur-2xl" />
@@ -628,9 +628,9 @@ export default function HomePage() {
 
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -10, scale: 1.02 }}
+              whileHover={{ y: -10, scale: 1.02, rotateX: 2, rotateY: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#111710] via-[#0b0c0a] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+              className="intrigue-card group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#111710] via-[#0b0c0a] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
             >
               <div className="pointer-events-none absolute -left-14 -top-14 h-36 w-36 rounded-full border border-[#D4AF37]/20" />
               <div className="pointer-events-none absolute right-0 bottom-8 h-24 w-24 rounded-full bg-[#D4AF37]/10 blur-2xl" />
@@ -680,9 +680,9 @@ export default function HomePage() {
 
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -10, scale: 1.02, rotate: 0.8 }}
+              whileHover={{ y: -10, scale: 1.02, rotate: 0.8, rotateX: 2, rotateY: 5 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#191308] via-[#0c0b09] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+              className="intrigue-card group relative overflow-hidden rounded-[34px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#191308] via-[#0c0b09] to-[#070707] backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
             >
               <div className="pointer-events-none absolute -right-10 -top-14 h-36 w-36 rounded-full border border-[#D4AF37]/20" />
               <div className="pointer-events-none absolute -left-6 bottom-10 h-24 w-24 rounded-full bg-[#D4AF37]/10 blur-2xl" />
@@ -729,6 +729,7 @@ export default function HomePage() {
                 </ul>
               </div>
             </motion.article>
+            </div>
           </motion.div>
 
           <motion.div
@@ -936,13 +937,13 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-120px" }}
             variants={revealStagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.02, rotateX: 1.5, rotateY: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
+              className="intrigue-card group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
             >
               <div className="absolute -top-12 -right-12 h-28 w-28 rounded-full border border-[#D4AF37]/20" />
               <motion.div
@@ -967,9 +968,9 @@ export default function HomePage() {
 
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.02, rotateX: 1.5, rotateY: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
+              className="intrigue-card group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
             >
               <div className="absolute -top-12 -right-12 h-28 w-28 rounded-full border border-[#D4AF37]/20" />
               <motion.div
@@ -994,9 +995,9 @@ export default function HomePage() {
 
             <motion.article
               variants={revealItem}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.02, rotateX: 1.5, rotateY: 4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
+              className="intrigue-card group relative overflow-hidden rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#15120b] via-[#0a0a0a] to-[#070707] p-6"
             >
               <div className="absolute -top-12 -right-12 h-28 w-28 rounded-full border border-[#D4AF37]/20" />
               <motion.div
@@ -1018,6 +1019,7 @@ export default function HomePage() {
                 </p>
               </div>
             </motion.article>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -1174,55 +1176,57 @@ export default function HomePage() {
 
             <motion.div
               variants={revealStagger}
-              className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4"
+              className="mt-8"
             >
-              <motion.article
-                variants={revealItem}
-                whileHover={{ y: -6, scale: 1.01 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-                <h3 className="text-xl font-serif font-bold mb-2">Treatment Guides</h3>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  Understand what to expect before, during, and after popular
-                  aesthetic treatments.
-                </p>
-              </motion.article>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <motion.article
+                  variants={revealItem}
+                  whileHover={{ y: -6, scale: 1.015, rotateX: 1.2, rotateY: -3 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="intrigue-card rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
+                >
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold mb-2">Treatment Guides</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    Understand what to expect before, during, and after popular
+                    aesthetic treatments.
+                  </p>
+                </motion.article>
 
-              <motion.article
-                variants={revealItem}
-                whileHover={{ y: -6, scale: 1.01 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
-                  <FileText className="w-5 h-5" />
-                </div>
-                <h3 className="text-xl font-serif font-bold mb-2">Aftercare Tips</h3>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  Practical post-treatment advice to protect your results and
-                  support long-term skin confidence.
-                </p>
-              </motion.article>
+                <motion.article
+                  variants={revealItem}
+                  whileHover={{ y: -6, scale: 1.015, rotateX: 1.2, rotateY: -3 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="intrigue-card rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
+                >
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold mb-2">Aftercare Tips</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    Practical post-treatment advice to protect your results and
+                    support long-term skin confidence.
+                  </p>
+                </motion.article>
 
-              <motion.article
-                variants={revealItem}
-                whileHover={{ y: -6, scale: 1.01 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <h3 className="text-xl font-serif font-bold mb-2">Aesthetic Insights</h3>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  Stay informed on techniques, trends, and evidence-based
-                  approaches in modern medical aesthetics.
-                </p>
-              </motion.article>
+                <motion.article
+                  variants={revealItem}
+                  whileHover={{ y: -6, scale: 1.015, rotateX: 1.2, rotateY: 3 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="intrigue-card rounded-2xl border border-white/15 bg-black/45 backdrop-blur-sm p-5"
+                >
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-[#D4AF37] mb-4">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold mb-2">Aesthetic Insights</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    Stay informed on techniques, trends, and evidence-based
+                    approaches in modern medical aesthetics.
+                  </p>
+                </motion.article>
+              </div>
             </motion.div>
 
             <motion.div
