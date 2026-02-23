@@ -689,7 +689,7 @@ export default function FillersPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your dermal filler consultation at our medical aesthetics clinic in Hackney London
-            and receive a personalized, anatomy-led treatment plan.
+            and receive a personalised, anatomy-led treatment plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

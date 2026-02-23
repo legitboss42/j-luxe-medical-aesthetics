@@ -34,7 +34,7 @@ const categoryTitles = ["PRP FACE", "PRP HAIR"] as const;
 const heroHighlights = [
   "Regenerative PRP Face Protocols",
   "PRP Hair and Hair + Biotin Options",
-  "Consultation-Led Personalized Plans",
+  "Consultation-Led Personalised Plans",
 ];
 
 const faqs = [
@@ -521,7 +521,7 @@ export default function PrpTreatmentPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your PRP consultation at our medical aesthetics clinic in Hackney London for a
-            personalized treatment plan.
+            personalised treatment plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

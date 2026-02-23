@@ -488,7 +488,7 @@ export default function ChemicalPeelsPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your chemical peel consultation at our medical aesthetics clinic in Hackney London
-            and receive a personalized skin renewal plan.
+            and receive a personalised skin renewal plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

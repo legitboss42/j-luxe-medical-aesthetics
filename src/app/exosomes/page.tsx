@@ -473,7 +473,7 @@ export default function ExosomesPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your exosome therapy consultation at our medical aesthetics clinic in Hackney
-            London and receive a personalized regeneration plan.
+            London and receive a personalised regeneration plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

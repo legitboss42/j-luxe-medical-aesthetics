@@ -55,7 +55,7 @@ const privacySections = [
     title: "How We Use Data",
     points: [
       "To assess treatment suitability and support safe clinical decisions.",
-      "To deliver consultation-led, personalized aesthetic treatment plans.",
+      "To deliver consultation-led, personalised aesthetic treatment plans.",
       "To manage bookings, reminders, confirmations, and treatment records.",
       "To process payments and package administration.",
       "To provide aftercare support and relevant treatment guidance.",

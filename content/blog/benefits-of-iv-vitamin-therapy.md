@@ -51,7 +51,7 @@ Common goals include:
 - travel and high-output routine support
 - skin-and-glow support as part of wider aesthetics planning
 
-The exact blend should always be personalized.
+The exact blend should always be personalised.
 
 See service details: [IV Vitamin Drip](/iv-vitamin-drip)
 
@@ -83,7 +83,7 @@ You may be suitable for an **IV drip** if you:
 - want professional hydration and wellness support
 - have realistic goals
 - can complete proper consultation screening
-- prefer personalized protocol recommendations
+- prefer personalised protocol recommendations
 
 Not every protocol is right for every person. Suitability comes first.
 
@@ -314,7 +314,7 @@ Session length varies by protocol, but many are completed in a practical appoint
 They serve different roles. Suitability depends on your goals and practitioner guidance.
 
 ### How often should I get an IV drip?
-Frequency should be personalized and review-led rather than fixed.
+Frequency should be personalised and review-led rather than fixed.
 
 ### Can IV drips support skin goals?
 Many clients include IV support in a wider skin and aesthetics plan.

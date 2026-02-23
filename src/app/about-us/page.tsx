@@ -372,7 +372,7 @@ export default function AboutPage() {
                 className="rounded-xl border border-white/15 bg-black/45 px-4 py-3 text-sm text-gray-200"
               >
                 <span className="text-[#D4AF37] font-semibold uppercase text-[11px] tracking-[0.12em]">
-                  Personalized
+                  Personalised
                 </span>
                 <p className="mt-1 text-gray-300">Plans tailored to your anatomy, goals, and lifestyle.</p>
               </motion.div>
@@ -725,7 +725,7 @@ export default function AboutPage() {
               >
                 <span className="text-[#D4AF37]">-</span>
                 <span>
-                  <strong>Personalized treatment planning:</strong> every protocol
+                  <strong>Personalised treatment planning:</strong> every protocol
                   is tailored to your anatomy and goals.
                 </span>
               </motion.li>
@@ -874,7 +874,7 @@ export default function AboutPage() {
               <motion.div variants={revealItem} className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-xl border border-white/15 bg-black/45 px-4 py-3">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-gray-400">Approach</p>
-                  <p className="mt-1 text-sm font-semibold text-gray-100">Medical-Led & Personalized</p>
+                  <p className="mt-1 text-sm font-semibold text-gray-100">Medical-Led & Personalised</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/45 px-4 py-3">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-gray-400">Clinic Base</p>

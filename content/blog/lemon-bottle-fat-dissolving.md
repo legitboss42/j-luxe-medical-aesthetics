@@ -139,7 +139,7 @@ Your clinic should provide specific instructions for your area and protocol.
 ## Common mistakes with fat dissolving treatment
 
 ### 1) Choosing by hype
-Trend clips are not personalized treatment planning.
+Trend clips are not personalised treatment planning.
 
 ### 2) Ignoring suitability
 Not every contour concern is a fat dissolving indication.
@@ -216,7 +216,7 @@ Area-specific expectations:
 - jawline-adjacent fullness may improve gradually when protocol and anatomy are suitable
 - body pocket treatment usually requires patient, staged planning rather than one-session expectations
 
-The key is accurate diagnosis. Some concerns that look like “fat” may actually be skin laxity, posture-related profile imbalance, or fluid retention patterns. Treating the wrong issue leads to poor satisfaction.
+The key is accurate diagnosis. Some concerns that look like ï¿½fatï¿½ may actually be skin laxity, posture-related profile imbalance, or fluid retention patterns. Treating the wrong issue leads to poor satisfaction.
 
 ## Lemon Bottle and high-volume treatment searches: separating facts from hype
 

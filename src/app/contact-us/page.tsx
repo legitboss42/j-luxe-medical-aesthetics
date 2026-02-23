@@ -30,12 +30,12 @@ const googleMapsEmbedUrl =
   "https://maps.google.com/maps?hl=en&q=J%20Luxe%20Medical%20Aesthetics%20Hackney%20London&t=&z=15&ie=UTF8&iwloc=B&output=embed";
 
 const openingHours = [
-  { day: "Monday", hours: "10:00 AM - 6:00 PM" },
-  { day: "Tuesday", hours: "10:00 AM - 6:00 PM" },
-  { day: "Wednesday", hours: "10:00 AM - 8:00 PM" },
-  { day: "Thursday", hours: "10:00 AM - 8:00 PM" },
-  { day: "Friday", hours: "10:00 AM - 6:00 PM" },
-  { day: "Saturday", hours: "10:00 AM - 4:00 PM" },
+  { day: "Monday", hours: "9:00 AM - 6:00 PM" },
+  { day: "Tuesday", hours: "9:00 AM - 6:00 PM" },
+  { day: "Wednesday", hours: "9:00 AM - 9:00 PM" },
+  { day: "Thursday", hours: "9:00 AM - 9:00 PM" },
+  { day: "Friday", hours: "9:00 AM - 9:00 PM" },
+  { day: "Saturday", hours: "9:00 AM - 9:00 PM" },
   { day: "Sunday", hours: "Closed" },
 ];
 
@@ -46,7 +46,7 @@ const contactHighlights = [
 ];
 
 const quickContactActions = [
-  { label: "Call Concierge", value: clinicPhone, href: clinicPhoneHref },
+  { label: "Call Receptionist", value: clinicPhone, href: clinicPhoneHref },
   { label: "Email Clinic", value: clinicEmail, href: clinicEmailHref },
 ];
 
@@ -58,7 +58,7 @@ const contactFlow = [
   },
   {
     step: "02",
-    title: "Personalized Guidance",
+    title: "Personalised Guidance",
     desc: "Our team recommends the right consultation-led treatment route for you.",
   },
   {
@@ -284,7 +284,7 @@ export default function ContactPage() {
               </motion.h1>
               <motion.p variants={revealItem} className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-gray-200 lg:mx-0 md:text-base">
                 Speak with our Hackney, London team about dermal fillers, anti-wrinkle
-                injections, skin boosters, body sculpting, and personalized treatment planning.
+                injections, skin boosters, body sculpting, and personalised treatment planning.
               </motion.p>
               <motion.div
                 variants={revealItem}
@@ -409,7 +409,7 @@ export default function ContactPage() {
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-gray-300">
             Our Hackney, London team is available to guide your treatment journey with fast
-            replies, transparent advice, and concierge-level support.
+            replies, transparent advice, and receptionist-level support.
           </p>
         </motion.div>
         <motion.div

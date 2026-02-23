@@ -525,7 +525,7 @@ export default function TreatmentPage() {
                 className="mt-4 max-w-[16ch] text-3xl md:text-4xl font-serif font-bold leading-[1.02]"
               >
                 Ready To Start Your
-                <span className="text-[#D4AF37]"> Personalized Glow Plan?</span>
+                <span className="text-[#D4AF37]"> Personalised Glow Plan?</span>
               </motion.h2>
               <motion.p
                 variants={revealItem}

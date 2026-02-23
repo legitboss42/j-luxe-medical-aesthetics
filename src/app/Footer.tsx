@@ -47,7 +47,7 @@ export default function Footer() {
                 Consultation-Led Aesthetics
               </p>
               <h3 className="mt-4 text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
-                Start Your Personalized
+                Start Your Personalised
                 <span className="text-[#D4AF37]"> Glow Plan</span>
               </h3>
               <p className="mt-4 max-w-2xl text-sm md:text-base text-gray-300 leading-relaxed">

@@ -256,7 +256,7 @@ export default function HomePage() {
                   Medical-Led
                 </span>
                 <span className="border border-white/30 bg-black/35 px-3 py-2 rounded-full">
-                  Personalized Plans
+                  Personalised Plans
                 </span>
                 <span className="border border-white/30 bg-black/35 px-3 py-2 rounded-full">
                   Luxury Aftercare
@@ -282,7 +282,7 @@ export default function HomePage() {
                 </h2>
                 <p className="text-gray-300 mb-6 max-w-[36ch] leading-relaxed">
                   Book a consultation with our Hackney team and receive a
-                  personalized plan designed around your facial and body goals.
+                  personalised plan designed around your facial and body goals.
                 </p>
 
                 <div className="flex flex-wrap gap-3">
@@ -348,7 +348,7 @@ export default function HomePage() {
               >
                 From lip filler and anti-wrinkle injections to advanced body
                 contouring and skin rejuvenation, we combine clinical precision
-                with personalized care to help you look refreshed and confident.
+                with personalised care to help you look refreshed and confident.
               </motion.p>
 
               <motion.div
@@ -422,7 +422,7 @@ export default function HomePage() {
                         01
                       </span>
                       <p className="text-sm text-gray-300">
-                        Consultation and personalized assessment
+                        Consultation and personalised assessment
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
@@ -430,7 +430,7 @@ export default function HomePage() {
                         02
                       </span>
                       <p className="text-sm text-gray-300">
-                        Personalized treatment with expert precision
+                        Personalised treatment with expert precision
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
@@ -499,7 +499,7 @@ export default function HomePage() {
                       <div className="relative mb-3 flex justify-center">
                         <span className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-black/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-300 whitespace-nowrap">
                           <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                          Personalized
+                          Personalised
                         </span>
                       </div>
                       <p className="relative text-3xl font-extrabold text-[#D4AF37] leading-none">
@@ -839,7 +839,7 @@ export default function HomePage() {
               >
                 <CheckCircle className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Personalized treatment plans</p>
+                  <p className="text-sm font-semibold text-white">Personalised treatment plans</p>
                   <p className="text-xs text-gray-400 mt-1">
                     Every recommendation is built around your features and goals.
                   </p>
@@ -1075,7 +1075,7 @@ export default function HomePage() {
                 className="mt-6 text-gray-200 text-base md:text-lg max-w-2xl leading-relaxed"
               >
                 Your journey to healthier skin and confidence starts here. Book your
-                London aesthetics consultation and receive a personalized treatment
+                London aesthetics consultation and receive a personalised treatment
                 roadmap from our expert team.
               </motion.p>
 

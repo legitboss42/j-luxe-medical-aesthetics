@@ -80,7 +80,7 @@ function getDescription(name: string) {
   if (item.includes("masseter")) return "Jaw slimming protocol for softer lower-face shape and bite tension.";
   if (item.includes("sweaty palm")) return "Hyperhidrosis protocol for palm sweat control.";
   if (item.includes("sweaty feet")) return "Targeted treatment plan for excessive foot perspiration.";
-  return "Consultation-led anti-wrinkle treatment personalized to your goals and facial anatomy.";
+  return "Consultation-led anti-wrinkle treatment personalised to your goals and facial anatomy.";
 }
 
 function renderStars(rating: number, sizeClass = "w-4 h-4") {
@@ -497,7 +497,7 @@ export default function AntiWrinklePage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your anti-wrinkle consultation at our medical aesthetics clinic in Hackney London
-            for a personalized Botox treatment plan.
+            for a personalised Botox treatment plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

@@ -194,7 +194,7 @@ Pricing varies based on:
 - combination treatments
 - clinic expertise
 
-The most accurate budget always comes from personalized treatment planning, not generic online figures.
+The most accurate budget always comes from personalised treatment planning, not generic online figures.
 
 You can compare service areas here:
 
@@ -228,7 +228,7 @@ A realistic way to evaluate PRP progress is to track:
 
 1. skin brightness under natural light
 2. texture smoothness when makeup-free
-3. overall “freshness” and bounce over 6–12 weeks
+3. overall ï¿½freshnessï¿½ and bounce over 6ï¿½12 weeks
 
 This removes guesswork and keeps treatment decisions objective.
 
@@ -256,11 +256,11 @@ Before booking **PRP treatment** in London, ask these specific questions:
 
 These questions shift the conversation from hype to outcomes.
 
-The strongest regenerative results usually come from clinics that measure progress and adapt treatment based on evidence from your skin—not generic package deals.
+The strongest regenerative results usually come from clinics that measure progress and adapt treatment based on evidence from your skinï¿½not generic package deals.
 
 ## Cost, value, and treatment sequencing decisions
 
-High-search topics around **PRP treatment** also include pricing. Instead of asking “Which is cheaper?” ask “Which path gives the best outcome for my goal in the next 3–6 months?”
+High-search topics around **PRP treatment** also include pricing. Instead of asking ï¿½Which is cheaper?ï¿½ ask ï¿½Which path gives the best outcome for my goal in the next 3ï¿½6 months?ï¿½
 
 A value-driven plan often includes:
 

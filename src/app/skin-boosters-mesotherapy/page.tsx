@@ -78,7 +78,7 @@ function getDescription(name: string) {
     return "Regenerative injectable protocol focused on skin repair and quality.";
   if (item.includes("pdrn")) return "Regenerative skin protocol supporting repair and long-term skin vitality.";
   if (item.includes("mesotherapy")) return "Vitamin-rich mesotherapy treatment to refresh tired, dull skin.";
-  return "Consultation-led skin booster treatment personalized to your skin goals.";
+  return "Consultation-led skin booster treatment personalised to your skin goals.";
 }
 
 function renderStars(rating: number, sizeClass = "w-4 h-4") {
@@ -528,7 +528,7 @@ export default function SkinBoostersPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your skin booster consultation at our medical aesthetics clinic in Hackney London
-            for a personalized hydration and regeneration plan.
+            for a personalised hydration and regeneration plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a

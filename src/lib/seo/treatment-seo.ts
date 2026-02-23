@@ -177,7 +177,7 @@ export const treatmentSeoConfigs = {
     path: "/iv-vitamin-drip",
     title: "IV Vitamin Drips | J Luxe Aesthetics Hackney",
     description:
-      "Book IV vitamin drips at J Luxe Medical Aesthetics Hackney for hydration, energy support, recovery, and personalized wellness protocols.",
+      "Book IV vitamin drips at J Luxe Medical Aesthetics Hackney for hydration, energy support, recovery, and personalised wellness protocols.",
     primaryKeyword: "IV drip London",
     secondaryKeywords: [
       "vitamin drip London",
