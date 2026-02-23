@@ -111,6 +111,13 @@ function hashName(input: string) {
   return Math.abs(hash).toString(36).slice(0, 6);
 }
 
+function getCurrentOrigin() {
+  if (typeof window !== "undefined" && window.location.origin) {
+    return window.location.origin;
+  }
+  return "https://jluxemedicalaesthetics.com";
+}
+
 type NavigatorShare = Navigator & {
   share?: (data: { title?: string; text?: string; url?: string }) => Promise<void>;
 };
@@ -119,16 +126,16 @@ export default function ReferAFriendPage() {
   const [activeFaq, setActiveFaq] = useState(0);
   const [referrerName, setReferrerName] = useState("");
   const [copied, setCopied] = useState(false);
-  const origin = "https://jluxemedicalaesthetics.com";
 
   const nameSlug = useMemo(() => slugifyName(referrerName), [referrerName]);
   const referralId = useMemo(
     () => (nameSlug ? `${nameSlug}-jlx-${hashName(nameSlug)}` : ""),
     [nameSlug],
   );
-  const referralLink = referralId
-    ? `${origin}/pricing?ref=${encodeURIComponent(referralId)}&src=referral`
-    : `${origin}/pricing?ref=YOUR-NAME-JLX-123ABC&src=referral`;
+  const referralPath = referralId
+    ? `/pricing?ref=${encodeURIComponent(referralId)}&src=referral`
+    : "/pricing?ref=YOUR-NAME-JLX-123ABC&src=referral";
+  const referralLink = `${getCurrentOrigin()}${referralPath}`;
 
   const whatsappHref = referralId
     ? `https://wa.me/?text=${encodeURIComponent(

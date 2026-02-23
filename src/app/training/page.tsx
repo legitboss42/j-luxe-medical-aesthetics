@@ -192,7 +192,7 @@ export default function TrainingAcademyPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] font-sans text-white">
+    <main className="relative min-h-screen bg-[#0a0a0a] font-sans text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingSchema) }}
@@ -201,6 +201,7 @@ export default function TrainingAcademyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <div aria-hidden className="pointer-events-none select-none blur-[6px]">
 
       {/* HERO */}
       <section className="relative min-h-[72vh] overflow-hidden border-b border-[#D4AF37]/20">
@@ -484,6 +485,22 @@ export default function TrainingAcademyPage() {
           </div>
         </div>
       </section>
+      </div>
+
+      <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/65 px-4 backdrop-blur-sm">
+        <div className="w-full max-w-xl rounded-2xl border border-[#D4AF37]/35 bg-[#0b0b0b]/95 p-6 text-center shadow-[0_20px_60px_rgba(0,0,0,0.55)] md:p-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
+            J Luxe Training Academy
+          </p>
+          <h1 className="mt-3 text-4xl font-serif font-bold uppercase leading-tight md:text-5xl">
+            Coming Soon
+          </h1>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-gray-300 md:text-base">
+            Training enrolment is currently unavailable. Please check back shortly for launch
+            updates.
+          </p>
+        </div>
+      </div>
     </main>
   );
 }
