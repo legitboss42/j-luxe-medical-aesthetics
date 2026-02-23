@@ -17,6 +17,7 @@ type FrontmatterData = {
   slug?: string;
   featured?: boolean;
   author?: string;
+  heroImage?: string;
   metaTitle?: string;
   metaDescription?: string;
   primaryKeyword?: string;
@@ -41,6 +42,7 @@ export type BlogPostSummary = {
 
 export type BlogPost = BlogPostSummary & {
   htmlContent: string;
+  heroImageSrc: string;
   metaTitle?: string;
   metaDescription?: string;
   secondaryKeywords: string[];
@@ -111,6 +113,11 @@ function renderLeadMagnetToken(markdown: string) {
   });
 }
 
+function extractFirstMarkdownImageSrc(markdown: string) {
+  const imageMatch = markdown.match(/!\[[^\]]*\]\(([^)]+)\)/);
+  return imageMatch?.[1]?.trim() || "";
+}
+
 function isMarkdownPostFile(fileName: string) {
   return fileName.endsWith(".md") && !fileName.startsWith("_");
 }
@@ -158,6 +165,10 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     }
 
     const summary = getBaseSummary(data as FrontmatterData, slug);
+    const heroImageSrc =
+      (frontmatter.heroImage ?? "").trim() ||
+      extractFirstMarkdownImageSrc(content) ||
+      summary.imageSrc;
 
     const markdownWithLead = renderLeadMagnetToken(content);
     const processed = await remark()
@@ -171,6 +182,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return {
       ...summary,
       htmlContent: normalizedHtml,
+      heroImageSrc,
       metaTitle: (data as FrontmatterData).metaTitle,
       metaDescription: (data as FrontmatterData).metaDescription,
       secondaryKeywords: Array.isArray((data as FrontmatterData).secondaryKeywords)

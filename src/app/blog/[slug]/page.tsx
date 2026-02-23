@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       url: canonical,
       images: [
         {
-          url: post.imageSrc,
+          url: post.heroImageSrc,
           width: 1200,
           height: 630,
           alt: `${post.title} by J Luxe Medical Aesthetics`,
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
-      images: [post.imageSrc],
+      images: [post.heroImageSrc],
     },
   };
 }
@@ -81,7 +81,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       "@type": "Organization",
       name: post.author,
     },
-    image: [`https://jluxemedicalaesthetics.com${post.imageSrc}`],
+    image: [`https://jluxemedicalaesthetics.com${post.heroImageSrc}`],
     mainEntityOfPage: `https://jluxemedicalaesthetics.com/blog/${post.slug}`,
     publisher: {
       "@type": "Organization",
@@ -128,7 +128,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       <section className="relative overflow-hidden border-b border-[#D4AF37]/20">
         <div className="absolute inset-0 z-0">
           <Image
-            src={post.imageSrc}
+            src={post.heroImageSrc}
             alt={`${post.title} cover image`}
             fill
             priority
