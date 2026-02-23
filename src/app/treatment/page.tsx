@@ -362,7 +362,7 @@ export default function TreatmentPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/45" />
                   <div className="absolute left-4 right-4 bottom-4 rounded-full border border-[#D4AF37]/40 bg-black/65 px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#D4AF37] text-center">
-                    Consultation-Led Luxury Care
+                    Advanced Nurse-Led Aesthetic Medicine
                   </div>
                 </div>
 

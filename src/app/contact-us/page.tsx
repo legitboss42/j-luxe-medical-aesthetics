@@ -41,7 +41,7 @@ const openingHours = [
 
 const contactHighlights = [
   { label: "Response Window", value: "Within 24 Hours" },
-  { label: "Care Model", value: "Consultation-Led" },
+  { label: "Care Model", value: "Advanced Clinical Aesthetics Clinic" },
   { label: "Clinic Area", value: "Hackney, London" },
 ];
 

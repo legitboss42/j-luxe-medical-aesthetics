@@ -44,7 +44,7 @@ export default function Footer() {
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
                 <Sparkles className="w-3.5 h-3.5" />
-                Consultation-Led Aesthetics
+                Medically Led Aesthetic Practice
               </p>
               <h3 className="mt-4 text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
                 Start Your Personalised

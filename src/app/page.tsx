@@ -222,7 +222,7 @@ export default function HomePage() {
                 variants={heroItem}
                 className="text-[#D4AF37] tracking-[0.22em] uppercase text-xs md:text-sm font-semibold mb-5"
               >
-                Award-Winning Medical Aesthetics Clinic in Hackney, London
+                Nurse-Led Aesthetic Clinic in Hackney, London
               </motion.p>
 
               <motion.h1
@@ -561,7 +561,7 @@ export default function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
               className="lg:col-span-5 text-gray-300 leading-relaxed"
             >
-              Explore advanced facials, body sculpting, and dermal fillers in
+              Explore advanced facials, body sculpting, and anti-wrinkle treatments in
               Hackney. Every treatment plan is built for natural-looking,
               confidence-boosting results.
             </motion.p>
@@ -689,8 +689,8 @@ export default function HomePage() {
 
               <div className="relative h-56 overflow-hidden rounded-b-[44px] border-b border-[#D4AF37]/20">
                 <Image
-                  src="/images/dermalFillers.png"
-                  alt="Dermal filler consultation at J Luxe Medical Aesthetics in Hackney, London"
+                  src="/images/anti-wrinkle-injection.png"
+                  alt="Anti-wrinkle injection consultation at J Luxe Medical Aesthetics in Hackney, London"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(min-width: 768px) 33vw, 100vw"
@@ -709,24 +709,31 @@ export default function HomePage() {
                     Face Focus
                   </span>
                   <span className="rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-gray-400">
-                    30-45 min
+                    20-30 min
                   </span>
                 </div>
-                <h3 className="text-2xl font-serif font-bold mb-3">Dermal Fillers</h3>
+                <h3 className="text-2xl font-serif font-bold mb-3">Anti-Wrinkle Injections</h3>
                 <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                  Restore balance and subtle volume with filler treatments focused
-                  on natural facial harmony and precision.
+                  Soften expression lines with clinically guided anti-wrinkle
+                  treatment focused on natural movement and refreshed results.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                    Lips, cheeks, and contour areas
+                    Forehead, frown, and crows feet areas
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     Medical consultation included
                   </li>
                 </ul>
+                <Link
+                  href="/anti-wrinkle-injection"
+                  className="cta-button mt-5 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  View Treatment
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </motion.article>
             </div>
