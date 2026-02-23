@@ -281,7 +281,7 @@ export default function ReferAFriendPage() {
               </div>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <Link
-                  href={inboundContactHref}
+                  href="#referral-generator"
                   className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500"
                 >
                   Start Referral
@@ -310,7 +310,7 @@ export default function ReferAFriendPage() {
         </div>
       </section>
 
-      <section className="relative px-4 py-16 md:px-8 md:py-20">
+      <section id="referral-generator" className="relative scroll-mt-24 px-4 py-16 md:px-8 md:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(212,175,55,0.1),transparent_45%)]" />
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-7 lg:grid-cols-12">
           <article className="relative overflow-hidden rounded-[26px] border border-[#D4AF37]/22 bg-gradient-to-b from-[#141007]/85 via-[#0b0b0b]/90 to-black/95 p-6 lg:col-span-8">
