@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
@@ -119,7 +119,7 @@ export default function ReferAFriendPage() {
   const [activeFaq, setActiveFaq] = useState(0);
   const [referrerName, setReferrerName] = useState("");
   const [copied, setCopied] = useState(false);
-  const [origin, setOrigin] = useState("https://jluxemedicalaesthetics.com");
+  const origin = "https://jluxemedicalaesthetics.com";
 
   const nameSlug = useMemo(() => slugifyName(referrerName), [referrerName]);
   const referralId = useMemo(
@@ -127,8 +127,8 @@ export default function ReferAFriendPage() {
     [nameSlug],
   );
   const referralLink = referralId
-    ? `${origin}/contact-us?ref=${encodeURIComponent(referralId)}`
-    : `${origin}/contact-us?ref=YOUR-NAME-JLX-123ABC`;
+    ? `${origin}/pricing?ref=${encodeURIComponent(referralId)}&src=referral`
+    : `${origin}/pricing?ref=YOUR-NAME-JLX-123ABC&src=referral`;
 
   const whatsappHref = referralId
     ? `https://wa.me/?text=${encodeURIComponent(
@@ -148,12 +148,6 @@ export default function ReferAFriendPage() {
   const smsHref = referralId
     ? `sms:?&body=${encodeURIComponent(`Use my J Luxe referral link: ${referralLink}`)}`
     : "#";
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setOrigin(window.location.origin);
-    }
-  }, []);
 
   const copyLink = async () => {
     if (!referralId) return;

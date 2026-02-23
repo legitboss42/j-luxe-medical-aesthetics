@@ -1,8 +1,8 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
-import { ArrowRight, ChevronDown, MapPin, Star } from "lucide-react";
+import { ArrowRight, ChevronDown, Copy, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import MapEmbed from "../../components/MapEmbed";
@@ -15,6 +15,9 @@ const googleMapsPlaceUrl =
   "https://www.google.com/maps/search/?api=1&query=J+Luxe+Medical+Aesthetics+Hackney+London";
 const googleMapsEmbedUrl =
   "https://maps.google.com/maps?hl=en&q=J%20Luxe%20Medical%20Aesthetics%20Hackney%20London&t=&z=15&ie=UTF8&iwloc=B&output=embed";
+const referralDiscountCode = "JLUXE-DUMMY20";
+const referralPopupSeenStorageKey = "jluxe_referral_popup_seen";
+const referralDiscountCodeStorageKey = "jluxe_referral_discount_code";
 
 const revealItem: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -59,14 +62,93 @@ function renderStars(rating: number, sizeClass = "w-4 h-4") {
   ));
 }
 
+function normalizeReferralCode(value: string) {
+  return value
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^A-Z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 28);
+}
+
 export default function PricingPage() {
   const [openCategory, setOpenCategory] = useState<string | null>(
     pricingCategories[0]?.title ?? null,
   );
+  const [showReferralPopup, setShowReferralPopup] = useState(false);
+  const [copiedReferralCode, setCopiedReferralCode] = useState(false);
   const totalTreatments = useMemo(
     () => pricingCategories.reduce((sum, category) => sum + category.items.length, 0),
     [],
   );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let timeoutId: number | null = null;
+
+    const maybeShowReferralPopup = () => {
+      const params = new URLSearchParams(window.location.search);
+      const referralParam = params.get("ref") ?? "";
+      const referralSource = (params.get("src") ?? "").toLowerCase();
+      const isGeneratedReferralLink =
+        referralSource === "referral" && /-jlx-/i.test(referralParam);
+
+      if (!isGeneratedReferralLink) return;
+
+      const normalizedReferral = normalizeReferralCode(referralParam);
+      if (normalizedReferral) {
+        localStorage.setItem("jluxe_referral_code", normalizedReferral);
+      }
+
+      fetch("/api/referrals/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "referral_visit",
+          ref: normalizedReferral,
+          source: "pricing-page",
+          path: "/pricing",
+          timestamp: new Date().toISOString(),
+        }),
+      }).catch(() => {
+        // tracking failures are non-blocking
+      });
+
+      const alreadyShown = localStorage.getItem(referralPopupSeenStorageKey) === "1";
+      if (alreadyShown) return;
+
+      localStorage.setItem(referralPopupSeenStorageKey, "1");
+      localStorage.setItem(referralDiscountCodeStorageKey, referralDiscountCode);
+      localStorage.setItem("jluxe_referral_popup_seen_at", new Date().toISOString());
+      setShowReferralPopup(true);
+    };
+
+    if (document.readyState === "complete") {
+      timeoutId = window.setTimeout(maybeShowReferralPopup, 120);
+    } else {
+      window.addEventListener("load", maybeShowReferralPopup, { once: true });
+    }
+
+    return () => {
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+      window.removeEventListener("load", maybeShowReferralPopup);
+    };
+  }, []);
+
+  const copyReferralDiscountCode = async () => {
+    try {
+      await navigator.clipboard.writeText(referralDiscountCode);
+      setCopiedReferralCode(true);
+      window.setTimeout(() => setCopiedReferralCode(false), 1800);
+    } catch {
+      setCopiedReferralCode(false);
+    }
+  };
 
   const pricingSchema = useMemo(
     () => ({
@@ -126,6 +208,78 @@ export default function PricingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <AnimatePresence>
+        {showReferralPopup && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-[2px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="w-full max-w-xl rounded-2xl border border-[#D4AF37]/35 bg-[#0b0b0b] p-5 text-white shadow-[0_20px_60px_rgba(0,0,0,0.55)] md:p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="referral-discount-heading"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
+                Referral Discount
+              </p>
+              <h2
+                id="referral-discount-heading"
+                className="mt-2 text-2xl font-serif font-bold uppercase leading-tight md:text-3xl"
+              >
+                Your Discount Code Is Ready
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                You arrived through a referral link. Copy your code now and keep it safe for
+                Vagaro checkout.
+              </p>
+
+              <div className="mt-4 rounded-xl border border-[#D4AF37]/30 bg-black/45 p-3">
+                <p className="text-[10px] uppercase tracking-[0.14em] text-gray-400">Discount Code</p>
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <code className="rounded-md border border-white/15 bg-black/50 px-3 py-2 text-sm font-bold tracking-[0.08em] text-[#D4AF37]">
+                    {referralDiscountCode}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={copyReferralDiscountCode}
+                    className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                  >
+                    {copiedReferralCode ? "Copied" : "Copy Code"}
+                    <Copy className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-gray-300">
+                <li>Select a treatment and click BOOK to open Vagaro.</li>
+                <li>At Vagaro checkout, paste this code in the discount or promo code field.</li>
+                <li>Apply the code and complete your booking.</li>
+              </ol>
+
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-[#D4AF37]">
+                Copy this code now and keep it safe.
+              </p>
+
+              <div className="mt-5">
+                <button
+                  type="button"
+                  onClick={() => setShowReferralPopup(false)}
+                  className="cta-button inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
+                >
+                  I Have Saved My Code
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <section className="relative min-h-[54vh] md:min-h-[62vh] flex items-center justify-center overflow-hidden border-b border-[#D4AF37]/20">
         <motion.div
