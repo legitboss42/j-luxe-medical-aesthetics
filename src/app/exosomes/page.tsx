@@ -242,6 +242,12 @@ export default function ExosomesPage() {
               >
                 View Full Pricing
               </Link>
+              <Link
+                href="/forms/exosomes"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+              >
+                Consultation & Consent Forms
+              </Link>
             </div>
           </motion.div>
 

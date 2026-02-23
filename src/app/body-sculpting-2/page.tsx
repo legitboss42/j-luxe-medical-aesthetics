@@ -300,6 +300,12 @@ export default function BodySculptingPage() {
               <Link href="/pricing" className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]">
                 View Full Pricing
               </Link>
+              <Link
+                href="/forms/body-sculpting-2"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+              >
+                Consultation & Consent Forms
+              </Link>
             </div>
           </motion.div>
 

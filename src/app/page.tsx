@@ -623,6 +623,13 @@ export default function HomePage() {
                     Glow and hydration support
                   </li>
                 </ul>
+                <Link
+                  href="/facials"
+                  className="cta-button mt-5 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  View Treatment
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </motion.article>
 
@@ -675,6 +682,13 @@ export default function HomePage() {
                     Structured treatment plan
                   </li>
                 </ul>
+                <Link
+                  href="/body-sculpting-2"
+                  className="cta-button mt-5 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  View Treatment
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </motion.article>
 
