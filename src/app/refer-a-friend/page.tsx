@@ -120,10 +120,6 @@ export default function ReferAFriendPage() {
   const [referrerName, setReferrerName] = useState("");
   const [copied, setCopied] = useState(false);
   const [origin, setOrigin] = useState("https://jluxemedicalaesthetics.com");
-  const [inboundRef, setInboundRef] = useState("");
-  const inboundContactHref = inboundRef
-    ? `/contact-us?ref=${encodeURIComponent(inboundRef)}`
-    : "/contact-us";
 
   const nameSlug = useMemo(() => slugifyName(referrerName), [referrerName]);
   const referralId = useMemo(
@@ -156,8 +152,6 @@ export default function ReferAFriendPage() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setOrigin(window.location.origin);
-      const params = new URLSearchParams(window.location.search);
-      setInboundRef(params.get("ref") ?? "");
     }
   }, []);
 
@@ -515,7 +509,7 @@ export default function ReferAFriendPage() {
             </ul>
             <div className="mt-5 space-y-3">
               <Link
-                href={inboundContactHref}
+                href="#referral-generator"
                 className="cta-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500"
               >
                 Refer A Friend Now
