@@ -170,7 +170,7 @@ export default function TemplatePrp({
         <input id="employeeSignaturePrp" name="employeeSignaturePrp" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDatePrp" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDatePrp" name="employeeSignatureDatePrp" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeePrp" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name *</label>
+        <label htmlFor="employeePrp" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name</label>
         <input id="employeePrp" name="employeePrp" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -191,3 +191,4 @@ export default function TemplatePrp({
     </>
   );
 }
+

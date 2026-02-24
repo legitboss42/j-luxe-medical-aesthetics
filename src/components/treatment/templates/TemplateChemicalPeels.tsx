@@ -155,7 +155,7 @@ export default function TemplateChemicalPeels({
         <input id="employeeSignaturePeel" name="employeeSignaturePeel" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDatePeel" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDatePeel" name="employeeSignatureDatePeel" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeePeel" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name *</label>
+        <label htmlFor="employeePeel" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name</label>
         <input id="employeePeel" name="employeePeel" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -176,3 +176,4 @@ export default function TemplateChemicalPeels({
     </>
   );
 }
+

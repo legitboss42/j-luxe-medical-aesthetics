@@ -278,7 +278,7 @@ export default function TemplateAntiWrinkle({
           className={inputClassName}
           defaultValue={nowDate}
         />
-        <label htmlFor="employeeNameAnti" className={`${labelClassName} mt-4`}>19. Employee&apos;s Name *</label>
+        <label htmlFor="employeeNameAnti" className={`${labelClassName} mt-4`}>19. Employee&apos;s Name</label>
         <input id="employeeNameAnti" name="employeeNameAnti" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -301,3 +301,4 @@ export default function TemplateAntiWrinkle({
     </>
   );
 }
+

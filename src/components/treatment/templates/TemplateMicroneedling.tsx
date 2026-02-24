@@ -229,7 +229,7 @@ export default function TemplateMicroneedling({
         <input id="employeeSignatureMicro" name="employeeSignatureMicro" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDateMicro" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDateMicro" name="employeeSignatureDateMicro" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeeNameMicro" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name *</label>
+        <label htmlFor="employeeNameMicro" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name</label>
         <input id="employeeNameMicro" name="employeeNameMicro" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -250,3 +250,4 @@ export default function TemplateMicroneedling({
     </>
   );
 }
+

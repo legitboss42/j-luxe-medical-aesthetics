@@ -843,7 +843,8 @@ function createSubmissionReference(treatmentName: string, submittedAt: string): 
 
 async function savePdfForClinicOnly(reference: string, pdfBytes: Uint8Array): Promise<string> {
   const configuredDir = process.env.FORMS_PDF_STORAGE_DIR?.trim();
-  const relativeDir = configuredDir && configuredDir.length > 0 ? configuredDir : "reports/submissions";
+  const defaultDir = process.env.VERCEL ? "/tmp/reports/submissions" : "reports/submissions";
+  const relativeDir = configuredDir && configuredDir.length > 0 ? configuredDir : defaultDir;
   const outputDir = path.resolve(process.cwd(), relativeDir);
 
   await mkdir(outputDir, { recursive: true });
@@ -999,11 +1000,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const mailerLite = await syncToMailerLite(treatmentName, treatmentPath, template, submittedAt, data);
-    const pdfBytes = await buildPrintablePdf(treatmentName, submittedAt, data);
-    const submissionReference = createSubmissionReference(treatmentName, submittedAt);
+  const mailerLite = await syncToMailerLite(treatmentName, treatmentPath, template, submittedAt, data);
+  const pdfBytes = await buildPrintablePdf(treatmentName, submittedAt, data);
+  const submissionReference = createSubmissionReference(treatmentName, submittedAt);
+  try {
     const pdfPath = await savePdfForClinicOnly(submissionReference, pdfBytes);
     console.info("[FormSubmit][PdfSaved]", { submissionReference, pdfPath });
+  } catch (error) {
+    console.error("[FormSubmit][PdfSaveFailed]", { submissionReference, error });
+  }
     const clinicEmail = await emailPdfToClinic(
       submissionReference,
       treatmentName,

@@ -193,7 +193,7 @@ export default function TemplateBodySculpting({
         <input id="employeeSignatureBody" name="employeeSignatureBody" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDateBody" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDateBody" name="employeeSignatureDateBody" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeeNameBody" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name *</label>
+        <label htmlFor="employeeNameBody" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name</label>
         <input id="employeeNameBody" name="employeeNameBody" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -214,3 +214,4 @@ export default function TemplateBodySculpting({
     </>
   );
 }
+

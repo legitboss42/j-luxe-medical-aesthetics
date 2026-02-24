@@ -164,7 +164,7 @@ export default function TemplateIvDrip({
         <input id="employeeSignatureIv" name="employeeSignatureIv" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDateIv" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDateIv" name="employeeSignatureDateIv" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeeIv" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name *</label>
+        <label htmlFor="employeeIv" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name</label>
         <input id="employeeIv" name="employeeIv" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -185,3 +185,4 @@ export default function TemplateIvDrip({
     </>
   );
 }
+

@@ -237,7 +237,7 @@ export default function TemplateFacials({
         <input id="employeeSignatureFacial" name="employeeSignatureFacial" type="text" className={inputClassName} />
         <label htmlFor="employeeSignatureDateFacial" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDateFacial" name="employeeSignatureDateFacial" type="date" className={inputClassName} defaultValue={nowDate} />
-        <label htmlFor="employeeFacial" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name *</label>
+        <label htmlFor="employeeFacial" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name</label>
         <input id="employeeFacial" name="employeeFacial" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -258,3 +258,4 @@ export default function TemplateFacials({
     </>
   );
 }
+

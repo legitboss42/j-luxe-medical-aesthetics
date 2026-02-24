@@ -209,7 +209,7 @@ export default function TemplateWaxing({
           className={inputClassName}
           defaultValue={nowDate}
         />
-        <label htmlFor="employeeWaxing" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name *</label>
+        <label htmlFor="employeeWaxing" className={`${labelClassName} mt-4`}>15. Employee&apos;s Name</label>
         <input id="employeeWaxing" name="employeeWaxing" type="text" className={inputClassName} />
         <p className="mt-3 text-xs text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
@@ -230,3 +230,4 @@ export default function TemplateWaxing({
     </>
   );
 }
+
