@@ -841,6 +841,12 @@ function createSubmissionReference(treatmentName: string, submittedAt: string): 
   return `${slug}-${dateSegment}-${randomUUID().slice(0, 8)}`;
 }
 
+function createDownloadFilename(treatmentName: string, data: Record<string, FieldValue>): string {
+  const firstName = sanitizeFilenamePart(toSingleString(data.firstName)) || "client";
+  const treatment = sanitizeFilenamePart(treatmentName) || "treatment";
+  return `${firstName}-${treatment}-consultation-form.pdf`;
+}
+
 async function savePdfForClinicOnly(reference: string, pdfBytes: Uint8Array): Promise<string> {
   const configuredDir = process.env.FORMS_PDF_STORAGE_DIR?.trim();
   const defaultDir = process.env.VERCEL ? "/tmp/reports/submissions" : "reports/submissions";
@@ -877,6 +883,7 @@ function parseEmailList(value: string | undefined): string[] {
 
 async function emailPdfToClinic(
   submissionReference: string,
+  downloadFileName: string,
   treatmentName: string,
   treatmentPath: string,
   template: string,
@@ -954,7 +961,7 @@ async function emailPdfToClinic(
       text: textBody,
       attachments: [
         {
-          filename: `${submissionReference}.pdf`,
+          filename: downloadFileName,
           content: Buffer.from(pdfBytes),
           contentType: "application/pdf",
         },
@@ -1003,6 +1010,7 @@ export async function POST(request: Request) {
   const mailerLite = await syncToMailerLite(treatmentName, treatmentPath, template, submittedAt, data);
   const pdfBytes = await buildPrintablePdf(treatmentName, submittedAt, data);
   const submissionReference = createSubmissionReference(treatmentName, submittedAt);
+  const downloadFileName = createDownloadFilename(treatmentName, data);
   try {
     const pdfPath = await savePdfForClinicOnly(submissionReference, pdfBytes);
     console.info("[FormSubmit][PdfSaved]", { submissionReference, pdfPath });
@@ -1011,6 +1019,7 @@ export async function POST(request: Request) {
   }
     const clinicEmail = await emailPdfToClinic(
       submissionReference,
+      downloadFileName,
       treatmentName,
       treatmentPath,
       template,
@@ -1032,6 +1041,11 @@ export async function POST(request: Request) {
       message: "Thank you. Your consultation form has been submitted successfully.",
       submissionReference,
       mailerLite,
+      pdf: {
+        fileName: downloadFileName,
+        mimeType: "application/pdf",
+        base64: Buffer.from(pdfBytes).toString("base64"),
+      },
     });
   } catch (error) {
     console.error("[FormSubmitError]", error);

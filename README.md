@@ -167,11 +167,11 @@ Consultation forms now submit to:
      - custom mapped form fields using `form_` keys
    - If `MAILERLITE_GROUP_IDS` is set, the subscriber is added to those groups.
 5. The API always builds a printable PDF from all submitted form fields (not just mapped MailerLite fields).
-6. The PDF is saved server-side in a private folder (`reports/submissions` by default), not sent to the user browser.
+6. The API tries to save the PDF server-side in a private folder (`reports/submissions` by default, `/tmp/reports/submissions` on Vercel).
 7. The API emails the PDF attachment to clinic addresses when SMTP is configured.
-8. The API returns a success payload (plus a submission reference), and the frontend shows a success message only.
-9. If MailerLite or clinic email fails, the form can still succeed and PDF storage still runs.
-10. If PDF storage fails, the API returns an error and the submitter will see the failure message.
+8. The API returns a success payload that includes the generated PDF (base64 + filename + mime type).
+9. The frontend automatically downloads the submitted PDF copy and shows a success message.
+10. If MailerLite, clinic email, or server-side PDF storage fails, form submission can still succeed (failures are logged server-side).
 
 ### 8.2 MailerLite Environment Variables
 Set these in your deployment environment:

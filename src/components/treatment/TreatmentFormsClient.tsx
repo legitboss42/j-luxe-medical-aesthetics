@@ -32,6 +32,11 @@ type FormSubmitResponse = {
     skipped?: boolean;
     message: string;
   };
+  pdf?: {
+    fileName: string;
+    mimeType: string;
+    base64: string;
+  };
 };
 
 type TreatmentFormsClientProps = {
@@ -101,6 +106,17 @@ function toSubmissionData(formData: FormData): Record<string, FieldPayload> {
   }
 
   return payload;
+}
+
+function base64ToBlob(base64: string, mimeType: string): Blob {
+  const byteCharacters = window.atob(base64);
+  const byteNumbers = new Array<number>(byteCharacters.length);
+
+  for (let i = 0; i < byteCharacters.length; i += 1) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+
+  return new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
 }
 
 function Demographics({ years }: { years: number[] }) {
@@ -342,7 +358,27 @@ export default function TreatmentFormsClient({
         throw new Error(result.error ?? "Unable to submit form.");
       }
 
-      setSubmitMessage(result.message ?? "Thank you. Your consultation form has been submitted successfully.");
+      let hasDownloadedPdf = false;
+
+      if (result.pdf?.base64 && result.pdf.fileName && result.pdf.mimeType) {
+        const pdfBlob = base64ToBlob(result.pdf.base64, result.pdf.mimeType);
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = pdfUrl;
+        downloadLink.download = result.pdf.fileName;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+
+        window.setTimeout(() => URL.revokeObjectURL(pdfUrl), 30_000);
+        hasDownloadedPdf = true;
+      }
+
+      const baseMessage = result.message ?? "Thank you. Your consultation form has been submitted successfully.";
+      setSubmitMessage(
+        hasDownloadedPdf ? `${baseMessage} A copy of your submitted form has been downloaded.` : baseMessage,
+      );
       setSubmitState("success");
     } catch (error) {
       console.error("[TreatmentFormSubmitError]", error);
