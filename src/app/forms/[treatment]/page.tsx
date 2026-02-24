@@ -27,9 +27,15 @@ export async function generateMetadata({ params }: TreatmentFormsPageProps): Pro
   const formNameByTemplate = {
     antiWrinkle: "Anti-Wrinkle Consultation and Consent Form",
     bodySculpting: "Body Sculpting Consultation and Consent Form",
+    chemicalPeels: "Chemical Peels Consultation and Consent Form",
     dermalFillers: "Dermal Fillers Consultation and Consent Form",
+    exosomes: "Exosome Therapy Consultation and Consent Form",
     facials: "Facial Consultation and Consent Form",
+    ivDrip: "IV Drip Consultation and Consent Form",
     microneedling: "Microneedling Consultation and Consent Form",
+    prp: "PRP Consultation and Consent Form",
+    skinBoosters: "Skin Boosters and Mesotherapy Consultation and Consent Form",
+    teethWhitening: "Teeth Whitening Consultation and Consent Form",
     waxing: "Waxing Consultation and Consent Form",
     standard: `${config.treatmentName} Consultation and Consent Form`,
   } as const;

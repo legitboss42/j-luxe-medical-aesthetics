@@ -8,11 +8,31 @@ import Link from "next/link";
 import type { TreatmentFormTemplate } from "@/src/lib/treatment-forms";
 import TemplateAntiWrinkle from "@/src/components/treatment/templates/TemplateAntiWrinkle";
 import TemplateBodySculpting from "@/src/components/treatment/templates/TemplateBodySculpting";
+import TemplateChemicalPeels from "@/src/components/treatment/templates/TemplateChemicalPeels";
 import TemplateDermalFillers from "@/src/components/treatment/templates/TemplateDermalFillers";
+import TemplateExosomes from "@/src/components/treatment/templates/TemplateExosomes";
 import TemplateFacials from "@/src/components/treatment/templates/TemplateFacials";
+import TemplateIvDrip from "@/src/components/treatment/templates/TemplateIvDrip";
+import TemplateMicroneedling from "@/src/components/treatment/templates/TemplateMicroneedling";
+import TemplatePrp from "@/src/components/treatment/templates/TemplatePrp";
+import TemplateSkinBoosters from "@/src/components/treatment/templates/TemplateSkinBoosters";
+import TemplateTeethWhitening from "@/src/components/treatment/templates/TemplateTeethWhitening";
 import TemplateWaxing from "@/src/components/treatment/templates/TemplateWaxing";
 
-type SubmitState = "idle" | "submitting" | "success";
+type SubmitState = "idle" | "submitting" | "success" | "error";
+
+type FieldPayload = string | string[];
+
+type FormSubmitResponse = {
+  ok: boolean;
+  message?: string;
+  error?: string;
+  mailerLite?: {
+    ok: boolean;
+    skipped?: boolean;
+    message: string;
+  };
+};
 
 type TreatmentFormsClientProps = {
   treatmentName: string;
@@ -41,17 +61,6 @@ const months = [
   "December",
 ] as const;
 
-const microneedlingConsentStatements = [
-  "I confirm that I have read, understood, and agree to follow the pre- and post-treatment information guide provided with this consultation and consent form.",
-  "I confirm that the information I have provided is accurate, and I have disclosed all relevant medical history and allergies.",
-  "I understand the general risks associated with aesthetic treatments, including bruising, swelling, asymmetry, infection, or temporary discomfort.",
-  "I understand that results vary between individuals and that I may require further treatment for optimal or maintained results.",
-  "I have had the opportunity to ask questions, and all my questions have been answered to my satisfaction.",
-  "I understand that all aesthetic treatments provide temporary results and will naturally wear off over time.",
-  "I consent to photographs being taken for my medical record, with optional separate consent for marketing below.",
-  "I consent to the processing of my personal data in accordance with the clinic privacy policy.",
-] as const;
-
 const universalConsentStatements = [
   "I confirm that I have read, understood, and agree to follow the pre- and post-treatment information guide provided with this consultation and consent form.",
   "I confirm that the information I have provided is accurate, and I have disclosed all relevant medical history and allergies.",
@@ -60,8 +69,39 @@ const universalConsentStatements = [
   "I have had the opportunity to ask questions, and all my questions have been answered to my satisfaction.",
   "I understand that all aesthetic treatments provide temporary results and will naturally wear off over time.",
   "I consent to photographs being taken for my medical record, with optional separate consent for marketing below.",
-  "I consent to the processing of my personal data in accordance with the clinic privacy policy.",
+  "I consent to the processing of my personal data in accordance with the clinic's privacy policy and understand I can withdraw consent at any time.",
 ] as const;
+
+function toSubmissionData(formData: FormData): Record<string, FieldPayload> {
+  const payload: Record<string, FieldPayload> = {};
+
+  for (const [key, rawValue] of formData.entries()) {
+    if (typeof rawValue !== "string") {
+      continue;
+    }
+
+    const value = rawValue.trim();
+    if (!value) {
+      continue;
+    }
+
+    const existing = payload[key];
+    if (!existing) {
+      payload[key] = value;
+      continue;
+    }
+
+    if (Array.isArray(existing)) {
+      existing.push(value);
+      payload[key] = existing;
+      continue;
+    }
+
+    payload[key] = [existing, value];
+  }
+
+  return payload;
+}
 
 function Demographics({ years }: { years: number[] }) {
   return (
@@ -166,6 +206,7 @@ export default function TreatmentFormsClient({
   template,
 }: TreatmentFormsClientProps) {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [submitMessage, setSubmitMessage] = useState<string>("");
   const nowDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const years = useMemo(() => {
     const current = new Date().getFullYear();
@@ -175,9 +216,15 @@ export default function TreatmentFormsClient({
   const formTitleByTemplate: Record<TreatmentFormTemplate, string> = {
     antiWrinkle: "Anti-Wrinkle Consultation & Consent Form",
     bodySculpting: "Body Sculpting Consultation & Consent Form",
+    chemicalPeels: "Chemical Peel Consultation & Consent Form",
     dermalFillers: "Dermal Fillers Consultation & Consent Form",
+    exosomes: "Exosome Therapy Consultation & Consent Form",
     facials: "Facial Consultation & Consent Form",
+    ivDrip: "IV Drip Consultation & Consent Form",
     microneedling: "Microneedling Consultation & Consent Form",
+    prp: "PRP Consultation & Consent Form",
+    skinBoosters: "Skin Boosters & Mesotherapy Consultation & Consent Form",
+    teethWhitening: "Teeth Whitening Consultation & Consent Form",
     waxing: "Waxing Consultation & Consent Form",
     standard: `${treatmentName} Consultation & Consent Form`,
   };
@@ -196,11 +243,23 @@ export default function TreatmentFormsClient({
       secondary:
         "Consultation reviews medical history, body goals, and contraindications to ensure a safe and realistic treatment plan.",
     },
+    chemicalPeels: {
+      primary:
+        "Chemical peel treatments support skin renewal by improving tone, texture, and visible clarity using clinically selected peel protocols.",
+      secondary:
+        "Consultation is required to assess skin history, sensitivities, recent treatments, and product use before treatment.",
+    },
     dermalFillers: {
       primary:
         "Dermal filler treatments are non-surgical procedures designed to restore volume, enhance contour, and support facial balance.",
       secondary:
         "Your consultation is used to plan product selection, placement, dose, and risk management based on your anatomy and history.",
+    },
+    exosomes: {
+      primary:
+        "Exosome therapy is a regenerative treatment used to support skin and scalp quality through consultation-led protocol selection.",
+      secondary:
+        "Consultation is essential to assess suitability, current conditions, and safe treatment sequencing.",
     },
     facials: {
       primary:
@@ -208,17 +267,41 @@ export default function TreatmentFormsClient({
       secondary:
         "A consultation is required to assess suitability, current skincare, sensitivities, and safe treatment sequencing.",
     },
+    ivDrip: {
+      primary:
+        "IV drip treatments deliver hydration and nutrient support through consultation-led infusion protocols matched to wellness goals.",
+      secondary:
+        "A detailed medical screening is required before treatment to confirm suitability and reduce risk.",
+    },
     microneedling: {
       primary:
         "Microneedling creates controlled micro-channels in the skin using sterile needles to stimulate collagen, improve texture, reduce scarring, and support skin rejuvenation.",
       secondary:
         "Results develop gradually and typically require a course of sessions. Temporary redness, sensitivity, and mild swelling are expected.",
     },
+    prp: {
+      primary:
+        "PRP treatment uses platelet-rich plasma from your own blood to support regenerative skin and scalp outcomes.",
+      secondary:
+        "Consultation confirms clinical suitability, treatment goals, and contraindication screening before treatment.",
+    },
+    skinBoosters: {
+      primary:
+        "Skin boosters and mesotherapy protocols are designed to improve hydration, skin quality, and visible rejuvenation.",
+      secondary:
+        "Consultation is required to select the correct protocol, number of sessions, and safe treatment sequencing.",
+    },
+    teethWhitening: {
+      primary:
+        "Professional teeth whitening treatments are delivered with protocol-led shade planning and aftercare guidance.",
+      secondary:
+        "A consultation is required to review oral suitability, exclusions, and realistic whitening outcomes.",
+    },
     waxing: {
       primary:
-        "Waxing removes unwanted hair from the root and supports longer-lasting smoothness compared with shaving.",
+        "Body waxing is a professional hair-removal treatment that uses warm or hot wax to gently but effectively remove unwanted hair from the root across larger areas of the body. By lifting hair directly from the follicle, waxing leaves the skin smooth, clean, and evenly refreshed, with results that last longer than shaving or depilatory creams. Regrowth is typically finer and softer over time, with results lasting around 3 - 4 weeks depending on individual hair growth cycles and hormonal factors.",
       secondary:
-        "Consultation helps identify sensitivities, contraindications, and the safest treatment approach for each area.",
+        "A consultation is essential before body waxing to assess skin type, sensitivity, current skincare products, and any underlying conditions. Certain treatments, medications, or skin concerns can make waxing unsuitable or require modified techniques. Honest disclosure helps prevent irritation, burns, or skin lifting and allows your practitioner to tailor the treatment for maximum comfort, safety, and optimal results.",
     },
     standard: {
       primary: intro,
@@ -229,10 +312,43 @@ export default function TreatmentFormsClient({
   const descriptionOne = descriptionByTemplate[template].primary;
   const descriptionTwo = descriptionByTemplate[template].secondary;
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitState("submitting");
-    window.setTimeout(() => setSubmitState("success"), 900);
+    setSubmitMessage("");
+
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
+    const data = toSubmissionData(formData);
+
+    try {
+      const response = await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          treatmentName,
+          treatmentPath,
+          template,
+          submittedAt: new Date().toISOString(),
+          data,
+        }),
+      });
+
+      const result = (await response.json()) as FormSubmitResponse;
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error ?? "Unable to submit form.");
+      }
+
+      setSubmitMessage(result.message ?? "Thank you. Your consultation form has been submitted successfully.");
+      setSubmitState("success");
+    } catch (error) {
+      console.error("[TreatmentFormSubmitError]", error);
+      setSubmitMessage("We could not submit this form right now. Please try again.");
+      setSubmitState("error");
+    }
   };
 
   return (
@@ -299,8 +415,22 @@ export default function TreatmentFormsClient({
                   nowDate={nowDate}
                   consentStatements={universalConsentStatements}
                 />
+              ) : template === "chemicalPeels" ? (
+                <TemplateChemicalPeels
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
               ) : template === "dermalFillers" ? (
                 <TemplateDermalFillers
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
+              ) : template === "exosomes" ? (
+                <TemplateExosomes
                   inputClassName={inputClassName}
                   labelClassName={labelClassName}
                   nowDate={nowDate}
@@ -313,6 +443,41 @@ export default function TreatmentFormsClient({
                   nowDate={nowDate}
                   consentStatements={universalConsentStatements}
                 />
+              ) : template === "ivDrip" ? (
+                <TemplateIvDrip
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
+              ) : template === "microneedling" ? (
+                <TemplateMicroneedling
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
+              ) : template === "prp" ? (
+                <TemplatePrp
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
+              ) : template === "skinBoosters" ? (
+                <TemplateSkinBoosters
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
+              ) : template === "teethWhitening" ? (
+                <TemplateTeethWhitening
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                  nowDate={nowDate}
+                  consentStatements={universalConsentStatements}
+                />
               ) : template === "waxing" ? (
                 <TemplateWaxing
                   inputClassName={inputClassName}
@@ -320,140 +485,6 @@ export default function TreatmentFormsClient({
                   nowDate={nowDate}
                   consentStatements={universalConsentStatements}
                 />
-              ) : template === "microneedling" ? (
-                <>
-                  <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-                    <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Medical History & Skin Analysis</p>
-                    <div className="mt-4 grid grid-cols-1 gap-4">
-                      <label className={labelClassName}>2. Are you currently under the care of a doctor or dermatologist?</label>
-                      <div className="flex gap-5 text-sm text-gray-200">
-                        <label className="inline-flex items-center gap-2"><input type="radio" name="doctorCare" value="yes" required />Yes</label>
-                        <label className="inline-flex items-center gap-2"><input type="radio" name="doctorCare" value="no" />No</label>
-                      </div>
-                      <label htmlFor="doctorCareDetails" className={labelClassName}>3. If &quot;Yes&quot; please specify</label>
-                      <textarea id="doctorCareDetails" name="doctorCareDetails" rows={3} className={`${inputClassName} resize-none`} />
-                      <label htmlFor="bookedTreatment" className={labelClassName}>4. Treatment Selection - Please select the treatment you&apos;re booked for:</label>
-                      <input id="bookedTreatment" name="bookedTreatment" type="text" className={inputClassName} defaultValue="Microneedling with serum" />
-                      <label htmlFor="conditions" className={labelClassName}>5. Do you have any relevant skin or medical conditions?</label>
-                      <textarea id="conditions" name="conditions" rows={3} className={`${inputClassName} resize-none`} />
-                      <label htmlFor="conditionsDetails" className={labelClassName}>6. If yes, please specify</label>
-                      <textarea id="conditionsDetails" name="conditionsDetails" rows={3} className={`${inputClassName} resize-none`} />
-                      <label htmlFor="skinType" className={labelClassName}>7. How would you describe your skin?</label>
-                      <select id="skinType" name="skinType" className={inputClassName} defaultValue="">
-                        <option value="">Select</option>
-                        <option value="Dry">Dry</option>
-                        <option value="Oily">Oily</option>
-                        <option value="Combination">Combination</option>
-                        <option value="Sensitive">Sensitive</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Other">Other</option>
-                      </select>
-                      <label htmlFor="skinTypeOther" className={labelClassName}>8. If &quot;Other&quot; please specify</label>
-                      <input id="skinTypeOther" name="skinTypeOther" type="text" className={inputClassName} />
-                      <label htmlFor="goals" className={labelClassName}>9. What would you most like to improve?</label>
-                      <select id="goals" name="goals" className={inputClassName} defaultValue="">
-                        <option value="">Select</option>
-                        <option value="Fine lines and texture">Fine lines and texture</option>
-                        <option value="Acne scarring">Acne scarring</option>
-                        <option value="Dull or uneven skin tone">Dull or uneven skin tone</option>
-                        <option value="Breakouts or congestion">Breakouts or congestion</option>
-                        <option value="Other">Other</option>
-                      </select>
-                      <label className={labelClassName}>10. Have you had aesthetic treatment in the last 6 weeks?</label>
-                      <div className="flex gap-5 text-sm text-gray-200">
-                        <label className="inline-flex items-center gap-2"><input type="radio" name="recentAesthetic" value="yes" required />Yes</label>
-                        <label className="inline-flex items-center gap-2"><input type="radio" name="recentAesthetic" value="no" />No</label>
-                      </div>
-                      <label htmlFor="routine" className={labelClassName}>11. Do you have a skincare routine? If yes, please describe it.</label>
-                      <textarea id="routine" name="routine" rows={3} className={`${inputClassName} resize-none`} />
-                      <label htmlFor="medication" className={labelClassName}>12. Are you currently on any medications/products that may affect treatment?</label>
-                      <textarea id="medication" name="medication" rows={3} className={`${inputClassName} resize-none`} />
-                      <label htmlFor="appointmentDate" className={labelClassName}>13. When is this appointment scheduled?</label>
-                      <input id="appointmentDate" name="appointmentDate" type="date" className={inputClassName} defaultValue={nowDate} />
-                    </div>
-                  </section>
-
-                  <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-                    <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Contraindication Check</p>
-                    <p className="mt-3 text-sm leading-relaxed text-gray-300">
-                      Microneedling cannot be performed if absolute contraindications apply and may need postponement
-                      if relative contraindications are present. It is essential to answer honestly to ensure safe
-                      treatment.
-                    </p>
-                    <p className="mt-3 text-sm text-gray-300">14. Are you currently on any of the following? (Absolute contraindications)</p>
-                    <textarea name="absoluteContraindications" rows={3} className={`${inputClassName} mt-2 resize-none`} />
-                    <p className="mt-4 text-sm text-gray-300">15. Are you currently on any of the following? (Relative contraindications)</p>
-                    <textarea name="relativeContraindications" rows={3} className={`${inputClassName} mt-2 resize-none`} />
-                  </section>
-
-                  <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-                    <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Client&apos;s Consent (Mandatory)</p>
-                    <p className="mt-3 text-sm text-gray-300">
-                      Photographs are taken before and after treatment for medical documentation and client records.
-                    </p>
-                    <fieldset className="mt-4">
-                      <legend className={labelClassName}>16. Client Consent (Mandatory) Please confirm each statement:</legend>
-                      <div className="space-y-2 rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-sm text-gray-200">
-                        {microneedlingConsentStatements.map((item) => (
-                          <label key={item} className="flex items-start gap-2">
-                            <input className="mt-1" type="checkbox" name="consentStatements" value={item} required />
-                            <span>{item}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </fieldset>
-                    <label className={`${labelClassName} mt-4`}>17. Photo & Marketing Consent.</label>
-                    <div className="space-y-2 text-sm text-gray-200">
-                      <label className="flex items-start gap-2"><input type="radio" name="photoConsent" value="anonymous-education" required /><span>I consent to anonymous training or educational use.</span></label>
-                      <label className="flex items-start gap-2"><input type="radio" name="photoConsent" value="marketing" /><span>I consent to marketing use.</span></label>
-                      <label className="flex items-start gap-2"><input type="radio" name="photoConsent" value="medical-only" /><span>I do not consent to use beyond medical record.</span></label>
-                    </div>
-                    <p className="mt-4 text-sm text-gray-300">
-                      18. Please sign and date to confirm that you have read, understood, and agree to the statements above.
-                    </p>
-                    <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
-                      <input className="mt-1" type="checkbox" name="electronicRecordsMicroneedlingClient" required />
-                      <span>I agree to use electronic records and signatures.</span>
-                    </label>
-                    <label htmlFor="customerSignature" className={`${labelClassName} mt-4`}>18. Customer Signature</label>
-                    <input id="customerSignature" name="customerSignature" type="text" className={inputClassName} required />
-                    <label htmlFor="signatureDate" className={`${labelClassName} mt-4`}>Signature Date</label>
-                    <input id="signatureDate" name="signatureDate" type="date" className={inputClassName} defaultValue={nowDate} />
-                    <label htmlFor="clientName" className={`${labelClassName} mt-4`}>19. Client&apos;s Name</label>
-                    <input id="clientName" name="clientName" type="text" className={inputClassName} required />
-                    <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
-                      <input className="mt-1" type="checkbox" name="electronicRecordsMicroneedlingEmployee" />
-                      <span>I agree to use electronic records and signatures.</span>
-                    </label>
-                    <label htmlFor="employeeSignature" className={`${labelClassName} mt-4`}>20. Employee&apos;s Signature</label>
-                    <input id="employeeSignature" name="employeeSignature" type="text" className={inputClassName} />
-                    <label htmlFor="employeeSignatureDate" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
-                    <input
-                      id="employeeSignatureDate"
-                      name="employeeSignatureDate"
-                      type="date"
-                      className={inputClassName}
-                      defaultValue={nowDate}
-                    />
-                    <label htmlFor="employeeName" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name</label>
-                    <input id="employeeName" name="employeeName" type="text" className={inputClassName} />
-                    <p className="mt-3 text-xs text-gray-400">
-                      Note: Customers will not see the employee signature field when filling form online.
-                    </p>
-                  </section>
-
-                  <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-                    <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Practitioner Notes (For Internal Use Only)</p>
-                    <label htmlFor="assessment" className={`${labelClassName} mt-4`}>Assessment</label>
-                    <textarea id="assessment" name="assessment" rows={3} className={`${inputClassName} resize-none`} />
-                    <label htmlFor="batch" className={`${labelClassName} mt-4`}>Batch Number & Expiry Date</label>
-                    <textarea id="batch" name="batch" rows={3} className={`${inputClassName} resize-none`} />
-                    <label htmlFor="units" className={`${labelClassName} mt-4`}>Treatment Given / Units Used</label>
-                    <textarea id="units" name="units" rows={3} className={`${inputClassName} resize-none`} />
-                    <label htmlFor="postComments" className={`${labelClassName} mt-4`}>Post-Treatment Comments</label>
-                    <textarea id="postComments" name="postComments" rows={4} className={`${inputClassName} resize-none`} />
-                  </section>
-                </>
               ) : (
                 <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
                   <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Consultation & Consent</p>
@@ -476,7 +507,13 @@ export default function TreatmentFormsClient({
 
               {submitState === "success" && (
                 <p className="rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-xs text-[#f0dc9b]">
-                  Form captured successfully. Final confirmation and signatures are completed in clinic.
+                  {submitMessage}
+                </p>
+              )}
+
+              {submitState === "error" && (
+                <p className="rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-xs text-red-200">
+                  {submitMessage}
                 </p>
               )}
             </form>

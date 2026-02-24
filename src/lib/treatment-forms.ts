@@ -14,7 +14,13 @@ export type TreatmentFormTemplate =
   | "antiWrinkle"
   | "bodySculpting"
   | "dermalFillers"
-  | "facials";
+  | "facials"
+  | "chemicalPeels"
+  | "exosomes"
+  | "ivDrip"
+  | "prp"
+  | "skinBoosters"
+  | "teethWhitening";
 
 const treatmentFormConfigsMap = {
   "anti-wrinkle-injection": {
@@ -42,7 +48,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/chemical-peels.png",
     intro:
       "Provide skin history, sensitivity details, and consent declarations ahead of your chemical peel consultation.",
-    template: "standard",
+    template: "chemicalPeels",
   },
   exosomes: {
     slug: "exosomes",
@@ -51,7 +57,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/exosome.png",
     intro:
       "Submit your exosome therapy consultation profile and treatment consent details to support safe clinical planning.",
-    template: "standard",
+    template: "exosomes",
   },
   facials: {
     slug: "facials",
@@ -78,7 +84,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/iv-vitamin-drip.png",
     intro:
       "Submit wellness goals, relevant health information, and consent choices before your IV vitamin drip appointment.",
-    template: "standard",
+    template: "ivDrip",
   },
   "prp-treatment": {
     slug: "prp-treatment",
@@ -87,7 +93,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/prp-treatment.png",
     intro:
       "Provide your PRP consultation history and complete informed consent checkpoints prior to treatment day.",
-    template: "standard",
+    template: "prp",
   },
   "skin-boosters-mesotherapy": {
     slug: "skin-boosters-mesotherapy",
@@ -96,7 +102,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/skin-boosters-mesotherapy.png",
     intro:
       "Complete your skin booster consultation notes and consent declarations before your planned protocol.",
-    template: "standard",
+    template: "skinBoosters",
   },
   "teeth-whitening": {
     slug: "teeth-whitening",
@@ -105,7 +111,7 @@ const treatmentFormConfigsMap = {
     imageSrc: "/images/teeth-whitening.png",
     intro:
       "Share suitability information and complete consent statements before your whitening appointment.",
-    template: "standard",
+    template: "teethWhitening",
   },
   waxing: {
     slug: "waxing",
