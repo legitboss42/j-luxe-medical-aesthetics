@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ScrollToTopOnLoad from "./ScrollToTopOnLoad";
 
 const siteUrl = "https://jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
@@ -87,6 +88,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${cormorant.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen antialiased`}
       >
+        <ScrollToTopOnLoad />
         <Navbar />
         {/* Sticky header sits in flow, so no manual top offset needed */}
         <main className="flex-grow">
