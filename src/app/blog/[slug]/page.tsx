@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import AuthorSocialProofCard from "@/src/components/blog/AuthorSocialProofCard";
 import { getAllBlogPosts, getBlogPostBySlug, getBlogSlugs } from "@/src/lib/blog";
 
+export const dynamicParams = true;
+
 type BlogArticlePageProps = {
   params: Promise<{
     slug: string;
@@ -241,3 +243,5 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     </main>
   );
 }
+
+

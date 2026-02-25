@@ -61,10 +61,13 @@ function toDateLabel(date: string) {
 
 function getBaseSummary(data: FrontmatterData, fallbackSlug: string): BlogPostSummary {
   const publishedAt = data.date ?? new Date().toISOString().slice(0, 10);
+  const resolvedSlug = typeof data.slug === "string" && data.slug.trim().length > 0
+    ? data.slug.trim()
+    : fallbackSlug;
 
   return {
-    id: data.slug ?? fallbackSlug,
-    slug: data.slug ?? fallbackSlug,
+    id: resolvedSlug,
+    slug: resolvedSlug,
     title: data.title ?? "Untitled Article",
     excerpt: data.excerpt ?? "",
     category: data.category ?? "General",
@@ -153,45 +156,61 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return null;
   }
 
-  const fullPath = path.join(BLOG_CONTENT_DIR, `${slug}.md`);
+  const files = await safeReadDir(BLOG_CONTENT_DIR);
+  const markdownFiles = files.filter(isMarkdownPostFile);
 
-  try {
-    const fileContent = await fs.readFile(fullPath, "utf8");
-    const { data, content } = matter(fileContent);
-    const frontmatter = data as FrontmatterData;
+  for (const fileName of markdownFiles) {
+    const fullPath = path.join(BLOG_CONTENT_DIR, fileName);
 
-    if (!frontmatter.title) {
-      return null;
+    try {
+      const fileContent = await fs.readFile(fullPath, "utf8");
+      const { data, content } = matter(fileContent);
+      const frontmatter = data as FrontmatterData;
+
+      if (!frontmatter.title) {
+        continue;
+      }
+
+      const fallbackSlug = fileName.replace(/\.md$/, "");
+      const resolvedSlug = typeof frontmatter.slug === "string" && frontmatter.slug.trim().length > 0
+        ? frontmatter.slug.trim()
+        : fallbackSlug;
+
+      if (resolvedSlug !== slug) {
+        continue;
+      }
+
+      const summary = getBaseSummary(frontmatter, fallbackSlug);
+      const heroImageSrc =
+        (frontmatter.heroImage ?? "").trim() ||
+        extractFirstMarkdownImageSrc(content) ||
+        summary.imageSrc;
+
+      const markdownWithLead = renderLeadMagnetToken(content);
+      const processed = await remark()
+        .use(html, { sanitize: false })
+        .process(markdownWithLead);
+      const normalizedHtml = processed
+        .toString()
+        .replace(/<h1(\b[^>]*)>/g, "<h2$1>")
+        .replace(/<\/h1>/g, "</h2>");
+
+      return {
+        ...summary,
+        htmlContent: normalizedHtml,
+        heroImageSrc,
+        metaTitle: frontmatter.metaTitle,
+        metaDescription: frontmatter.metaDescription,
+        secondaryKeywords: Array.isArray(frontmatter.secondaryKeywords)
+          ? frontmatter.secondaryKeywords
+          : [],
+      };
+    } catch {
+      continue;
     }
-
-    const summary = getBaseSummary(data as FrontmatterData, slug);
-    const heroImageSrc =
-      (frontmatter.heroImage ?? "").trim() ||
-      extractFirstMarkdownImageSrc(content) ||
-      summary.imageSrc;
-
-    const markdownWithLead = renderLeadMagnetToken(content);
-    const processed = await remark()
-      .use(html, { sanitize: false })
-      .process(markdownWithLead);
-    const normalizedHtml = processed
-      .toString()
-      .replace(/<h1(\b[^>]*)>/g, "<h2$1>")
-      .replace(/<\/h1>/g, "</h2>");
-
-    return {
-      ...summary,
-      htmlContent: normalizedHtml,
-      heroImageSrc,
-      metaTitle: (data as FrontmatterData).metaTitle,
-      metaDescription: (data as FrontmatterData).metaDescription,
-      secondaryKeywords: Array.isArray((data as FrontmatterData).secondaryKeywords)
-        ? ((data as FrontmatterData).secondaryKeywords as string[])
-        : [],
-    };
-  } catch {
-    return null;
   }
+
+  return null;
 }
 
 export async function getBlogSlugs() {
@@ -209,7 +228,12 @@ export async function getBlogSlugs() {
         return null;
       }
 
-      return fileName.replace(/\.md$/, "");
+      const fallbackSlug = fileName.replace(/\.md$/, "");
+      const resolvedSlug = typeof frontmatter.slug === "string" && frontmatter.slug.trim().length > 0
+        ? frontmatter.slug.trim()
+        : fallbackSlug;
+
+      return resolvedSlug;
     }),
   );
 

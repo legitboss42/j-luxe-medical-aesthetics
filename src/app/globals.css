@@ -153,7 +153,13 @@ main :where(.uppercase) {
 }
 
 .blog-content img {
-  margin: 1rem 0 1.2rem;
+  display: block;
+  margin: 1rem auto 1.2rem;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
@@ -333,3 +339,5 @@ main :where(.uppercase) {
     opacity: 0;
   }
 }
+
+
