@@ -570,6 +570,18 @@ export default function TreatmentFormsClient({
               <h2 className="text-2xl font-serif font-bold uppercase md:text-3xl">{formTitle}</h2>
             </div>
 
+            {submitState === "success" && (
+              <p className="mt-5 rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-xs text-[#f0dc9b]">
+                {submitMessage}
+              </p>
+            )}
+
+            {submitState === "error" && (
+              <p className="mt-5 rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-xs text-red-200">
+                {submitMessage}
+              </p>
+            )}
+
             <form className="mt-8 space-y-7" onSubmit={handleSubmit}>
               <Demographics years={years} />
 
@@ -676,18 +688,6 @@ export default function TreatmentFormsClient({
               >
                 {submitState === "submitting" ? "Saving..." : "Submit Consultation & Consent Form"}
               </button>
-
-              {submitState === "success" && (
-                <p className="rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-xs text-[#f0dc9b]">
-                  {submitMessage}
-                </p>
-              )}
-
-              {submitState === "error" && (
-                <p className="rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-xs text-red-200">
-                  {submitMessage}
-                </p>
-              )}
             </form>
           </article>
         </div>
