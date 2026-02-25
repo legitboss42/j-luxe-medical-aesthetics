@@ -23,6 +23,13 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 
 type FieldPayload = string | string[];
 
+type PdfFieldBlueprintItem = {
+  name: string;
+  label: string;
+  section: string;
+  order: number;
+};
+
 type FormSubmitResponse = {
   ok: boolean;
   message?: string;
@@ -106,6 +113,131 @@ function toSubmissionData(formData: FormData): Record<string, FieldPayload> {
   }
 
   return payload;
+}
+
+function normalizeText(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function readableFieldName(name: string): string {
+  return name
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function looksLikeQuestion(text: string): boolean {
+  return /^\d+\./.test(text) || text.endsWith("?") || text.includes("please") || text.includes("Please");
+}
+
+function findNearestQuestionText(section: HTMLElement, field: HTMLElement): string {
+  const candidates = Array.from(section.querySelectorAll("label, legend, p"))
+    .filter((element) => !element.querySelector("input, select, textarea"));
+
+  const beforeField = candidates.filter((candidate) => {
+    const relation = candidate.compareDocumentPosition(field);
+    return (relation & Node.DOCUMENT_POSITION_FOLLOWING) !== 0;
+  });
+
+  for (let index = beforeField.length - 1; index >= 0; index -= 1) {
+    const text = normalizeText(beforeField[index].textContent ?? "");
+    if (text && looksLikeQuestion(text)) {
+      return text;
+    }
+  }
+
+  for (let index = beforeField.length - 1; index >= 0; index -= 1) {
+    const text = normalizeText(beforeField[index].textContent ?? "");
+    if (text) {
+      return text;
+    }
+  }
+
+  return "";
+}
+
+function getFieldQuestionLabel(field: HTMLElement, section: HTMLElement, name: string): string {
+  const id = field.getAttribute("id");
+  if (id) {
+    const explicitLabel = Array.from(section.querySelectorAll("label[for]"))
+      .find((label) => label.getAttribute("for") === id);
+
+    const labelText = normalizeText(explicitLabel?.textContent ?? "");
+    if (labelText) {
+      return labelText;
+    }
+  }
+
+  const fieldset = field.closest("fieldset");
+  if (fieldset instanceof HTMLElement) {
+    const legend = fieldset.querySelector("legend");
+    const legendText = normalizeText(legend?.textContent ?? "");
+    if (legendText) {
+      return legendText;
+    }
+  }
+
+  const nearestQuestion = findNearestQuestionText(section, field);
+  if (nearestQuestion) {
+    return nearestQuestion;
+  }
+
+  return readableFieldName(name);
+}
+
+function getSectionTitle(section: HTMLElement): string {
+  const headingCandidate = Array.from(section.querySelectorAll("p"))
+    .map((element) => normalizeText(element.textContent ?? ""))
+    .find((text) => text.length > 0);
+
+  return headingCandidate ?? "Form Details";
+}
+
+function extractPdfFieldBlueprint(form: HTMLFormElement): PdfFieldBlueprintItem[] {
+  const blueprint: PdfFieldBlueprintItem[] = [];
+  const seen = new Set<string>();
+  let order = 0;
+
+  const sections = Array.from(form.querySelectorAll("section"));
+  for (const section of sections) {
+    const sectionTitle = getSectionTitle(section);
+    const fields = Array.from(section.querySelectorAll("input[name], select[name], textarea[name]")) as HTMLElement[];
+
+    for (const field of fields) {
+      const name = field.getAttribute("name")?.trim() ?? "";
+      if (!name || seen.has(name)) {
+        continue;
+      }
+
+      seen.add(name);
+      blueprint.push({
+        name,
+        label: getFieldQuestionLabel(field, section, name),
+        section: sectionTitle,
+        order,
+      });
+      order += 1;
+    }
+  }
+
+  const remainingFields = Array.from(form.querySelectorAll("input[name], select[name], textarea[name]")) as HTMLElement[];
+  for (const field of remainingFields) {
+    const name = field.getAttribute("name")?.trim() ?? "";
+    if (!name || seen.has(name)) {
+      continue;
+    }
+
+    seen.add(name);
+    blueprint.push({
+      name,
+      label: readableFieldName(name),
+      section: "Additional Submitted Details",
+      order,
+    });
+    order += 1;
+  }
+
+  return blueprint;
 }
 
 function base64ToBlob(base64: string, mimeType: string): Blob {
@@ -336,6 +468,7 @@ export default function TreatmentFormsClient({
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
     const data = toSubmissionData(formData);
+    const fieldBlueprint = extractPdfFieldBlueprint(formElement);
 
     try {
       const response = await fetch("/api/forms/submit", {
@@ -349,6 +482,7 @@ export default function TreatmentFormsClient({
           template,
           submittedAt: new Date().toISOString(),
           data,
+          fieldBlueprint,
         }),
       });
 
@@ -376,10 +510,12 @@ export default function TreatmentFormsClient({
       }
 
       const baseMessage = result.message ?? "Thank you. Your consultation form has been submitted successfully.";
+      formElement.reset();
       setSubmitMessage(
         hasDownloadedPdf ? `${baseMessage} A copy of your submitted form has been downloaded.` : baseMessage,
       );
       setSubmitState("success");
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     } catch (error) {
       console.error("[TreatmentFormSubmitError]", error);
       setSubmitMessage("We could not submit this form right now. Please try again.");
