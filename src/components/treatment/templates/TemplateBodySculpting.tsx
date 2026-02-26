@@ -142,10 +142,10 @@ export default function TemplateBodySculpting({
           8. Have you had any aesthetic treatment (facials, microneedling, injectables, etc) within the last 6 weeks?
         </label>
         <textarea id="recentBody" name="recentBody" rows={2} className={`${inputClassName} resize-none`} />
-        <label className={`${labelClassName} mt-4`}>9. When is this appointment scheduled?</label>
+        <label className={`${labelClassName} mt-4`}>9. When is this appointment scheduled? *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentBodyDate" name="appointmentBodyDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentBodyTime" name="appointmentBodyTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentBodyDate" name="appointmentBodyDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentBodyTime" name="appointmentBodyTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
       </section>
 
@@ -214,4 +214,6 @@ export default function TemplateBodySculpting({
     </>
   );
 }
+
+
 

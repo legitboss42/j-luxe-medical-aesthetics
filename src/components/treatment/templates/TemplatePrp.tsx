@@ -121,8 +121,8 @@ export default function TemplatePrp({
         </div>
         <label className={`${labelClassName} mt-4`}>9. Date of scheduled appointment. *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentPrpDate" name="appointmentPrpDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentPrpTime" name="appointmentPrpTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentPrpDate" name="appointmentPrpDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentPrpTime" name="appointmentPrpTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
       </section>
 
@@ -191,4 +191,5 @@ export default function TemplatePrp({
     </>
   );
 }
+
 

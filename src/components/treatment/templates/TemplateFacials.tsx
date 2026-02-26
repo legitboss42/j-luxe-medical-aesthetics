@@ -169,10 +169,10 @@ export default function TemplateFacials({
             <option key={option} value={option}>{option}</option>
           ))}
         </select>
-        <label className={`${labelClassName} mt-4`}>12. When is this appointment scheduled?</label>
+        <label className={`${labelClassName} mt-4`}>12. When is this appointment scheduled? *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="facialAppointmentDate" name="facialAppointmentDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="facialAppointmentTime" name="facialAppointmentTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="facialAppointmentDate" name="facialAppointmentDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="facialAppointmentTime" name="facialAppointmentTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
         <label htmlFor="facialRecentTreatment" className={`${labelClassName} mt-4`}>
           13. Have you had any aesthetic treatment (facials, microneedling, injectables, etc) within the last 6 weeks?
@@ -258,4 +258,6 @@ export default function TemplateFacials({
     </>
   );
 }
+
+
 

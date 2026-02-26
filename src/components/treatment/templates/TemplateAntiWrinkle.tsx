@@ -137,7 +137,7 @@ export default function TemplateAntiWrinkle({
           7. If &quot;Other&quot; please specify
         </label>
         <input id="areasConcernAntiOther" name="areasConcernAntiOther" type="text" className={inputClassName} />
-        <label className={`${labelClassName} mt-4`}>8. When is the appointment scheduled?</label>
+        <label className={`${labelClassName} mt-4`}>8. When is the appointment scheduled? *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <input
             id="appointmentDateAnti"
@@ -145,14 +145,14 @@ export default function TemplateAntiWrinkle({
             type="date"
             defaultValue={nowDate}
             className={inputClassName}
-          />
+           required/>
           <input
             id="appointmentTimeAnti"
             name="appointmentTimeAnti"
             type="time"
             defaultValue="09:00"
             className={inputClassName}
-          />
+           required/>
         </div>
       </section>
 
@@ -301,4 +301,6 @@ export default function TemplateAntiWrinkle({
     </>
   );
 }
+
+
 

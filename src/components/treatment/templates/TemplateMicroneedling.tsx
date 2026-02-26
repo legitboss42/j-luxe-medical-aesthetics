@@ -151,10 +151,10 @@ export default function TemplateMicroneedling({
             ))}
           </div>
 
-          <label className={labelClassName}>13. When is this appointment scheduled?</label>
+          <label className={labelClassName}>13. When is this appointment scheduled? *</label>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            <input id="appointmentDateMicro" name="appointmentDateMicro" type="date" className={inputClassName} defaultValue={nowDate} />
-            <input id="appointmentTimeMicro" name="appointmentTimeMicro" type="time" className={inputClassName} defaultValue="09:00" />
+            <input id="appointmentDateMicro" name="appointmentDateMicro" type="date" className={inputClassName} defaultValue={nowDate}  required/>
+            <input id="appointmentTimeMicro" name="appointmentTimeMicro" type="time" className={inputClassName} defaultValue="09:00"  required/>
           </div>
         </div>
       </section>
@@ -250,4 +250,6 @@ export default function TemplateMicroneedling({
     </>
   );
 }
+
+
 

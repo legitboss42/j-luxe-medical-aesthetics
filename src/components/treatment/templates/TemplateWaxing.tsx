@@ -142,14 +142,14 @@ export default function TemplateWaxing({
             type="date"
             defaultValue={nowDate}
             className={inputClassName}
-          />
+           required/>
           <input
             id="appointmentWaxingTime"
             name="appointmentWaxingTime"
             type="time"
             defaultValue="09:00"
             className={inputClassName}
-          />
+           required/>
         </div>
       </section>
 
@@ -230,4 +230,5 @@ export default function TemplateWaxing({
     </>
   );
 }
+
 

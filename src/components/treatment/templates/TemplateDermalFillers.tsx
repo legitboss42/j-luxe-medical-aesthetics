@@ -114,10 +114,10 @@ export default function TemplateDermalFillers({
         </div>
         <label htmlFor="otherFillers" className={`${labelClassName} mt-4`}>7. If &quot;Other&quot; please specify</label>
         <input id="otherFillers" name="otherFillers" type="text" className={inputClassName} />
-        <label className={`${labelClassName} mt-4`}>8. When is the appointment scheduled?</label>
+        <label className={`${labelClassName} mt-4`}>8. When is the appointment scheduled? *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentFillersDate" name="appointmentFillersDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentFillersTime" name="appointmentFillersTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentFillersDate" name="appointmentFillersDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentFillersTime" name="appointmentFillersTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
         <label className={`${labelClassName} mt-4`}>9. Please tick all that apply:</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -233,4 +233,6 @@ export default function TemplateDermalFillers({
     </>
   );
 }
+
+
 

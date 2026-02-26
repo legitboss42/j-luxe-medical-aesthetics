@@ -106,8 +106,8 @@ export default function TemplateChemicalPeels({
         <textarea id="recentPeel" name="recentPeel" rows={2} className={`${inputClassName} resize-none`} />
         <label className={`${labelClassName} mt-4`}>9. Date of scheduled appointment. *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentPeelDate" name="appointmentPeelDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentPeelTime" name="appointmentPeelTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentPeelDate" name="appointmentPeelDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentPeelTime" name="appointmentPeelTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
       </section>
 
@@ -176,4 +176,5 @@ export default function TemplateChemicalPeels({
     </>
   );
 }
+
 

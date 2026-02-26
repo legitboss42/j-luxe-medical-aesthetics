@@ -114,8 +114,8 @@ export default function TemplateExosomes({
         </div>
         <label className={`${labelClassName} mt-4`}>9. Date of scheduled appointment. *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentExosomeDate" name="appointmentExosomeDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentExosomeTime" name="appointmentExosomeTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentExosomeDate" name="appointmentExosomeDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentExosomeTime" name="appointmentExosomeTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
       </section>
 
@@ -184,4 +184,5 @@ export default function TemplateExosomes({
     </>
   );
 }
+
 

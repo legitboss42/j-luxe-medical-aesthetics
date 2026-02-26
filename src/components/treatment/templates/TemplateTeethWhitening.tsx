@@ -114,8 +114,8 @@ export default function TemplateTeethWhitening({
         <textarea id="recentTeeth" name="recentTeeth" rows={2} className={`${inputClassName} resize-none`} />
         <label className={`${labelClassName} mt-4`}>9. Date of scheduled appointment. *</label>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <input id="appointmentTeethDate" name="appointmentTeethDate" type="date" defaultValue={nowDate} className={inputClassName} />
-          <input id="appointmentTeethTime" name="appointmentTeethTime" type="time" defaultValue="09:00" className={inputClassName} />
+          <input id="appointmentTeethDate" name="appointmentTeethDate" type="date" defaultValue={nowDate} className={inputClassName}  required/>
+          <input id="appointmentTeethTime" name="appointmentTeethTime" type="time" defaultValue="09:00" className={inputClassName}  required/>
         </div>
       </section>
 
@@ -188,4 +188,5 @@ export default function TemplateTeethWhitening({
     </>
   );
 }
+
 
