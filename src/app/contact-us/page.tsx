@@ -58,7 +58,7 @@ const contactFlow = [
   },
   {
     step: "02",
-    title: "Personalised Guidance",
+    title: "Personalized Guidance",
     desc: "Our team recommends the right consultation-led treatment route for you.",
   },
   {
@@ -284,7 +284,7 @@ export default function ContactPage() {
               </motion.h1>
               <motion.p variants={revealItem} className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-gray-200 lg:mx-0 md:text-base">
                 Speak with our Hackney, London team about dermal fillers, anti-wrinkle
-                injections, skin boosters, body sculpting, and personalised treatment planning.
+                injections, skin boosters, body sculpting, and personalized treatment planning.
               </motion.p>
               <motion.div
                 variants={revealItem}

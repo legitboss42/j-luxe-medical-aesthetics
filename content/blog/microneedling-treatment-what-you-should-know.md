@@ -41,7 +41,7 @@ This guide is designed to set realistic expectations before booking. It explains
 - What Microneedling Can and Cannot Treat
 - Suitability and Clinical Assessment
 - How Microneedling Is Performed in Clinic
-- Pain, Sensation and Patient Experience
+- Pain, Sensation and Client Experience
 - Downtime and Healing Timeline
 - When Results Appear and How Long They Last
 - Risks, Safety and Contraindications
@@ -57,13 +57,13 @@ At a biological level, microneedling initiates a cascade of repair mechanisms. T
 
 Importantly, microneedling is dose dependent. The depth, pressure, number of passes, and spacing between treatments directly influence tissue response. When these variables are poorly controlled, collagen stimulation is either insufficient or excessive, both of which compromise results.
 
-Microneedling should therefore be understood as a biological stimulus, not a cosmetic enhancement. It does not fill, lift, or tighten skin in the way injectable or energy-based treatments do. Its role sits firmly within skin regeneration and optimisation, making correct indication and protocol design essential.
+Microneedling should therefore be understood as a biological stimulus, not a cosmetic enhancement. It does not fill, lift, or tighten skin in the way injectable or energy-based treatments do. Its role sits firmly within skin regeneration and optimization, making correct indication and protocol design essential.
 
 This distinction is critical. When microneedling is positioned or used outside its clinical scope, expectations become misaligned and outcomes disappoint.
 
 ## What Microneedling Can and Cannot Treat
 
-Microneedling is effective when used within its clinical scope. It is a treatment for skin quality optimisation, not a solution for structural ageing or volume-related concerns. Clear distinction at this stage is essential for appropriate treatment selection and patient satisfaction.
+Microneedling is effective when used within its clinical scope. It is a treatment for skin quality optimization, not a solution for structural ageing or volume-related concerns. Clear distinction at this stage is essential for appropriate treatment selection and client satisfaction.
 
 ### What Microneedling Treats Effectively
 
@@ -149,7 +149,7 @@ Establishing suitability ensures:
 - Reduced risk profile
 - Realistic expectations
 
-This is what differentiates a clinical microneedling protocol from a standardised service.
+This is what differentiates a clinical microneedling protocol from a standardized service.
 
 ## How Microneedling Is Performed in Clinic
 
@@ -157,7 +157,7 @@ A clinical microneedling treatment is methodical, adaptive, and indication led. 
 
 ### Pre-Treatment Preparation
 
-Before needling begins, the skin is prepared to minimise risk and optimise response:
+Before needling begins, the skin is prepared to minimize risk and optimize response:
 
 - Thorough cleansing to remove surface debris and oils
 - Medical-grade skin disinfection to reduce infection risk
@@ -172,7 +172,7 @@ Microneedling is performed using variable depths and controlled passes, adjusted
 Key elements include:
 
 - **Depth modulation by facial zone**  
-  Thinner areas (e.g. periorbital, forehead) require shallower depths than thicker regions (e.g. cheeks).
+  Thinner areas (e.g. Periorbital, forehead) require shallower depths than thicker regions (e.g. Cheeks).
 - **Pressure and speed control**  
   Excessive pressure or speed increases trauma without improving collagen stimulation.
 - **Pass limitation**  
@@ -200,13 +200,13 @@ Shorter sessions often indicate insufficient assessment or rushed technique.
 
 Microneedling is effective when delivered as a controlled medical procedure, not a mechanical service. Technique consistency, real-time assessment, and respect for tissue response are what differentiate high-quality outcomes from variable results.
 
-## Pain, Sensation and Patient Experience
+## Pain, Sensation and Client Experience
 
-Microneedling is generally well tolerated when performed correctly. The experience should be controlled, predictable, and proportionate to the treatment area, not overwhelming or excessive. Patient comfort is a clinical consideration, not an afterthought.
+Microneedling is generally well tolerated when performed correctly. The experience should be controlled, predictable, and proportionate to the treatment area, not overwhelming or excessive. Client comfort is a clinical consideration, not an afterthought.
 
 ### What Sensation to Expect
 
-During treatment, most patients describe:
+During treatment, most clients describe:
 
 - A vibrating or scratching sensation
 - Mild to moderate discomfort that varies by facial region
@@ -237,7 +237,7 @@ Excessive discomfort may indicate:
 
 Aggressive treatment does not increase collagen stimulation and may increase inflammation, downtime, and risk.
 
-### Overall Patient Experience
+### Overall Client Experience
 
 A well-performed microneedling session should feel:
 
@@ -245,7 +245,7 @@ A well-performed microneedling session should feel:
 - Purposeful rather than aggressive
 - Structured and professional
 
-Patients should leave understanding:
+Clients should leave understanding:
 
 - What was done
 - What to expect over the coming days
@@ -293,7 +293,7 @@ By this stage:
 - Sensitivity reduces significantly
 - Early improvement in skin brightness may be visible
 
-Most patients are able to return fully to their usual skincare routine, excluding strong actives unless advised otherwise.
+Most clients are able to return fully to their usual skincare routine, excluding strong actives unless advised otherwise.
 
 ### Make-up and Daily Activities
 
@@ -323,7 +323,7 @@ Microneedling results develop according to biological repair timelines, not imme
 
 ### Early Changes: 7-10 Days
 
-In the first week following treatment, some patients notice:
+In the first week following treatment, some clients notice:
 
 - Improved skin brightness
 - Smoother surface texture
@@ -463,7 +463,7 @@ Outcome quality is driven by:
 
 Protocols create results not machines.
 
-Recognising these variables helps contextualise outcomes and reinforces why microneedling should be delivered as a personalised clinical treatment, not a standardised service.
+Recognising these variables helps contextualise outcomes and reinforces why microneedling should be delivered as a personalized clinical treatment, not a standardized service.
 
 ## How We Deliver Microneedling at J Luxe Medical Aesthetics
 
@@ -473,7 +473,7 @@ Microneedling at J Luxe is delivered as a prescribed clinical protocol, not a me
 
 We begin with a structured consultation to determine indication and expected benefit, anatomical variability and skin thickness, barrier integrity and inflammatory risk, pigmentation risk and healing capacity, treatment history and cumulative skin load. If microneedling is not the right intervention, we do not proceed.
 
-### Individualised Protocol Design
+### Individualized Protocol Design
 
 Each plan is built around variable depth mapping by facial zone, conservative depth escalation across sessions, indication-led spacing to allow full collagen remodelling, combination planning where microneedling alone is insufficient. Uniform depth or standard packages are avoided because they dilute outcomes.
 
@@ -491,7 +491,7 @@ Clear written aftercare and recovery guidance. Defined review pathways if concer
 
 ## Booking and Next Steps
 
-Book a microneedling consultation to assess suitability and build a personalised plan.
+Book a microneedling consultation to assess suitability and build a personalized plan.
 
 - [Book a consultation](/pricing)
 - [WhatsApp us](https://wa.me/447883050603) to discuss whether microneedling is appropriate before booking

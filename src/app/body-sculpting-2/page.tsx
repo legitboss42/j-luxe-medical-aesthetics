@@ -306,6 +306,12 @@ export default function BodySculptingPage() {
               >
                 Consultation & Consent Forms
               </Link>
+              <Link
+                href="/guidelines/body-sculpting-2"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                Pre & Post Guidelines
+              </Link>
             </div>
           </motion.div>
 
@@ -564,7 +570,7 @@ export default function BodySculptingPage() {
         <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-7 lg:grid-cols-12">
           <article className="rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#17120a] via-[#0a0a0a] to-[#080808] p-6 lg:col-span-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">{googleBusinessName}</p>
-            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Patients</h3>
+            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Clients</h3>
             <div className="mt-3 flex items-center gap-1">{renderStars(googleRating, "h-4 w-4")}</div>
             <p className="mt-3 text-sm leading-relaxed text-gray-300">
               Rated {googleRating.toFixed(1)} on Google with {googleReviewCount}+ verified reviews.

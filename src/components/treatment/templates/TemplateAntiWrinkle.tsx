@@ -1,4 +1,5 @@
 import type { TemplateSectionProps } from "./TemplateSectionProps";
+import SignaturePadField from "./SignaturePadField";
 
 export default function TemplateAntiWrinkle({
   inputClassName,
@@ -81,11 +82,11 @@ export default function TemplateAntiWrinkle({
   return (
     <>
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Medical History & Skin Analysis</p>
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Medical History & Skin Analysis</p>
         <label className={`${labelClassName} mt-4`}>
           2. Are you currently under the care of a doctor or dermatologist?
         </label>
-        <div className="flex gap-5 text-sm text-gray-200">
+        <div className="flex gap-5 text-base text-gray-200">
           <label className="inline-flex items-center gap-2">
             <input type="radio" name="doctorCareAnti" value="yes" required />
             Yes
@@ -109,7 +110,7 @@ export default function TemplateAntiWrinkle({
         </label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {medicalConditionOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="conditionsAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -127,7 +128,7 @@ export default function TemplateAntiWrinkle({
         <label className={`${labelClassName} mt-4`}>6. Areas of concern (tick all that apply):</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {areaOfConcernOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="areasConcernAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -157,11 +158,11 @@ export default function TemplateAntiWrinkle({
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Cosmetic Treatment History</p>
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Cosmetic Treatment History</p>
         <label className={`${labelClassName} mt-4`}>9. Please tick all that apply:</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {treatmentHistoryOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="historyAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -181,8 +182,8 @@ export default function TemplateAntiWrinkle({
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Contraindication Check</p>
-        <p className="mt-3 text-sm leading-relaxed text-gray-300">
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Contraindication Check</p>
+        <p className="mt-3 text-base leading-relaxed text-gray-300">
           Anti-wrinkle injections cannot be performed if any absolute contraindications apply, and may require
           postponement or additional precautions if relative contraindications are present. It is essential to answer
           all questions honestly to ensure safe and appropriate treatment.
@@ -190,7 +191,7 @@ export default function TemplateAntiWrinkle({
         <label className={`${labelClassName} mt-4`}>11. Please tick any that apply:</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {absoluteContraindicationOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="absoluteContraAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -199,7 +200,7 @@ export default function TemplateAntiWrinkle({
         <label className={`${labelClassName} mt-4`}>12. Please tick any that apply:</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {relativeContraindicationOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="relativeContraAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -208,7 +209,7 @@ export default function TemplateAntiWrinkle({
         <label className={`${labelClassName} mt-4`}>13. Are you currently on any of the following?</label>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {currentProductsOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="currentProductsAnti" value={option} />
               <span>{option}</span>
             </label>
@@ -217,13 +218,13 @@ export default function TemplateAntiWrinkle({
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Client&apos;s Consent (Mandatory)</p>
-        <p className="mt-3 text-sm text-gray-300">
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Client&apos;s Consent (Mandatory)</p>
+        <p className="mt-3 text-base text-gray-300">
           Photographs are taken before and after treatment for medical documentation and client records.
         </p>
         <fieldset className="mt-4">
           <legend className={labelClassName}>14. Client Consent (Mandatory) Please confirm each statement: *</legend>
-          <div className="space-y-2 rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-sm text-gray-200">
+          <div className="space-y-2 rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-base text-gray-200">
             {consentStatements.map((item) => (
               <label key={item} className="flex items-start gap-2">
                 <input className="mt-1" type="checkbox" name="consentAnti" value={item} required />
@@ -233,7 +234,7 @@ export default function TemplateAntiWrinkle({
           </div>
         </fieldset>
         <label className={`${labelClassName} mt-4`}>15. Photo & Marketing Consent. *</label>
-        <div className="space-y-2 text-sm text-gray-200">
+        <div className="space-y-2 text-base text-gray-200">
           <label className="flex items-start gap-2">
             <input type="checkbox" name="photoAnti" value="training-education" />
             <span>I consent to my photos being used anonymously for training or educational purposes.</span>
@@ -251,25 +252,25 @@ export default function TemplateAntiWrinkle({
             <span>I consent to receive emails with offers and updates.</span>
           </label>
         </div>
-        <p className="mt-4 text-sm text-gray-300">
+        <p className="mt-4 text-base text-gray-300">
           16. Please sign and date to confirm that you have read, understood, and agree to the statements above. *
         </p>
-        <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
+        <label className="mt-4 flex items-start gap-2 text-base text-gray-200">
           <input className="mt-1" type="checkbox" name="electronicRecordsAntiClient" required />
           <span>I agree to use electronic records and signatures.</span>
         </label>
         <label htmlFor="customerSignatureAnti" className={`${labelClassName} mt-4`}>16. Customer&apos;s Signature</label>
-        <input id="customerSignatureAnti" name="customerSignatureAnti" type="text" className={inputClassName} required />
+        <SignaturePadField id="customerSignatureAnti" name="customerSignatureAnti" label="Customer Signature" required />
         <label htmlFor="signatureDateAnti" className={`${labelClassName} mt-4`}>Signature Date</label>
         <input id="signatureDateAnti" name="signatureDateAnti" type="date" className={inputClassName} defaultValue={nowDate} />
         <label htmlFor="clientNameAnti" className={`${labelClassName} mt-4`}>17. Client&apos;s Name *</label>
         <input id="clientNameAnti" name="clientNameAnti" type="text" className={inputClassName} required />
-        <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
+        <label className="mt-4 flex items-start gap-2 text-base text-gray-200">
           <input className="mt-1" type="checkbox" name="electronicRecordsAntiEmployee" />
           <span>I agree to use electronic records and signatures.</span>
         </label>
         <label htmlFor="employeeSignatureAnti" className={`${labelClassName} mt-4`}>18. Employee&apos;s Signature</label>
-        <input id="employeeSignatureAnti" name="employeeSignatureAnti" type="text" className={inputClassName} />
+        <SignaturePadField id="employeeSignatureAnti" name="employeeSignatureAnti" label="Employee Signature" />
         <label htmlFor="employeeSignatureDateAnti" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input
           id="employeeSignatureDateAnti"
@@ -280,13 +281,13 @@ export default function TemplateAntiWrinkle({
         />
         <label htmlFor="employeeNameAnti" className={`${labelClassName} mt-4`}>19. Employee&apos;s Name</label>
         <input id="employeeNameAnti" name="employeeNameAnti" type="text" className={inputClassName} />
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-sm text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
         </p>
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Practitioner Notes (For Internal Use Only)</p>
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Practitioner Notes (For Internal Use Only)</p>
         <label htmlFor="otherAreaAnti" className={`${labelClassName} mt-4`}>20. For &quot;Other&quot;, please specify area:</label>
         <textarea id="otherAreaAnti" name="otherAreaAnti" rows={2} className={`${inputClassName} resize-none`} />
         <label htmlFor="assessmentAnti" className={`${labelClassName} mt-4`}>Assessment:</label>

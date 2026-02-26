@@ -74,7 +74,7 @@ const descriptionMap: Record<string, string> = {
     "Microcurrent stimulation to lift and sculpt facial contours with a non-invasive approach.",
   "Vampire Facial":
     "Regenerative skin treatment focused on collagen stimulation and texture renewal.",
-  "Customised Luxury Facial":
+  "Customized Luxury Facial":
     "Fully tailored facial protocol based on your skin analysis and treatment goals.",
   "Back Facial (Women)":
     "Deep cleansing and exfoliation for back acne, texture concerns, and smooth skin.",
@@ -132,7 +132,7 @@ function isAddon(item: PricingItem) {
 function getDescription(name: string) {
   return (
     descriptionMap[name] ??
-    "Consultation-led facial treatment personalised to your skin needs and aesthetic goals."
+    "Consultation-led facial treatment personalized to your skin needs and aesthetic goals."
   );
 }
 
@@ -147,7 +147,7 @@ export default function FacialsPage() {
   const addOnFacials = useMemo(() => facialItems.filter(isAddon), [facialItems]);
 
   const bookingUrl =
-    coreFacials.find((item) => item.name === "Customised Luxury Facial")?.link ??
+    coreFacials.find((item) => item.name === "Customized Luxury Facial")?.link ??
     coreFacials[0]?.link ??
     "/pricing";
 
@@ -314,12 +314,18 @@ export default function FacialsPage() {
                 >
                   View Full Pricing
                 </Link>
-              <Link
-                href="/forms/facials"
-                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
-              >
-                Consultation & Consent Forms
-              </Link>
+                <Link
+                  href="/forms/facials"
+                  className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+                >
+                  Consultation & Consent Forms
+                </Link>
+                <Link
+                  href="/guidelines/facials"
+                  className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  Pre & Post Guidelines
+                </Link>
               </motion.div>
             </div>
 
@@ -645,7 +651,7 @@ export default function FacialsPage() {
           <h2 className="text-3xl font-serif font-bold uppercase md:text-4xl">Ready To Rediscover Your Confidence?</h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your consultation-led facial treatment at our medical aesthetics clinic in Hackney
-            London and receive a personalised skincare plan designed around your goals.
+            London and receive a personalized skincare plan designed around your goals.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -675,7 +681,7 @@ export default function FacialsPage() {
             className="rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#17120a] via-[#0a0a0a] to-[#080808] p-6 lg:col-span-4"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">{googleBusinessName}</p>
-            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Patients</h3>
+            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Clients</h3>
             <div className="mt-3 flex items-center gap-1">{renderStars(googleRating, "h-4 w-4")}</div>
             <p className="mt-3 text-sm leading-relaxed text-gray-300">
               Rated {googleRating.toFixed(1)} on Google with {googleReviewCount}+ verified reviews.

@@ -68,7 +68,7 @@ When indication is poor, outcome quality drops even if treatment is technically 
 
 ### Where it may help
 
-For selected patients, **Lemon Bottle** may support contour refinement in localized zones such as:
+For selected clients, **Lemon Bottle** may support contour refinement in localized zones such as:
 
 - submental area (under-chin fullness)
 - small pockets of abdominal or flank fullness
@@ -115,7 +115,7 @@ Common short-term responses include:
 - localized swelling
 - transient sensitivity or firmness
 
-Most patients resume routine activity quickly, with area-specific aftercare guidance.
+Most clients resume routine activity quickly, with area-specific aftercare guidance.
 Aggressive protocols may increase inflammation without improving contour outcome.
 
 ## Timeline for visible change
@@ -163,7 +163,7 @@ Our approach includes:
 - measurable review checkpoints
 - escalation only where response supports it
 
-This improves predictability and protects patient safety.
+This improves predictability and protects client safety.
 
 ## Area selection and endpoint control
 
@@ -180,7 +180,7 @@ Treatment should focus on a clearly defined, localized target with measurable ch
 
 - diffuse fullness with no clear adipose target
 - zones where skin laxity is the dominant issue
-- patients expecting major reshaping from injection alone
+- clients expecting major reshaping from injection alone
 
 When indication is weak, outcomes are usually modest regardless of session count.
 
@@ -284,7 +284,7 @@ Assessment determines whether injection is appropriate.
 Not always.
 Combination planning can be helpful, but sequencing should be guided by tissue response and risk profile rather than default bundling.
 
-### What is a realistic endpoint for most patients?
+### What is a realistic endpoint for most clients?
 
 A realistic endpoint is visible contour refinement rather than dramatic reshaping.
 Clear endpoint definition reduces dissatisfaction and unnecessary retreatment.
@@ -338,7 +338,7 @@ Additional outcome safeguards include:
 - clear success criteria to support steadier outcomes and long-term confidence
 
 In practical terms, the most avoidable setbacks in **fat dissolving treatment** usually come from broad area selection, premature retreatment, and escalation against weak response data.
-Slower, review-led progression generally improves tolerability, contour predictability, and long-term patient confidence.
+Slower, review-led progression generally improves tolerability, contour predictability, and long-term client confidence.
 Clear documentation at every review point also improves decision quality and reduces unnecessary repeat treatment.
 
 ## Booking and next steps

@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, ClipboardList } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +18,7 @@ import TemplatePrp from "@/src/components/treatment/templates/TemplatePrp";
 import TemplateSkinBoosters from "@/src/components/treatment/templates/TemplateSkinBoosters";
 import TemplateTeethWhitening from "@/src/components/treatment/templates/TemplateTeethWhitening";
 import TemplateWaxing from "@/src/components/treatment/templates/TemplateWaxing";
+import SignaturePadField from "@/src/components/treatment/templates/SignaturePadField";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -55,8 +56,8 @@ type TreatmentFormsClientProps = {
 };
 
 const inputClassName =
-  "w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20";
-const labelClassName = "mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400";
+  "w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-base text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20";
+const labelClassName = "mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-gray-400";
 
 const months = [
   "January",
@@ -254,7 +255,7 @@ function base64ToBlob(base64: string, mimeType: string): Blob {
 function Demographics({ years }: { years: number[] }) {
   return (
     <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-      <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">
+      <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">
         1. Client Demographic Information *
       </p>
       <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -355,6 +356,7 @@ export default function TreatmentFormsClient({
 }: TreatmentFormsClientProps) {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [submitMessage, setSubmitMessage] = useState<string>("");
+  const formRef = useRef<HTMLFormElement | null>(null);
   const nowDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const years = useMemo(() => {
     const current = new Date().getFullYear();
@@ -383,7 +385,7 @@ export default function TreatmentFormsClient({
       primary:
         "Anti-wrinkle injections use carefully measured doses of a prescription-only medication to temporarily relax specific facial muscles responsible for expression lines.",
       secondary:
-        "A thorough consultation is required before treatment to assess medical safety, suitability, and personalised dosing strategy.",
+        "A thorough consultation is required before treatment to assess medical safety, suitability, and personalized dosing strategy.",
     },
     bodySculpting: {
       primary:
@@ -460,12 +462,72 @@ export default function TreatmentFormsClient({
   const descriptionOne = descriptionByTemplate[template].primary;
   const descriptionTwo = descriptionByTemplate[template].secondary;
 
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) {
+      return;
+    }
+
+    const hideElement = (element: Element | null) => {
+      if (element instanceof HTMLElement) {
+        element.style.display = "none";
+      }
+    };
+
+    for (const section of form.querySelectorAll("section")) {
+      const title = section.querySelector("p")?.textContent?.toLowerCase() ?? "";
+      if (title.includes("for internal use only")) {
+        hideElement(section);
+      }
+    }
+
+    const employeeFields = form.querySelectorAll<HTMLElement>(
+      'input[name*="employee"], input[name*="Employee"], textarea[name*="employee"], textarea[name*="Employee"], select[name*="employee"], select[name*="Employee"]',
+    );
+
+    for (const field of employeeFields) {
+      const id = field.getAttribute("id");
+      if (id) {
+        form.querySelectorAll(`label[for="${id}"]`).forEach((label) => hideElement(label));
+      }
+
+      hideElement(field.closest("[data-signature-panel='true']"));
+      hideElement(field.closest("label"));
+
+      if (!field.closest("label") && !field.closest("[data-signature-panel='true']")) {
+        hideElement(field);
+      }
+    }
+
+    for (const element of form.querySelectorAll("p, label, span")) {
+      const text = (element.textContent ?? "").toLowerCase();
+      if (text.includes("customers will not see the employee signature field")) {
+        hideElement(element);
+      }
+    }
+  }, [template]);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const formElement = event.currentTarget;
+    const missingRequiredSignature = Array.from(
+      formElement.querySelectorAll<HTMLInputElement>(
+        'input[data-signature-field="true"][data-signature-required="true"]',
+      ),
+    ).find((input) => input.value.trim().length === 0);
+
+    if (missingRequiredSignature) {
+      const panel = missingRequiredSignature.closest<HTMLElement>("[data-signature-panel='true']");
+      panel?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setSubmitState("error");
+      setSubmitMessage("Please draw the required signature before submitting.");
+      return;
+    }
+
     setSubmitState("submitting");
     setSubmitMessage("");
 
-    const formElement = event.currentTarget;
     const formData = new FormData(formElement);
     const data = toSubmissionData(formData);
     const fieldBlueprint = extractPdfFieldBlueprint(formElement);
@@ -539,18 +601,18 @@ export default function TreatmentFormsClient({
 
         <div className="relative z-10 mx-auto flex min-h-[48vh] w-full max-w-6xl items-end px-4 pb-10 pt-24 md:min-h-[54vh] md:px-8">
           <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37] md:text-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E7C97C] md:text-lg">
               J Luxe Medical Aesthetics
             </p>
             <h1 className="mt-4 text-4xl font-serif font-bold uppercase leading-[0.94] md:text-6xl">
               {formTitle}
             </h1>
-            <p className="mt-5 text-sm leading-relaxed text-gray-200 md:text-base">{descriptionOne}</p>
-            <p className="mt-4 text-sm leading-relaxed text-gray-300 md:text-base">{descriptionTwo}</p>
+            <p className="mt-5 text-base leading-relaxed text-gray-200 md:text-lg">{descriptionOne}</p>
+            <p className="mt-4 text-base leading-relaxed text-gray-300 md:text-lg">{descriptionTwo}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={treatmentPath}
-                className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
+                className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
               >
                 Back To Treatment
                 <ArrowRight className="h-4 w-4" />
@@ -565,24 +627,24 @@ export default function TreatmentFormsClient({
           <article className="rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#151006] via-[#0d0d0d] to-[#090909] p-6 md:p-8">
             <div className="flex items-center gap-3">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/45 bg-black/50">
-                <ClipboardList className="h-5 w-5 text-[#D4AF37]" />
+                <ClipboardList className="h-5 w-5 text-[#E7C97C]" />
               </span>
               <h2 className="text-2xl font-serif font-bold uppercase md:text-3xl">{formTitle}</h2>
             </div>
 
             {submitState === "success" && (
-              <p className="mt-5 rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-xs text-[#f0dc9b]">
+              <p className="mt-5 rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-sm text-[#f0dc9b]">
                 {submitMessage}
               </p>
             )}
 
             {submitState === "error" && (
-              <p className="mt-5 rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-xs text-red-200">
+              <p className="mt-5 rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-sm text-red-200">
                 {submitMessage}
               </p>
             )}
 
-            <form className="mt-8 space-y-7" onSubmit={handleSubmit}>
+            <form ref={formRef} className="mt-8 space-y-7" onSubmit={handleSubmit}>
               <Demographics years={years} />
 
               {template === "antiWrinkle" ? (
@@ -671,20 +733,25 @@ export default function TreatmentFormsClient({
                 />
               ) : (
                 <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-                  <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Consultation & Consent</p>
+                  <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Consultation & Consent</p>
                   <label htmlFor="mainConcern" className={`${labelClassName} mt-4`}>Main Concern</label>
                   <textarea id="mainConcern" name="mainConcern" rows={3} className={`${inputClassName} resize-none`} />
                   <label htmlFor="medicalHistory" className={`${labelClassName} mt-4`}>Relevant Medical History</label>
                   <textarea id="medicalHistory" name="medicalHistory" rows={3} className={`${inputClassName} resize-none`} />
                   <label htmlFor="consentSignature" className={`${labelClassName} mt-4`}>Client Signature</label>
-                  <input id="consentSignature" name="consentSignature" type="text" className={inputClassName} required />
+                  <SignaturePadField
+                    id="consentSignature"
+                    name="consentSignature"
+                    label="Customer Signature"
+                    required
+                  />
                 </section>
               )}
 
               <button
                 type="submit"
                 disabled={submitState === "submitting"}
-                className="cta-button inline-flex min-h-[46px] w-full items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#e4c45b] to-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black shadow-[0_12px_34px_rgba(212,175,55,0.3)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-80"
+                className="cta-button inline-flex min-h-[46px] w-full items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#e4c45b] to-[#D4AF37] px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-black shadow-[0_12px_34px_rgba(212,175,55,0.3)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-80"
               >
                 {submitState === "submitting" ? "Saving..." : "Submit Consultation & Consent Form"}
               </button>

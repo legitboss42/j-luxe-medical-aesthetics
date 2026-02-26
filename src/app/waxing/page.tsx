@@ -609,7 +609,7 @@ export default function WaxingPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your waxing consultation at our medical aesthetics clinic in Hackney London for a
-            personalised treatment plan across face, body, and intimate areas.
+            personalized treatment plan across face, body, and intimate areas.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -635,7 +635,7 @@ export default function WaxingPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
               {googleBusinessName}
             </p>
-            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Patients</h3>
+            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Clients</h3>
             <div className="mt-3 flex items-center gap-1">{renderStars(googleRating, "h-4 w-4")}</div>
             <p className="mt-3 text-sm leading-relaxed text-gray-300">
               Rated {googleRating.toFixed(1)} on Google with {googleReviewCount}+ verified reviews.

@@ -27,7 +27,7 @@ IV vitamin therapy is often marketed as a quick fix for energy, hydration, and r
 In clinical practice, outcomes depend far more on suitability, dosing rationale, and monitoring than on the drip itself.
 
 When protocol quality is low, results are inconsistent and expectations are often mismatched.
-When treatment is clinically planned, IV support can be useful for selected patients.
+When treatment is clinically planned, IV support can be useful for selected clients.
 
 ![Luxury IV vitamin therapy session in a London aesthetics clinic, client relaxing in premium treatment chair, warm ambient light, photorealistic, 16:9, IV vitamin therapy guidance](/images/blog/iv-vitamin-drip-guide-hero-placeholder.jpeg)
 
@@ -44,7 +44,7 @@ This guide explains:
 - What IV therapy can and cannot improve
 - Suitability and clinical assessment
 - How an IV drip session is performed
-- Sensation and patient experience
+- Sensation and client experience
 - Recovery and aftercare
 - When results appear and how long they last
 - Risks, safety and contraindications
@@ -64,7 +64,7 @@ IV therapy should be framed as a structured intervention with:
 
 - clear treatment objective
 - suitability screening
-- protocol selection matched to patient profile
+- protocol selection matched to client profile
 - review and adjustment over time
 
 Without these controls, IV therapy becomes a generic service rather than a clinically guided protocol.
@@ -75,7 +75,7 @@ Without these controls, IV therapy becomes a generic service rather than a clini
 
 When correctly indicated, IV therapy may support:
 
-- hydration and short-term recovery in selected patients
+- hydration and short-term recovery in selected clients
 - fatigue support where lifestyle and medical context are considered
 - wellness plans where nutrition, sleep, and stress are addressed in parallel
 
@@ -129,9 +129,9 @@ A clinical IV session is structured and monitored.
 
 Session quality depends on process discipline, not speed.
 
-## Sensation and patient experience
+## Sensation and client experience
 
-Most patients describe a well-run IV session as comfortable.
+Most clients describe a well-run IV session as comfortable.
 Common experiences include:
 
 - mild cool sensation in the arm during infusion
@@ -161,7 +161,7 @@ Response timing varies by baseline status, protocol, and lifestyle factors.
 
 Typical pattern:
 
-- some patients report short-term improvement in 24-72 hours
+- some clients report short-term improvement in 24-72 hours
 - response may stabilize over several days
 - durability depends on underlying drivers, not drip frequency alone
 
@@ -213,7 +213,7 @@ If IV therapy is not the right next step, we advise accordingly.
 
 ## Clinical planning principles that improve outcomes
 
-Patients often focus on what is in the drip.
+Clients often focus on what is in the drip.
 In practice, better outcomes are more strongly linked to planning quality than ingredient complexity.
 
 A robust planning model usually includes:
@@ -279,10 +279,10 @@ Heavy exertion immediately after infusion is usually avoided to reduce stress on
 No immediate change does not always indicate treatment failure.
 However, absent or inconsistent response should trigger reassessment rather than automatic repetition.
 
-### Do all patients need the same protocol?
+### Do all clients need the same protocol?
 
 No.
-Protocol standardization across different patient profiles is a common cause of poor outcomes and avoidable dissatisfaction.
+Protocol standardization across different client profiles is a common cause of poor outcomes and avoidable dissatisfaction.
 
 ### Is oral supplementation still important?
 
@@ -321,7 +321,7 @@ Protocol selection, infusion control, monitoring quality, and review logic are o
 ### Can two people with similar goals need very different plans?
 
 Yes.
-Baseline hydration status, stress load, sleep quality, and systemic health can change how patients tolerate and respond to treatment.
+Baseline hydration status, stress load, sleep quality, and systemic health can change how clients tolerate and respond to treatment.
 Personalization is expected, not optional.
 
 ### If I felt better once, should I repeat on a fixed interval?

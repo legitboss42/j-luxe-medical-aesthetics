@@ -525,7 +525,7 @@ export default function TreatmentPage() {
                 className="mt-4 max-w-[16ch] text-3xl md:text-4xl font-serif font-bold leading-[1.02]"
               >
                 Ready To Start Your
-                <span className="text-[#D4AF37]"> Personalised Glow Plan?</span>
+                <span className="text-[#D4AF37]"> Personalized Glow Plan?</span>
               </motion.h2>
               <motion.p
                 variants={revealItem}
@@ -582,7 +582,7 @@ export default function TreatmentPage() {
             <p className="text-xs uppercase tracking-[0.18em] text-[#D4AF37] mb-2">
               {googleBusinessName}
             </p>
-            <h3 className="text-2xl font-serif font-bold mb-4">Our Happy Patients</h3>
+            <h3 className="text-2xl font-serif font-bold mb-4">Our Happy Clients</h3>
             <div className="flex items-center gap-1 mb-3">{renderStars(googleRating, "w-4 h-4")}</div>
             <p className="text-sm text-gray-300 mb-5">
               Rated {googleRating.toFixed(1)} on Google ({googleReviewCount} reviews)

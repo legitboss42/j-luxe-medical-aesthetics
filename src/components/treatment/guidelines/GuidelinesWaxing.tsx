@@ -1,3 +1,6 @@
+import GuidelinesHeaderCard from "@/src/components/treatment/guidelines/GuidelinesHeaderCard";
+import { GuidelinesSignatureSection } from "@/src/components/treatment/guidelines/GuidelinesPrimitives";
+
 const cannotProceedList = [
   "currently unwell or feverish",
   "sunburnt or recently tanned in the treatment area",
@@ -114,7 +117,7 @@ const whenToContactClinicList = [
 
 function BulletList({ items }: { items: readonly string[] }) {
   return (
-    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-gray-200 md:text-base">
+    <ul className="mt-3 space-y-2 text-base leading-relaxed text-gray-200 md:text-lg">
       {items.map((item) => (
         <li key={item} className="flex gap-2.5">
           <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[#D4AF37]" />
@@ -125,59 +128,18 @@ function BulletList({ items }: { items: readonly string[] }) {
   );
 }
 
-function SignaturePanel({
-  label,
-  name,
-  required = false,
-}: {
-  label: string;
-  name: string;
-  required?: boolean;
-}) {
-  return (
-    <div className="rounded-xl border border-white/20 bg-white/[0.03] p-4">
-      <div className="mb-3 flex justify-end">
-        <button
-          type="button"
-          className="rounded-md border border-white/25 px-4 py-1.5 text-xs font-medium text-white/90"
-        >
-          Clear
-        </button>
-      </div>
-      <textarea
-        name={name}
-        aria-label={label}
-        rows={3}
-        required={required}
-        placeholder="Type full name to sign"
-        className="w-full resize-none border-0 bg-transparent px-0 py-0 text-sm text-white placeholder:text-gray-500 outline-none"
-      />
-      <div className="mt-3 flex items-center justify-between border-t border-white/20 pt-3 text-xs text-gray-400">
-        <span>{label}</span>
-        <span>Timestamp captured on sign</span>
-      </div>
-    </div>
-  );
-}
-
 export default function GuidelinesWaxing() {
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-[#D4AF37]/20 bg-black/35 p-5 md:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
-          J Luxe Medical Aesthetics
-        </p>
-        <p className="mt-4 text-sm font-bold uppercase tracking-[0.08em] text-white md:text-base">
-          Body Waxing (Arms, Underarms, Legs, Bikini, Back, Chest &amp; Full Body)
-        </p>
-        <p className="mt-2 text-sm font-bold uppercase tracking-[0.08em] text-white md:text-base">
-          Pre- &amp; Post-Treatment Guidelines
-        </p>
-      </section>
+      <GuidelinesHeaderCard
+        scope="Body Waxing"
+        title="Waxing Pre & Post-Treatment Guidelines"
+        summary="Body waxing (Arms, Underarms, Legs, Bikini, Back, Chest & Full Body)"
+      />
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">1. Treatment Overview</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             Body waxing is a professional hair-removal treatment that eliminates unwanted hair directly
             from the root using warm or hot wax. This method provides smoother skin for longer periods
@@ -201,7 +163,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">2. Medical &amp; Safety Requirements</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             You must disclose all relevant medical history, medications, skincare use, and recent
             treatments before your body waxing appointment.
@@ -224,7 +186,7 @@ export default function GuidelinesWaxing() {
         <h2 className="text-lg font-bold text-white md:text-xl">
           3. Medication &amp; Skincare Restrictions (CRITICAL)
         </h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <div>
             <p>
               Body waxing <span className="font-semibold text-white">cannot</span> be performed if you are:
@@ -245,7 +207,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">4. Skin Preparation</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>Healthy, calm skin is required for safe waxing.</p>
           <div>
             <p>For 72 hours before treatment, avoid:</p>
@@ -257,7 +219,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">5. Hair Length Requirements</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             For effective and comfortable body waxing, hair must be long enough for the wax to
             properly adhere and remove it from the root.
@@ -279,7 +241,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">6. On the Day of Treatment Guide</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             For best results, arrive with clean, product-free skin in the treatment area.
           </p>
@@ -300,7 +262,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">7. What to Expect During Treatment</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <div>
             <p>During body waxing, you may experience:</p>
             <BulletList items={treatmentExpectationList} />
@@ -322,7 +284,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">8. Aftercare Guide</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <div>
             <p className="font-semibold text-white">First 24-48 Hours</p>
             <p className="mt-2">
@@ -343,7 +305,7 @@ export default function GuidelinesWaxing() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">9. Potential Risks &amp; Side Effects</h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             All professional waxing treatments carry some degree of temporary skin reaction. Most
             effects are mild and short-lived.
@@ -376,7 +338,7 @@ export default function GuidelinesWaxing() {
         <h2 className="text-lg font-bold text-white md:text-xl">
           10. Disclaimer &amp; When to Contact the Clinic
         </h2>
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-200 md:text-base">
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             Seek medical advice and contact the clinic if symptoms are unusual, severe, or persist
             beyond normal waxing reactions.
@@ -391,61 +353,7 @@ export default function GuidelinesWaxing() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <div className="space-y-8">
-          <hr className="border-white/25" />
-          <div className="space-y-5">
-            <p className="text-sm leading-relaxed text-gray-200 md:text-base">
-              1. Please sign below to confirm you&apos;ve read and understood the guide{" "}
-              <span className="text-red-300">*</span>
-            </p>
-            <label className="flex items-start gap-2 text-sm text-gray-200">
-              <input className="mt-1" type="checkbox" name="guidelinesWaxingElectronicClient" required />
-              <span>
-                I agree to use{" "}
-                <span className="text-[#2ea5ff]">electronic records and signatures.</span>
-              </span>
-            </label>
-            <SignaturePanel label="Customer Signature" name="guidelinesWaxingClientSignature" required />
-            <label htmlFor="guidelinesWaxingClientName" className="block text-sm text-gray-200">
-              Client&apos;s Name
-            </label>
-            <input
-              id="guidelinesWaxingClientName"
-              name="guidelinesWaxingClientName"
-              type="text"
-              className="w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20"
-            />
-          </div>
-
-          <div className="space-y-5">
-            <p className="text-sm leading-relaxed text-gray-200 md:text-base">
-              2. Please sign below to confirm the client has read and understood the guide
-            </p>
-            <label className="flex items-start gap-2 text-sm text-gray-200">
-              <input className="mt-1" type="checkbox" name="guidelinesWaxingElectronicEmployee" />
-              <span>
-                I agree to use{" "}
-                <span className="text-[#2ea5ff]">electronic records and signatures.</span>
-              </span>
-            </label>
-            <SignaturePanel label="Employee Signature" name="guidelinesWaxingEmployeeSignature" />
-            <p className="rounded-lg border border-[#2ea5ff]/20 bg-[#2ea5ff]/10 px-4 py-3 text-xs text-[#72c7ff]">
-              Note: Customers will not see the employee signature field when filling form online.
-            </p>
-            <label htmlFor="guidelinesWaxingEmployeeName" className="block text-sm text-gray-200">
-              Employee&apos;s Name
-            </label>
-            <input
-              id="guidelinesWaxingEmployeeName"
-              name="guidelinesWaxingEmployeeName"
-              type="text"
-              className="w-full rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20"
-            />
-          </div>
-          <hr className="border-white/25" />
-        </div>
-      </section>
+      <GuidelinesSignatureSection prefix="guidelinesWaxing" />
     </div>
   );
 }

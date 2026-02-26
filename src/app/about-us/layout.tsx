@@ -5,7 +5,7 @@ const primaryKeyword = "medical aesthetics clinic in Hackney London";
 export const metadata: Metadata = {
   title: "About Us | J Luxe Aesthetics Hackney",
   description:
-    "Learn about J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London focused on safe, natural-looking outcomes and personalised treatment planning.",
+    "Learn about J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London focused on safe, natural-looking outcomes and personalized treatment planning.",
   alternates: {
     canonical: "/about-us",
   },

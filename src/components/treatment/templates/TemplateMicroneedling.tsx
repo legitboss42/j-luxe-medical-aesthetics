@@ -1,4 +1,5 @@
 import type { TemplateSectionProps } from "./TemplateSectionProps";
+import SignaturePadField from "./SignaturePadField";
 
 export default function TemplateMicroneedling({
   inputClassName,
@@ -72,10 +73,10 @@ export default function TemplateMicroneedling({
   return (
     <>
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Medical History & Skin Analysis</p>
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Medical History & Skin Analysis</p>
         <div className="mt-4 grid grid-cols-1 gap-4">
           <label className={labelClassName}>2. Are you currently under the care of a doctor or dermatologist?</label>
-          <div className="flex gap-5 text-sm text-gray-200">
+          <div className="flex gap-5 text-base text-gray-200">
             <label className="inline-flex items-center gap-2"><input type="radio" name="doctorCareMicro" value="yes" required />Yes</label>
             <label className="inline-flex items-center gap-2"><input type="radio" name="doctorCareMicro" value="no" />No</label>
           </div>
@@ -86,7 +87,7 @@ export default function TemplateMicroneedling({
           <label className={labelClassName}>4. Treatment Selection - Please select the treatment you&apos;re booked for:</label>
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
             {treatmentSelectionOptions.map((option) => (
-              <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+              <label key={option} className="flex items-start gap-2 text-base text-gray-200">
                 <input className="mt-1" type="radio" name="bookedTreatmentMicro" value={option} />
                 <span>{option}</span>
               </label>
@@ -98,7 +99,7 @@ export default function TemplateMicroneedling({
           </label>
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
             {medicalConditionOptions.map((option) => (
-              <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+              <label key={option} className="flex items-start gap-2 text-base text-gray-200">
                 <input className="mt-1" type="checkbox" name="conditionsMicro" value={option} />
                 <span>{option}</span>
               </label>
@@ -133,7 +134,7 @@ export default function TemplateMicroneedling({
           </select>
 
           <label className={labelClassName}>10. Have you had any aesthetic treatment in the last 6 weeks?</label>
-          <div className="flex gap-5 text-sm text-gray-200">
+          <div className="flex gap-5 text-base text-gray-200">
             <label className="inline-flex items-center gap-2"><input type="radio" name="recentAestheticMicro" value="yes" required />Yes</label>
             <label className="inline-flex items-center gap-2"><input type="radio" name="recentAestheticMicro" value="no" />No</label>
           </div>
@@ -144,7 +145,7 @@ export default function TemplateMicroneedling({
           <label className={labelClassName}>12. Are you currently on any of the following?</label>
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
             {currentProductsOptions.map((option) => (
-              <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+              <label key={option} className="flex items-start gap-2 text-base text-gray-200">
                 <input className="mt-1" type="checkbox" name="medicationMicro" value={option} />
                 <span>{option}</span>
               </label>
@@ -160,24 +161,24 @@ export default function TemplateMicroneedling({
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Contraindication Check</p>
-        <p className="mt-3 text-sm leading-relaxed text-gray-300">
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Contraindication Check</p>
+        <p className="mt-3 text-base leading-relaxed text-gray-300">
           Microneedling cannot be performed if absolute contraindications apply and may need postponement if
           relative contraindications are present. It is essential to answer honestly to ensure safe treatment.
         </p>
-        <p className="mt-3 text-sm text-gray-300">14. Are you currently on any of the following? (Absolute contraindications)</p>
+        <p className="mt-3 text-base text-gray-300">14. Are you currently on any of the following? (Absolute contraindications)</p>
         <div className="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
           {absoluteContraindicationOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="absoluteContraMicro" value={option} />
               <span>{option}</span>
             </label>
           ))}
         </div>
-        <p className="mt-4 text-sm text-gray-300">15. Are you currently on any of the following? (Relative contraindications)</p>
+        <p className="mt-4 text-base text-gray-300">15. Are you currently on any of the following? (Relative contraindications)</p>
         <div className="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
           {relativeContraindicationOptions.map((option) => (
-            <label key={option} className="flex items-start gap-2 text-sm text-gray-200">
+            <label key={option} className="flex items-start gap-2 text-base text-gray-200">
               <input className="mt-1" type="checkbox" name="relativeContraMicro" value={option} />
               <span>{option}</span>
             </label>
@@ -186,13 +187,13 @@ export default function TemplateMicroneedling({
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Client&apos;s Consent (Mandatory)</p>
-        <p className="mt-3 text-sm text-gray-300">
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Client&apos;s Consent (Mandatory)</p>
+        <p className="mt-3 text-base text-gray-300">
           Photographs are taken before and after treatment for medical documentation and client records.
         </p>
         <fieldset className="mt-4">
           <legend className={labelClassName}>16. Client Consent (Mandatory) Please confirm each statement: *</legend>
-          <div className="space-y-2 rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-sm text-gray-200">
+          <div className="space-y-2 rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-base text-gray-200">
             {consentStatements.map((item) => (
               <label key={item} className="flex items-start gap-2">
                 <input className="mt-1" type="checkbox" name="consentMicro" value={item} required />
@@ -202,42 +203,42 @@ export default function TemplateMicroneedling({
           </div>
         </fieldset>
         <label className={`${labelClassName} mt-4`}>17. Photo & Marketing Consent. *</label>
-        <div className="space-y-2 text-sm text-gray-200">
+        <div className="space-y-2 text-base text-gray-200">
           <label className="flex items-start gap-2"><input type="checkbox" name="photoConsentMicro" value="training-education" /><span>I consent to my photos being used anonymously for training or educational purposes.</span></label>
           <label className="flex items-start gap-2"><input type="checkbox" name="photoConsentMicro" value="social-marketing" /><span>I consent to my photos being used on social media/marketing.</span></label>
           <label className="flex items-start gap-2"><input type="checkbox" name="photoConsentMicro" value="medical-only" /><span>I do not consent to any use of my photos beyond my medical record.</span></label>
           <label className="flex items-start gap-2"><input type="checkbox" name="photoConsentMicro" value="email-updates" /><span>I consent to receive emails with offers and updates.</span></label>
         </div>
-        <p className="mt-4 text-sm text-gray-300">
+        <p className="mt-4 text-base text-gray-300">
           18. Please sign and date to confirm that you have read, understood, and agree to the statements above. *
         </p>
-        <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
+        <label className="mt-4 flex items-start gap-2 text-base text-gray-200">
           <input className="mt-1" type="checkbox" name="electronicRecordsMicroClient" required />
           <span>I agree to use electronic records and signatures.</span>
         </label>
         <label htmlFor="customerSignatureMicro" className={`${labelClassName} mt-4`}>18. Customer Signature</label>
-        <input id="customerSignatureMicro" name="customerSignatureMicro" type="text" className={inputClassName} required />
+        <SignaturePadField id="customerSignatureMicro" name="customerSignatureMicro" label="Customer Signature" required />
         <label htmlFor="signatureDateMicro" className={`${labelClassName} mt-4`}>Signature Date</label>
         <input id="signatureDateMicro" name="signatureDateMicro" type="date" className={inputClassName} defaultValue={nowDate} />
         <label htmlFor="clientNameMicro" className={`${labelClassName} mt-4`}>19. Client&apos;s Name *</label>
         <input id="clientNameMicro" name="clientNameMicro" type="text" className={inputClassName} required />
-        <label className="mt-4 flex items-start gap-2 text-sm text-gray-200">
+        <label className="mt-4 flex items-start gap-2 text-base text-gray-200">
           <input className="mt-1" type="checkbox" name="electronicRecordsMicroEmployee" />
           <span>I agree to use electronic records and signatures.</span>
         </label>
         <label htmlFor="employeeSignatureMicro" className={`${labelClassName} mt-4`}>20. Employee&apos;s Signature</label>
-        <input id="employeeSignatureMicro" name="employeeSignatureMicro" type="text" className={inputClassName} />
+        <SignaturePadField id="employeeSignatureMicro" name="employeeSignatureMicro" label="Employee Signature" />
         <label htmlFor="employeeSignatureDateMicro" className={`${labelClassName} mt-4`}>Employee Signature Date</label>
         <input id="employeeSignatureDateMicro" name="employeeSignatureDateMicro" type="date" className={inputClassName} defaultValue={nowDate} />
         <label htmlFor="employeeNameMicro" className={`${labelClassName} mt-4`}>21. Employee&apos;s Name</label>
         <input id="employeeNameMicro" name="employeeNameMicro" type="text" className={inputClassName} />
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-sm text-gray-400">
           Note: Customers will not see the employee signature field when filling form online.
         </p>
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37]">Practitioner Notes (For Internal Use Only)</p>
+        <p className="text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C]">Practitioner Notes (For Internal Use Only)</p>
         <label htmlFor="assessmentMicro" className={`${labelClassName} mt-4`}>Assessment:</label>
         <textarea id="assessmentMicro" name="assessmentMicro" rows={3} className={`${inputClassName} resize-none`} />
         <label htmlFor="batchMicro" className={`${labelClassName} mt-4`}>Batch Number & Expiry Date:</label>

@@ -47,7 +47,7 @@ export default function Footer() {
                 Medically Led Aesthetic Practice
               </p>
               <h3 className="mt-4 text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
-                Start Your Personalised
+                Start Your Personalized
                 <span className="text-[#D4AF37]"> Glow Plan</span>
               </h3>
               <p className="mt-4 max-w-2xl text-sm md:text-base text-gray-300 leading-relaxed">

@@ -260,7 +260,7 @@ export default function ReferAFriendPage() {
                 Share The Luxury.
               </h1>
               <p className="mx-auto mt-6 max-w-[54ch] text-sm leading-relaxed text-gray-200 md:text-base lg:mx-0">
-                Generate your personalised referral link in seconds and introduce your friends to a{" "}
+                Generate your personalized referral link in seconds and introduce your friends to a{" "}
                 <span className="text-[#D4AF37]">{primaryKeyword}</span>.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">

@@ -22,7 +22,7 @@ secondaryKeywords:
 
 # The ultimate guide to dermal fillers in London
 
-This **guide to dermal fillers** is written for patients who want natural-looking outcomes based on clinical planning, not social media trends.
+This **guide to dermal fillers** is written for clients who want natural-looking outcomes based on clinical planning, not social media trends.
 
 Dermal fillers are highly operator-dependent.
 Good results come from indication, anatomy, and proportion control.
@@ -155,7 +155,7 @@ Variation reflects:
 - procedural precision
 - aftercare and follow-up behavior
 
-Two patients can receive similar volumes and have different outcomes.
+Two clients can receive similar volumes and have different outcomes.
 This is normal and should be planned for.
 
 ## Cost and treatment planning principles
@@ -205,7 +205,7 @@ Structural goals require careful assessment of baseline asymmetry and tissue qua
 
 ### Perioral and fold support
 
-In some patients, selective support can soften static lines.
+In some clients, selective support can soften static lines.
 Not all fold concerns are filler-driven, and combination planning may be required.
 
 ## Common filler planning errors to avoid
@@ -261,7 +261,7 @@ Top-up timing should be based on clinical reassessment, not fixed calendar frequ
 
 ### Is bruising normal?
 
-Mild bruising can occur in some patients and usually resolves.
+Mild bruising can occur in some clients and usually resolves.
 Post-care compliance can reduce duration and visibility.
 
 ### What questions should I ask before booking?
@@ -301,7 +301,7 @@ Multi-area treatment should be based on risk profile, anatomical priorities, and
 
 ### How quickly can I return to social activities?
 
-Many patients return quickly, but mild swelling or bruising can occur.
+Many clients return quickly, but mild swelling or bruising can occur.
 Event timing should include buffer for normal variability in recovery.
 
 ### Can fillers correct all signs of ageing?

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
+import { PDFDocument, StandardFonts, rgb, type PDFImage, type PDFFont, type PDFPage } from "pdf-lib";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -131,6 +131,72 @@ function toSingleString(value: FieldValue | undefined): string {
   }
 
   return Array.isArray(value) ? value.join(", ") : value;
+}
+
+function isImageDataUri(value: string): boolean {
+  return /^data:image\/[a-z0-9.+-]+;base64,/i.test(value.trim());
+}
+
+function extractImageDataUri(value: FieldValue | undefined): string | null {
+  if (!value) {
+    return null;
+  }
+
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const trimmed = item.trim();
+      if (trimmed && isImageDataUri(trimmed)) {
+        return trimmed;
+      }
+    }
+    return null;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed || !isImageDataUri(trimmed)) {
+    return null;
+  }
+
+  return trimmed;
+}
+
+function parseDataUriImage(dataUri: string): { mimeType: string; bytes: Uint8Array } | null {
+  const match = dataUri.match(/^data:(image\/[a-z0-9.+-]+);base64,([\s\S]+)$/i);
+  if (!match) {
+    return null;
+  }
+
+  try {
+    const mimeType = match[1].toLowerCase();
+    const bytes = Buffer.from(match[2], "base64");
+    if (bytes.length === 0) {
+      return null;
+    }
+
+    return {
+      mimeType,
+      bytes: new Uint8Array(bytes),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function embedSignatureImage(pdfDoc: PDFDocument, dataUri: string): Promise<PDFImage | null> {
+  const parsed = parseDataUriImage(dataUri);
+  if (!parsed) {
+    return null;
+  }
+
+  if (parsed.mimeType === "image/png") {
+    return pdfDoc.embedPng(parsed.bytes);
+  }
+
+  if (parsed.mimeType === "image/jpeg" || parsed.mimeType === "image/jpg") {
+    return pdfDoc.embedJpg(parsed.bytes);
+  }
+
+  return null;
 }
 
 function toReadableLabel(key: string): string {
@@ -536,7 +602,7 @@ function buildMailerLiteMappedFields(template: string, data: Record<string, Fiel
       continue;
     }
 
-    mapped[`form_${key}`] = value;
+    mapped[`form_${key}`] = isImageDataUri(value) ? "Drawn signature captured" : value;
   }
 
   return mapped;
@@ -1034,6 +1100,10 @@ function formatPdfValueLines(value: FieldValue): string[] {
     return ["-"];
   }
 
+  if (isImageDataUri(normalized)) {
+    return ["Drawn signature captured"];
+  }
+
   const lines = normalized
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -1092,12 +1162,41 @@ function getPdfSectionForField(canonical: string): PdfSectionId {
   return "additional";
 }
 
+function hasFieldValue(value: FieldValue | undefined): boolean {
+  if (!value) {
+    return false;
+  }
+
+  if (Array.isArray(value)) {
+    return value.some((item) => item.trim().length > 0);
+  }
+
+  return value.trim().length > 0;
+}
+
+function isInternalOnlyBlueprintItem(item: PdfFieldBlueprintItem): boolean {
+  const section = item.section.toLowerCase();
+  const label = item.label.toLowerCase();
+  const name = item.name.toLowerCase();
+
+  if (section.includes("for internal use only") || section.includes("practitioner notes")) {
+    return true;
+  }
+
+  if (label.includes("employee") || name.includes("employee")) {
+    return true;
+  }
+
+  return false;
+}
+
 type PdfFieldEntry = {
   key: string;
   label: string;
   canonical: string;
   value: FieldValue;
   order: number;
+  internalBlank?: boolean;
 };
 
 async function tryEmbedPdfLogo(pdfDoc: PDFDocument) {
@@ -1253,7 +1352,7 @@ async function buildPrintablePdf(
 
   const renderSections: PdfRenderSection[] = [];
 
-  const drawFieldCard = (entry: PdfFieldEntry) => {
+  const drawFieldCard = async (entry: PdfFieldEntry) => {
     const cardPaddingX = 10;
     const cardPaddingY = 8;
     const labelSize = 8;
@@ -1262,11 +1361,46 @@ async function buildPrintablePdf(
     const valueLineHeight = 13;
     const cardInnerWidth = maxWidth - cardPaddingX * 2;
 
+    const isBlankInternalField = entry.internalBlank === true;
+    const canonicalLower = entry.canonical.toLowerCase();
+    const isDrawnSignatureField = canonicalLower.includes("signature") && !canonicalLower.includes("signaturedate");
+    const signatureDataUri = isBlankInternalField ? null : extractImageDataUri(entry.value);
+    const signatureImage = signatureDataUri ? await embedSignatureImage(pdfDoc, signatureDataUri) : null;
     const labelLines = wrapTextToWidth(entry.label, boldFont, labelSize, cardInnerWidth);
-    const valueLines = formatPdfValueLines(entry.value).flatMap((line) => wrapTextToWidth(line, regularFont, valueSize, cardInnerWidth));
+    const valueLines = signatureImage || isBlankInternalField
+      ? []
+      : formatPdfValueLines(entry.value).flatMap((line) => wrapTextToWidth(line, regularFont, valueSize, cardInnerWidth));
     const safeValueLines = valueLines.length > 0 ? valueLines : ["-"];
 
-    const cardHeight = cardPaddingY * 2 + labelLines.length * labelLineHeight + safeValueLines.length * valueLineHeight;
+    let signatureRenderWidth = 0;
+    let signatureRenderHeight = 0;
+    let signatureContainerWidth = 0;
+    let signatureContainerHeight = 0;
+
+    if (signatureImage || (isBlankInternalField && isDrawnSignatureField)) {
+      const maxSignatureWidth = Math.max(80, cardInnerWidth - 18);
+      const maxSignatureHeight = 70;
+      if (signatureImage) {
+        const scale = Math.min(
+          maxSignatureWidth / signatureImage.width,
+          maxSignatureHeight / signatureImage.height,
+          1,
+        );
+        signatureRenderWidth = Math.max(1, signatureImage.width * scale);
+        signatureRenderHeight = Math.max(1, signatureImage.height * scale);
+      } else {
+        signatureRenderWidth = Math.min(220, maxSignatureWidth);
+        signatureRenderHeight = 60;
+      }
+      signatureContainerWidth = signatureRenderWidth + 12;
+      signatureContainerHeight = signatureRenderHeight + 12;
+    }
+
+    const cardHeight = signatureImage || (isBlankInternalField && isDrawnSignatureField)
+      ? cardPaddingY * 2 + labelLines.length * labelLineHeight + signatureContainerHeight + 6
+      : isBlankInternalField
+        ? cardPaddingY * 2 + labelLines.length * labelLineHeight + 28
+        : cardPaddingY * 2 + labelLines.length * labelLineHeight + safeValueLines.length * valueLineHeight;
 
     ensureSpace(cardHeight + 8);
 
@@ -1295,15 +1429,57 @@ async function buildPrintablePdf(
       textY -= labelLineHeight;
     }
 
-    for (const valueLine of safeValueLines) {
-      page.drawText(valueLine, {
-        x: margin + cardPaddingX,
-        y: textY,
-        size: valueSize,
-        font: regularFont,
-        color: colors.text,
+    if (signatureImage || (isBlankInternalField && isDrawnSignatureField)) {
+      const containerX = margin + cardPaddingX;
+      const containerY = textY - signatureContainerHeight + 2;
+
+      page.drawRectangle({
+        x: containerX,
+        y: containerY,
+        width: signatureContainerWidth,
+        height: signatureContainerHeight,
+        borderColor: colors.cardBorder,
+        borderWidth: 1,
+        color: rgb(1, 1, 1),
       });
-      textY -= valueLineHeight;
+
+      if (signatureImage) {
+        page.drawImage(signatureImage, {
+          x: containerX + 6,
+          y: containerY + 6,
+          width: signatureRenderWidth,
+          height: signatureRenderHeight,
+        });
+      }
+    } else if (isBlankInternalField) {
+      const lineStartX = margin + cardPaddingX;
+      const lineEndX = margin + maxWidth - cardPaddingX;
+      const firstLineY = textY - 4;
+      const secondLineY = firstLineY - 12;
+
+      page.drawLine({
+        start: { x: lineStartX, y: firstLineY },
+        end: { x: lineEndX, y: firstLineY },
+        thickness: 0.8,
+        color: colors.cardBorder,
+      });
+      page.drawLine({
+        start: { x: lineStartX, y: secondLineY },
+        end: { x: lineEndX, y: secondLineY },
+        thickness: 0.8,
+        color: colors.cardBorder,
+      });
+    } else {
+      for (const valueLine of safeValueLines) {
+        page.drawText(valueLine, {
+          x: margin + cardPaddingX,
+          y: textY,
+          size: valueSize,
+          font: regularFont,
+          color: colors.text,
+        });
+        textY -= valueLineHeight;
+      }
     }
 
     y = cardBottomY - 8;
@@ -1316,7 +1492,10 @@ async function buildPrintablePdf(
 
     for (const item of fieldBlueprint) {
       const value = data[item.name];
-      if (!value || usedKeys.has(item.name)) {
+      const hasValue = hasFieldValue(value);
+      const includeBlankInternal = !hasValue && isInternalOnlyBlueprintItem(item);
+
+      if ((!hasValue && !includeBlankInternal) || usedKeys.has(item.name)) {
         continue;
       }
 
@@ -1326,8 +1505,9 @@ async function buildPrintablePdf(
         key: item.name,
         label: item.label || toPdfFieldLabel(item.name),
         canonical: toPdfCanonicalKey(item.name),
-        value,
+        value: hasValue && value ? value : "",
         order: item.order,
+        internalBlank: includeBlankInternal,
       });
       sectionMap.set(sectionTitle, existing);
       usedKeys.add(item.name);
@@ -1406,7 +1586,7 @@ async function buildPrintablePdf(
 
     y -= 2;
     for (const entry of section.entries) {
-      drawFieldCard(entry);
+      await drawFieldCard(entry);
     }
 
     y -= 4;

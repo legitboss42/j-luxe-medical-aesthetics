@@ -1,4 +1,4 @@
-﻿export type PricingItem = {
+export type PricingItem = {
   name: string;
   price: string;
   link: string;
@@ -79,7 +79,7 @@ export const pricingCategories: PricingCategory[] = [
         link: "https://jluxemedicalaesthetics.com/book-now/",
       },
       {
-        name: "Customised Luxury Facial",
+        name: "Customized Luxury Facial",
         price: "£150",
         link: "https://www.vagaro.com/cl/q9atMVizN5mH2vcBzGIy2hzlc~K4uaIqYLnWLEuZ0zg=",
       },

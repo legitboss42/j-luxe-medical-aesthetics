@@ -180,7 +180,7 @@ This reduces risk and improves consistency.
 
 ## Practical week-by-week planning framework
 
-Patients usually do better when prep and recovery are planned as a timeline rather than isolated instructions.
+Clients usually do better when prep and recovery are planned as a timeline rather than isolated instructions.
 
 ### 7 days before treatment
 
@@ -273,7 +273,7 @@ Before proceeding, make sure you know:
 - when to restart active skincare safely
 - when and how to contact the clinic if concerns arise
 
-Prepared patients usually experience safer recovery and more predictable outcomes.
+Prepared clients usually experience safer recovery and more predictable outcomes.
 
 ## Extended FAQ: preparation and aftercare precision
 
@@ -341,14 +341,14 @@ Treatment quality improves when protocol details, skin response, aftercare adher
 
 ## Final clinical note on preparation quality
 
-Patients who prepare deliberately usually heal more predictably and require fewer reactive adjustments.
+Clients who prepare deliberately usually heal more predictably and require fewer reactive adjustments.
 The highest-impact preparation principles are:
 
 - clear preparation timelines
 - realistic downtime planning
 - disciplined aftercare
 - barrier stability before treatment
-- scheduling discipline over treatment intensity for first-time patients
+- scheduling discipline over treatment intensity for first-time clients
 
 These are core components of safe peel delivery and high-quality outcomes.
 When preparation quality is high, treatment decisions become clearer and long-term skin strategy is easier to optimize.

@@ -71,7 +71,7 @@ Neither is a guaranteed standalone fix for advanced structural ageing.
 When comparing **exosomes vs prp**, key clinical differences include:
 
 - source: autologous plasma (PRP) vs manufactured biologic signaling products (exosomes)
-- variability: PRP quality varies with patient biology; exosome quality varies with product standards
+- variability: PRP quality varies with client biology; exosome quality varies with product standards
 - protocol design: both require indication-led planning and session sequencing
 
 Choice should be made on clinical suitability, not trend velocity.
@@ -80,7 +80,7 @@ Choice should be made on clinical suitability, not trend velocity.
 
 ### Where they may help
 
-For selected patients, both may support:
+For selected clients, both may support:
 
 - skin texture quality
 - tone and visible dullness
@@ -124,7 +124,7 @@ Execution quality matters as much as product selection.
 
 ## Pain, sensation and downtime
 
-Most patients experience mild to moderate procedural discomfort depending on method.
+Most clients experience mild to moderate procedural discomfort depending on method.
 Expected short-term effects can include:
 
 - transient redness
@@ -184,13 +184,13 @@ Treatment is prescribed as a plan, not selected from a fixed menu.
 ## Clinical decision matrix: when each option is usually preferred
 
 In real practice, selection is rarely binary.
-Clinicians typically map the patient to a priority profile and then choose the lowest-risk route that can still deliver meaningful progress.
+Clinicians typically map the client to a priority profile and then choose the lowest-risk route that can still deliver meaningful progress.
 
 ### PRP-forward scenarios
 
 PRP may be preferred where:
 
-- patients want an autologous pathway based on their own plasma
+- clients want an autologous pathway based on their own plasma
 - skin goals are moderate and progressive rather than urgent
 - prior response to blood-derived protocols has been favorable
 - tolerance for staged, review-led progression is high
@@ -245,7 +245,7 @@ High-standard clinics track:
 
 Documentation improves safety and protects decision quality over time.
 
-## Patient FAQ for exosomes and PRP planning
+## Client FAQ for exosomes and PRP planning
 
 ### Can one treatment replace all other skin therapies?
 
@@ -307,7 +307,7 @@ No.
 Treatment selection should be based on indication fit, risk profile, and protocol evidence.
 Recency alone is not a clinical quality marker.
 
-### Can PRP and exosome pathways be equally valid for different patients?
+### Can PRP and exosome pathways be equally valid for different clients?
 
 Yes.
 Different tissue states can respond better to different strategies.
@@ -352,7 +352,7 @@ They should explain why this modality is indicated, what alternatives were consi
 
 ### When is deferral the best option?
 
-Deferral is appropriate when baseline inflammation is high, barrier function is unstable, risk profile is unfavorable, or patient expectations are outside realistic treatment scope.
+Deferral is appropriate when baseline inflammation is high, barrier function is unstable, risk profile is unfavorable, or client expectations are outside realistic treatment scope.
 
 ## Booking and next steps
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
@@ -545,7 +545,7 @@ export default function PricingPage() {
             className="lg:col-span-4 rounded-[26px] border border-[#D4AF37]/20 bg-gradient-to-b from-[#17120a] via-[#0a0a0a] to-[#070707] p-6"
           >
             <p className="text-xs uppercase tracking-[0.18em] text-[#D4AF37] mb-2">Tailored For You</p>
-            <h2 className="text-2xl font-serif font-bold mb-4">Our Happy Patients</h2>
+            <h2 className="text-2xl font-serif font-bold mb-4">Our Happy Clients</h2>
             <div className="flex items-center gap-1 mb-3">{renderStars(googleRating, "w-4 h-4")}</div>
             <p className="text-sm text-gray-300 mb-5">
               Rated {googleRating.toFixed(1)} on Google ({googleReviewCount} reviews)

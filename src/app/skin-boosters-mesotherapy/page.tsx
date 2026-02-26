@@ -78,7 +78,7 @@ function getDescription(name: string) {
     return "Regenerative injectable protocol focused on skin repair and quality.";
   if (item.includes("pdrn")) return "Regenerative skin protocol supporting repair and long-term skin vitality.";
   if (item.includes("mesotherapy")) return "Vitamin-rich mesotherapy treatment to refresh tired, dull skin.";
-  return "Consultation-led skin booster treatment personalised to your skin goals.";
+  return "Consultation-led skin booster treatment personalized to your skin goals.";
 }
 
 function renderStars(rating: number, sizeClass = "w-4 h-4") {
@@ -282,6 +282,12 @@ export default function SkinBoostersPage() {
                 className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
               >
                 Consultation & Consent Forms
+              </Link>
+              <Link
+                href="/guidelines/skin-boosters-mesotherapy"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                Pre & Post Guidelines
               </Link>
             </div>
           </motion.div>
@@ -534,7 +540,7 @@ export default function SkinBoostersPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your skin booster consultation at our medical aesthetics clinic in Hackney London
-            for a personalised hydration and regeneration plan.
+            for a personalized hydration and regeneration plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -560,7 +566,7 @@ export default function SkinBoostersPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
               {googleBusinessName}
             </p>
-            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Patients</h3>
+            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Clients</h3>
             <div className="mt-3 flex items-center gap-1">{renderStars(googleRating, "h-4 w-4")}</div>
             <p className="mt-3 text-sm leading-relaxed text-gray-300">
               Rated {googleRating.toFixed(1)} on Google with {googleReviewCount}+ verified reviews.

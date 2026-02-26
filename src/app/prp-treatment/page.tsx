@@ -34,7 +34,7 @@ const categoryTitles = ["PRP FACE", "PRP HAIR"] as const;
 const heroHighlights = [
   "Regenerative PRP Face Protocols",
   "PRP Hair and Hair + Biotin Options",
-  "Consultation-Led Personalised Plans",
+  "Consultation-Led Personalized Plans",
 ];
 
 const faqs = [
@@ -274,6 +274,12 @@ export default function PrpTreatmentPage() {
                 className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
               >
                 Consultation & Consent Forms
+              </Link>
+              <Link
+                href="/guidelines/prp-treatment"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                Pre & Post Guidelines
               </Link>
             </div>
           </motion.div>
@@ -527,7 +533,7 @@ export default function PrpTreatmentPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
             Book your PRP consultation at our medical aesthetics clinic in Hackney London for a
-            personalised treatment plan.
+            personalized treatment plan.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -553,7 +559,7 @@ export default function PrpTreatmentPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
               {googleBusinessName}
             </p>
-            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Patients</h3>
+            <h3 className="mt-3 text-2xl font-serif font-bold uppercase">Our Happy Clients</h3>
             <div className="mt-3 flex items-center gap-1">{renderStars(googleRating, "h-4 w-4")}</div>
             <p className="mt-3 text-sm leading-relaxed text-gray-300">
               Rated {googleRating.toFixed(1)} on Google with {googleReviewCount}+ verified reviews.

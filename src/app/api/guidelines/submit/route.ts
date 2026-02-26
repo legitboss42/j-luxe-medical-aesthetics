@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { PDFDocument, StandardFonts, rgb, type PDFFont } from "pdf-lib";
+import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFImage } from "pdf-lib";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
@@ -12,6 +12,13 @@ type GuidelineFieldBlueprintItem = {
   order: number;
 };
 
+type GuidelineContentBlueprintItem = {
+  kind: "heading" | "subheading" | "paragraph" | "bullet" | "label";
+  text: string;
+  section: string;
+  order: number;
+};
+
 type GuidelineSubmissionPayload = {
   treatmentName?: unknown;
   treatmentPath?: unknown;
@@ -20,6 +27,7 @@ type GuidelineSubmissionPayload = {
   submittedAt?: unknown;
   data?: unknown;
   fieldBlueprint?: unknown;
+  contentBlueprint?: unknown;
 };
 
 type EmailDeliveryResult = {
@@ -123,6 +131,43 @@ function normalizeFieldBlueprint(input: unknown): GuidelineFieldBlueprintItem[] 
   return items;
 }
 
+function normalizeContentBlueprint(input: unknown): GuidelineContentBlueprintItem[] {
+  if (!Array.isArray(input)) {
+    return [];
+  }
+
+  const items = input
+    .map((item): GuidelineContentBlueprintItem | null => {
+      if (!item || typeof item !== "object" || Array.isArray(item)) {
+        return null;
+      }
+
+      const record = item as Record<string, unknown>;
+      const rawKind = typeof record.kind === "string" ? record.kind.trim() : "";
+      const kind = ["heading", "subheading", "paragraph", "bullet", "label"].includes(rawKind)
+        ? (rawKind as GuidelineContentBlueprintItem["kind"])
+        : "paragraph";
+      const text = typeof record.text === "string" ? record.text.trim() : "";
+      if (!text) {
+        return null;
+      }
+
+      const section = typeof record.section === "string" && record.section.trim().length > 0
+        ? record.section.trim()
+        : "Guideline Content";
+      const order = typeof record.order === "number" && Number.isFinite(record.order)
+        ? record.order
+        : Number.MAX_SAFE_INTEGER;
+
+      return { kind, text, section, order };
+    })
+    .filter((item): item is GuidelineContentBlueprintItem => Boolean(item));
+
+  items.sort((a, b) => a.order - b.order);
+
+  return items;
+}
+
 function readableFieldName(name: string): string {
   return name
     .replace(/^guidelines[A-Za-z0-9]*/i, "")
@@ -143,11 +188,132 @@ function formatValue(value: FieldValue | undefined): string {
     return "Not provided";
   }
 
+  if (/^data:image\/[a-z0-9.+-]+;base64,/i.test(trimmed)) {
+    return "Drawn signature captured";
+  }
+
   if (trimmed.toLowerCase() === "on") {
     return "Yes";
   }
 
   return trimmed;
+}
+
+function extractImageDataUri(value: FieldValue | undefined): string | null {
+  const raw = Array.isArray(value) ? value.find((item) => item.trim().length > 0) ?? "" : value ?? "";
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  if (!/^data:image\/[a-z0-9.+-]+;base64,/i.test(trimmed)) {
+    return null;
+  }
+
+  return trimmed;
+}
+
+function parseDataUriImage(dataUri: string): { mimeType: string; bytes: Uint8Array } | null {
+  const match = dataUri.match(/^data:(image\/[a-z0-9.+-]+);base64,([\s\S]+)$/i);
+  if (!match) {
+    return null;
+  }
+
+  try {
+    const mimeType = match[1].toLowerCase();
+    const bytes = Buffer.from(match[2], "base64");
+    if (bytes.length === 0) {
+      return null;
+    }
+    return { mimeType, bytes: new Uint8Array(bytes) };
+  } catch {
+    return null;
+  }
+}
+
+async function embedSignatureImage(pdfDoc: PDFDocument, dataUri: string): Promise<PDFImage | null> {
+  const parsed = parseDataUriImage(dataUri);
+  if (!parsed) {
+    return null;
+  }
+
+  if (parsed.mimeType === "image/png") {
+    return pdfDoc.embedPng(parsed.bytes);
+  }
+
+  if (parsed.mimeType === "image/jpeg" || parsed.mimeType === "image/jpg") {
+    return pdfDoc.embedJpg(parsed.bytes);
+  }
+
+  return null;
+}
+
+function ensureInternalEmployeePdfFields(
+  data: Record<string, FieldValue>,
+  fieldBlueprint: GuidelineFieldBlueprintItem[],
+): {
+  data: Record<string, FieldValue>;
+  fieldBlueprint: GuidelineFieldBlueprintItem[];
+} {
+  const hasEmployeeField =
+    Object.keys(data).some((key) => /employee/i.test(key)) ||
+    fieldBlueprint.some((item) => /employee/i.test(item.name) || /employee/i.test(item.label));
+
+  if (hasEmployeeField) {
+    return { data, fieldBlueprint };
+  }
+
+  const section = "Practitioner Acknowledgement (Internal Use Only)";
+  const nextOrder =
+    fieldBlueprint.reduce((max, item) => (item.order > max ? item.order : max), -1) + 1;
+
+  const internalFields: Array<{ name: string; label: string; value: string }> = [
+    {
+      name: "__internalEmployeeVisibilityNote",
+      label: "Note",
+      value: "Customers will not see the employee signature field when filling form online.",
+    },
+    {
+      name: "__internalEmployeeElectronicConsent",
+      label: "Employee Electronic Consent",
+      value: "",
+    },
+    {
+      name: "__internalEmployeeSignature",
+      label: "Employee Signature",
+      value: "",
+    },
+    {
+      name: "__internalEmployeeName",
+      label: "Employee Name",
+      value: "",
+    },
+    {
+      name: "__internalEmployeeDate",
+      label: "Date",
+      value: "",
+    },
+  ];
+
+  const nextData: Record<string, FieldValue> = { ...data };
+  for (const field of internalFields) {
+    nextData[field.name] = field.value;
+  }
+
+  const nextBlueprint = [
+    ...fieldBlueprint,
+    ...internalFields.map((field, index) => ({
+      name: field.name,
+      label: field.label,
+      section,
+      order: nextOrder + index,
+    })),
+  ];
+
+  return {
+    data: nextData,
+    fieldBlueprint: nextBlueprint,
+  };
 }
 
 function sanitizeFilenamePart(value: string): string {
@@ -254,7 +420,7 @@ function createPageContext(pdfDoc: PDFDocument, regularFont: PDFFont) {
     text,
     font = regularFont,
     size = 11,
-    color = rgb(0.88, 0.88, 0.88),
+    color = rgb(0.1, 0.1, 0.1),
     indent = 0,
     spacing = 4,
   }: {
@@ -293,7 +459,7 @@ function createPageContext(pdfDoc: PDFDocument, regularFont: PDFFont) {
       start: { x: PAGE.marginX, y: y + 4 },
       end: { x: PAGE.width - PAGE.marginX, y: y + 4 },
       thickness: 1,
-      color: rgb(0.25, 0.25, 0.25),
+      color: rgb(0.45, 0.45, 0.45),
     });
     y -= 10;
   };
@@ -302,6 +468,8 @@ function createPageContext(pdfDoc: PDFDocument, regularFont: PDFFont) {
     drawLine,
     addGap,
     drawDivider,
+    ensureSpace,
+    getPage: () => page,
     getY: () => y,
     setY: (nextY: number) => {
       y = nextY;
@@ -317,6 +485,7 @@ async function buildGuidelinePrintablePdf(
   submittedAt: string,
   data: Record<string, FieldValue>,
   fieldBlueprint: GuidelineFieldBlueprintItem[],
+  contentBlueprint: GuidelineContentBlueprintItem[],
 ): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create();
   const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -328,25 +497,98 @@ async function buildGuidelinePrintablePdf(
     text: "J LUXE MEDICAL AESTHETICS",
     font: boldFont,
     size: 16,
-    color: rgb(0.83, 0.69, 0.22),
+    color: rgb(0.58, 0.44, 0.08),
     spacing: 6,
   });
   ctx.drawLine({
     text: guidelinesTitle || `${treatmentName} Pre & Post-Treatment Guidelines`,
     font: boldFont,
     size: 14,
-    color: rgb(1, 1, 1),
+    color: rgb(0.05, 0.05, 0.05),
     spacing: 6,
   });
   ctx.addGap(4);
-  ctx.drawLine({ text: `Treatment: ${treatmentName}`, size: 10, color: rgb(0.78, 0.78, 0.78) });
-  ctx.drawLine({ text: `Template: ${template}`, size: 10, color: rgb(0.78, 0.78, 0.78) });
-  ctx.drawLine({ text: `Submitted At: ${submittedAt}`, size: 10, color: rgb(0.78, 0.78, 0.78) });
+  ctx.drawLine({ text: `Treatment: ${treatmentName}`, size: 10, color: rgb(0.28, 0.28, 0.28) });
+  ctx.drawLine({ text: `Template: ${template}`, size: 10, color: rgb(0.28, 0.28, 0.28) });
+  ctx.drawLine({ text: `Submitted At: ${submittedAt}`, size: 10, color: rgb(0.28, 0.28, 0.28) });
   if (treatmentPath) {
-    ctx.drawLine({ text: `Treatment Page: ${treatmentPath}`, size: 10, color: rgb(0.78, 0.78, 0.78) });
+    ctx.drawLine({ text: `Treatment Page: ${treatmentPath}`, size: 10, color: rgb(0.28, 0.28, 0.28) });
   }
   ctx.addGap(6);
   ctx.drawDivider();
+
+  if (contentBlueprint.length > 0) {
+    ctx.drawLine({
+      text: "Full Guideline (Page Version Submitted)",
+      font: boldFont,
+      size: 12,
+      color: rgb(0.08, 0.08, 0.08),
+      spacing: 5,
+    });
+    ctx.addGap(4);
+
+    for (const item of contentBlueprint) {
+      if (item.kind === "heading") {
+        ctx.addGap(2);
+        ctx.drawLine({
+          text: item.text,
+          font: boldFont,
+          size: 12,
+          color: rgb(0.08, 0.08, 0.08),
+          spacing: 4,
+        });
+        ctx.addGap(2);
+        continue;
+      }
+
+      if (item.kind === "subheading") {
+        ctx.addGap(1);
+        ctx.drawLine({
+          text: item.text,
+          font: boldFont,
+          size: 11,
+          color: rgb(0.12, 0.12, 0.12),
+          spacing: 4,
+          indent: 2,
+        });
+        continue;
+      }
+
+      if (item.kind === "bullet") {
+        ctx.drawLine({
+          text: `- ${item.text}`,
+          size: 10.5,
+          color: rgb(0.12, 0.12, 0.12),
+          indent: 10,
+          spacing: 4,
+        });
+        continue;
+      }
+
+      if (item.kind === "label") {
+        ctx.drawLine({
+          text: item.text,
+          font: boldFont,
+          size: 10,
+          color: rgb(0.2, 0.2, 0.2),
+          indent: 2,
+          spacing: 3,
+        });
+        continue;
+      }
+
+      ctx.drawLine({
+        text: item.text,
+        size: 10.5,
+        color: rgb(0.12, 0.12, 0.12),
+        indent: 2,
+        spacing: 4,
+      });
+    }
+
+    ctx.addGap(6);
+    ctx.drawDivider();
+  }
 
   const orderedBlueprint = fieldBlueprint.length > 0
     ? fieldBlueprint
@@ -368,9 +610,18 @@ async function buildGuidelinePrintablePdf(
     ctx.drawLine({
       text: "No guideline acknowledgement fields were submitted.",
       size: 11,
-      color: rgb(0.85, 0.55, 0.55),
+      color: rgb(0.65, 0.14, 0.14),
     });
   }
+
+  ctx.drawLine({
+    text: "Submitted Acknowledgement Details",
+    font: boldFont,
+    size: 12,
+    color: rgb(0.08, 0.08, 0.08),
+    spacing: 5,
+  });
+  ctx.addGap(2);
 
   for (const [sectionTitle, items] of sections.entries()) {
     ctx.addGap(2);
@@ -378,7 +629,7 @@ async function buildGuidelinePrintablePdf(
       text: sectionTitle,
       font: boldFont,
       size: 12,
-      color: rgb(0.94, 0.94, 0.94),
+      color: rgb(0.08, 0.08, 0.08),
       spacing: 5,
     });
     ctx.addGap(2);
@@ -388,17 +639,129 @@ async function buildGuidelinePrintablePdf(
         text: `${item.label}:`,
         font: boldFont,
         size: 10.5,
-        color: rgb(0.82, 0.82, 0.82),
+        color: rgb(0.18, 0.18, 0.18),
         indent: 4,
         spacing: 3,
       });
-      ctx.drawLine({
-        text: formatValue(data[item.name]),
-        size: 10.5,
-        color: rgb(0.96, 0.96, 0.96),
-        indent: 14,
-        spacing: 4,
-      });
+
+      if (item.name === "__internalEmployeeElectronicConsent") {
+        ctx.drawLine({
+          text: "[ ] I agree to use electronic records and signatures.",
+          size: 10.5,
+          color: rgb(0.08, 0.08, 0.08),
+          indent: 14,
+          spacing: 4,
+        });
+        ctx.addGap(3);
+        continue;
+      }
+
+      if (item.name === "__internalEmployeeSignature") {
+        const signatureBoxHeight = 76;
+        const signatureBoxWidth = Math.min(300, PAGE.width - PAGE.marginX * 2 - 28);
+        const signatureBoxX = PAGE.marginX + 14;
+
+        ctx.ensureSpace(signatureBoxHeight + 14);
+        const page = ctx.getPage();
+        const topY = ctx.getY();
+        const signatureBoxY = topY - signatureBoxHeight + 4;
+
+        page.drawRectangle({
+          x: signatureBoxX,
+          y: signatureBoxY,
+          width: signatureBoxWidth,
+          height: signatureBoxHeight,
+          borderColor: rgb(0.55, 0.55, 0.55),
+          borderWidth: 0.9,
+          color: rgb(1, 1, 1),
+        });
+        page.drawText("Employee sign here", {
+          x: signatureBoxX + 8,
+          y: signatureBoxY + 8,
+          size: 9,
+          font: regularFont,
+          color: rgb(0.45, 0.45, 0.45),
+        });
+
+        ctx.setY(signatureBoxY - 4);
+        ctx.addGap(3);
+        continue;
+      }
+
+      if (item.name === "__internalEmployeeName" || item.name === "__internalEmployeeDate") {
+        ctx.ensureSpace(18);
+        const page = ctx.getPage();
+        const y = ctx.getY() - 2;
+        const lineStartX = PAGE.marginX + 14;
+        const lineEndX = Math.min(PAGE.width - PAGE.marginX - 12, lineStartX + 250);
+
+        page.drawLine({
+          start: { x: lineStartX, y },
+          end: { x: lineEndX, y },
+          thickness: 0.8,
+          color: rgb(0.5, 0.5, 0.5),
+        });
+
+        ctx.setY(y - 8);
+        ctx.addGap(3);
+        continue;
+      }
+
+      const signatureDataUri = extractImageDataUri(data[item.name]);
+      if (signatureDataUri) {
+        const signatureImage = await embedSignatureImage(pdfDoc, signatureDataUri);
+        if (signatureImage) {
+          const maxImageWidth = Math.min(220, PAGE.width - PAGE.marginX * 2 - 28);
+          const maxImageHeight = 64;
+          const widthScale = maxImageWidth / signatureImage.width;
+          const heightScale = maxImageHeight / signatureImage.height;
+          const scale = Math.min(widthScale, heightScale, 1);
+          const renderedWidth = Math.max(1, signatureImage.width * scale);
+          const renderedHeight = Math.max(1, signatureImage.height * scale);
+          const containerWidth = renderedWidth + 12;
+          const containerHeight = renderedHeight + 12;
+          const containerX = PAGE.marginX + 14;
+
+          ctx.ensureSpace(containerHeight + 6);
+          const topY = ctx.getY();
+          const containerY = topY - containerHeight + 4;
+          const page = ctx.getPage();
+
+          page.drawRectangle({
+            x: containerX,
+            y: containerY,
+            width: containerWidth,
+            height: containerHeight,
+            borderColor: rgb(0.7, 0.7, 0.7),
+            borderWidth: 0.8,
+            color: rgb(1, 1, 1),
+          });
+          page.drawImage(signatureImage, {
+            x: containerX + 6,
+            y: containerY + 6,
+            width: renderedWidth,
+            height: renderedHeight,
+          });
+
+          ctx.setY(containerY - 4);
+        } else {
+          ctx.drawLine({
+            text: "Drawn signature captured",
+            size: 10.5,
+            color: rgb(0.08, 0.08, 0.08),
+            indent: 14,
+            spacing: 4,
+          });
+        }
+      } else {
+        ctx.drawLine({
+          text: formatValue(data[item.name]),
+          size: 10.5,
+          color: rgb(0.08, 0.08, 0.08),
+          indent: 14,
+          spacing: 4,
+        });
+      }
       ctx.addGap(3);
     }
 
@@ -406,9 +769,9 @@ async function buildGuidelinePrintablePdf(
   }
 
   ctx.drawLine({
-    text: "This PDF confirms submitted acknowledgement fields for the treatment guidelines page.",
+    text: "This PDF includes the submitted guideline page content and the captured acknowledgement fields.",
     size: 9.5,
-    color: rgb(0.7, 0.7, 0.7),
+    color: rgb(0.35, 0.35, 0.35),
   });
 
   return pdfDoc.save();
@@ -535,8 +898,11 @@ export async function POST(request: Request) {
 
     const data = normalizeData(body.data);
     const fieldBlueprint = normalizeFieldBlueprint(body.fieldBlueprint);
+    const contentBlueprint = normalizeContentBlueprint(body.contentBlueprint);
 
-    if (Object.keys(data).length === 0) {
+    const normalizedInternalFields = ensureInternalEmployeePdfFields(data, fieldBlueprint);
+
+    if (Object.keys(normalizedInternalFields.data).length === 0) {
       return NextResponse.json(
         { ok: false, error: "No guideline acknowledgement data was submitted." },
         { status: 400 },
@@ -549,12 +915,13 @@ export async function POST(request: Request) {
       treatmentPath,
       template,
       submittedAt,
-      data,
-      fieldBlueprint,
+      normalizedInternalFields.data,
+      normalizedInternalFields.fieldBlueprint,
+      contentBlueprint,
     );
 
     const submissionReference = createSubmissionReference(treatmentName, submittedAt);
-    const downloadFileName = createDownloadFilename(treatmentName, data);
+    const downloadFileName = createDownloadFilename(treatmentName, normalizedInternalFields.data);
 
     const clinicEmail = await emailGuidelinePdfToClinic(
       submissionReference,
@@ -563,7 +930,7 @@ export async function POST(request: Request) {
       treatmentPath,
       template,
       submittedAt,
-      data,
+      normalizedInternalFields.data,
       pdfBytes,
     );
 
@@ -593,3 +960,4 @@ export async function POST(request: Request) {
     );
   }
 }
+

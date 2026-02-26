@@ -5,6 +5,16 @@ import { useState } from "react";
 import { ArrowRight, BookOpen, ClipboardList } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import GuidelinesAntiWrinkle from "@/src/components/treatment/guidelines/GuidelinesAntiWrinkle";
+import GuidelinesBodySculpting from "@/src/components/treatment/guidelines/GuidelinesBodySculpting";
+import GuidelinesChemicalPeels from "@/src/components/treatment/guidelines/GuidelinesChemicalPeels";
+import GuidelinesDermalFillers from "@/src/components/treatment/guidelines/GuidelinesDermalFillers";
+import GuidelinesExosomes from "@/src/components/treatment/guidelines/GuidelinesExosomes";
+import GuidelinesFacials from "@/src/components/treatment/guidelines/GuidelinesFacials";
+import GuidelinesIvDrip from "@/src/components/treatment/guidelines/GuidelinesIvDrip";
+import GuidelinesPrp from "@/src/components/treatment/guidelines/GuidelinesPrp";
+import GuidelinesSkinBoosters from "@/src/components/treatment/guidelines/GuidelinesSkinBoosters";
+import GuidelinesTeethWhitening from "@/src/components/treatment/guidelines/GuidelinesTeethWhitening";
 import GuidelinesWaxing from "@/src/components/treatment/guidelines/GuidelinesWaxing";
 import type { TreatmentFormTemplate } from "@/src/lib/treatment-forms";
 
@@ -22,6 +32,13 @@ type FieldPayload = string | string[];
 type GuidelineFieldBlueprintItem = {
   name: string;
   label: string;
+  section: string;
+  order: number;
+};
+
+type GuidelineContentBlueprintItem = {
+  kind: "heading" | "subheading" | "paragraph" | "bullet" | "label";
+  text: string;
   section: string;
   order: number;
 };
@@ -189,6 +206,61 @@ function extractGuidelineFieldBlueprint(form: HTMLFormElement): GuidelineFieldBl
   return blueprint;
 }
 
+function extractGuidelineContentBlueprint(form: HTMLFormElement): GuidelineContentBlueprintItem[] {
+  const content: GuidelineContentBlueprintItem[] = [];
+  let order = 0;
+
+  const sections = Array.from(form.querySelectorAll("section"));
+  for (const section of sections) {
+    const sectionTitle = getSectionTitle(section);
+    const textNodes = Array.from(
+      section.querySelectorAll("h2, h3, p, li, label"),
+    ) as HTMLElement[];
+
+    for (const node of textNodes) {
+      if (node.closest("button")) {
+        continue;
+      }
+
+      const text = normalizeText(node.textContent ?? "");
+      if (!text) {
+        continue;
+      }
+
+      let kind: GuidelineContentBlueprintItem["kind"] = "paragraph";
+      if (node.tagName === "H2") {
+        kind = "heading";
+      } else if (node.tagName === "H3") {
+        kind = "subheading";
+      } else if (node.tagName === "LI") {
+        kind = "bullet";
+      } else if (node.tagName === "LABEL") {
+        kind = "label";
+      }
+
+      const previous = content[content.length - 1];
+      if (
+        previous &&
+        previous.section === sectionTitle &&
+        previous.kind === kind &&
+        previous.text === text
+      ) {
+        continue;
+      }
+
+      content.push({
+        kind,
+        text,
+        section: sectionTitle,
+        order,
+      });
+      order += 1;
+    }
+  }
+
+  return content;
+}
+
 function base64ToBlob(base64: string, mimeType: string): Blob {
   const byteCharacters = window.atob(base64);
   const byteNumbers = new Array<number>(byteCharacters.length);
@@ -227,7 +299,35 @@ export default function TreatmentGuidelinesClient({
   };
 
   const guidelinesTitle = titleByTemplate[template];
-  const supportsSubmission = template === "waxing";
+  const renderedGuidelines = (() => {
+    switch (template) {
+      case "antiWrinkle":
+        return <GuidelinesAntiWrinkle />;
+      case "bodySculpting":
+        return <GuidelinesBodySculpting />;
+      case "chemicalPeels":
+        return <GuidelinesChemicalPeels />;
+      case "dermalFillers":
+        return <GuidelinesDermalFillers />;
+      case "exosomes":
+        return <GuidelinesExosomes />;
+      case "facials":
+        return <GuidelinesFacials />;
+      case "ivDrip":
+        return <GuidelinesIvDrip />;
+      case "prp":
+        return <GuidelinesPrp />;
+      case "skinBoosters":
+        return <GuidelinesSkinBoosters />;
+      case "teethWhitening":
+        return <GuidelinesTeethWhitening />;
+      case "waxing":
+        return <GuidelinesWaxing />;
+      default:
+        return null;
+    }
+  })();
+  const supportsSubmission = renderedGuidelines !== null;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -235,9 +335,26 @@ export default function TreatmentGuidelinesClient({
     setSubmitMessage("");
 
     const formElement = event.currentTarget;
+    const missingRequiredSignature = Array.from(
+      formElement.querySelectorAll<HTMLInputElement>(
+        'input[data-signature-field="true"][data-signature-required="true"]',
+      ),
+    ).find((input) => input.value.trim().length === 0);
+
+    if (missingRequiredSignature) {
+      const panel = missingRequiredSignature.closest<HTMLElement>('[data-signature-panel="true"]');
+      if (panel) {
+        panel.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      setSubmitState("error");
+      setSubmitMessage("Please draw the required signature before submitting.");
+      return;
+    }
+
     const formData = new FormData(formElement);
     const data = toSubmissionData(formData);
     const fieldBlueprint = extractGuidelineFieldBlueprint(formElement);
+    const contentBlueprint = extractGuidelineContentBlueprint(formElement);
 
     try {
       const response = await fetch("/api/guidelines/submit", {
@@ -253,6 +370,7 @@ export default function TreatmentGuidelinesClient({
           submittedAt: new Date().toISOString(),
           data,
           fieldBlueprint,
+          contentBlueprint,
         }),
       });
 
@@ -308,13 +426,13 @@ export default function TreatmentGuidelinesClient({
 
         <div className="relative z-10 mx-auto flex min-h-[46vh] w-full max-w-6xl items-end px-4 pb-10 pt-24 md:min-h-[52vh] md:px-8">
           <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37] md:text-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E7C97C] md:text-lg">
               J Luxe Medical Aesthetics
             </p>
             <h1 className="mt-4 text-4xl font-serif font-bold uppercase leading-[0.94] md:text-6xl">
               {guidelinesTitle}
             </h1>
-            <p className="mt-5 text-sm leading-relaxed text-gray-200 md:text-base">
+            <p className="mt-5 text-base leading-relaxed text-gray-200 md:text-lg">
               Review your treatment-specific preparation and aftercare instructions before your appointment.
               These guidelines are treatment-specific and should be followed alongside advice given by your
               practitioner.
@@ -322,14 +440,14 @@ export default function TreatmentGuidelinesClient({
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={treatmentPath}
-                className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
+                className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-black hover:bg-[#eac85a]"
               >
                 Back To Treatment
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href={`/forms/${slug}`}
-                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
               >
                 Consultation Form
                 <ClipboardList className="h-4 w-4" />
@@ -344,37 +462,37 @@ export default function TreatmentGuidelinesClient({
           <article className="rounded-[26px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#151006] via-[#0d0d0d] to-[#090909] p-6 md:p-8">
             <div className="mb-8 flex items-center gap-3">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/45 bg-black/50">
-                <BookOpen className="h-5 w-5 text-[#D4AF37]" />
+                <BookOpen className="h-5 w-5 text-[#E7C97C]" />
               </span>
               <h2 className="text-2xl font-serif font-bold uppercase md:text-3xl">{guidelinesTitle}</h2>
             </div>
 
             {submitState === "success" && (
-              <p className="mb-6 rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-xs text-[#f0dc9b]">
+              <p className="mb-6 rounded-xl border border-[#D4AF37]/30 bg-[#1b1509] px-4 py-3 text-sm text-[#f0dc9b]">
                 {submitMessage}
               </p>
             )}
 
             {submitState === "error" && (
-              <p className="mb-6 rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-xs text-red-200">
+              <p className="mb-6 rounded-xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-sm text-red-200">
                 {submitMessage}
               </p>
             )}
 
             {supportsSubmission ? (
               <form onSubmit={handleSubmit} className="space-y-8">
-                <GuidelinesWaxing />
+                {renderedGuidelines}
                 <button
                   type="submit"
                   disabled={submitState === "submitting"}
-                  className="cta-button inline-flex min-h-[46px] w-full items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#e4c45b] to-[#D4AF37] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black shadow-[0_12px_34px_rgba(212,175,55,0.3)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-80"
+                  className="cta-button inline-flex min-h-[46px] w-full items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#e4c45b] to-[#D4AF37] px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-black shadow-[0_12px_34px_rgba(212,175,55,0.3)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-80"
                 >
                   {submitState === "submitting" ? "Saving..." : "Submit Pre & Post-Treatment Guidelines"}
                 </button>
               </form>
             ) : (
               <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-                <p className="text-sm leading-relaxed text-gray-200 md:text-base">
+                <p className="text-base leading-relaxed text-gray-200 md:text-lg">
                   Pre- and post-treatment guidelines for {treatmentName} will be added here. Send the screenshots
                   section by section and the page will be updated to match.
                 </p>
