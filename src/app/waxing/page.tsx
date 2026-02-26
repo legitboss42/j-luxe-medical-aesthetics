@@ -333,6 +333,12 @@ export default function WaxingPage() {
               >
                 Consultation & Consent Forms
               </Link>
+              <Link
+                href="/guidelines/waxing"
+                className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                Pre & Post Guidelines
+              </Link>
             </div>
           </motion.div>
 
