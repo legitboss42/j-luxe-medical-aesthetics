@@ -75,6 +75,15 @@ main :where(.uppercase) {
   font-family: var(--font-blog-serif), "Times New Roman", serif;
 }
 
+/* Explicitly preserve original fonts for all non-blog route content */
+main > :not(.blog-font-theme) {
+  font-family: var(--font-manrope), "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+main > :not(.blog-font-theme) :where(h1, h2, h3, h4, h5, h6, .font-serif) {
+  font-family: var(--font-cormorant), "Times New Roman", serif;
+}
+
 /* Blog article markdown styling */
 .blog-content {
   font-family: var(--font-blog-sans), "Segoe UI", Helvetica, Arial, sans-serif;
