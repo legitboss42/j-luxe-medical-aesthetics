@@ -144,7 +144,7 @@ export default function GuidelinesFacials() {
       />
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold uppercase text-white md:text-xl">Introduction</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">1. Introduction</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             Your skin deserves precision, not guesswork. Each J Luxe experience is built on advanced
@@ -166,6 +166,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
+        <h2 className="text-lg font-bold text-white md:text-xl">2. Treatment Overview</h2>
         <div className="space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             Facial treatments are professional targeted skin therapies designed to deep-cleanse,
@@ -182,7 +183,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Medical &amp; Safety Requirements</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">3. Medical &amp; Safety Requirements</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>You MUST inform J Luxe Medical Aesthetics before your appointment if:</p>
           <BulletList items={medicalSafetyItems} compact />
@@ -191,7 +192,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Skincare Preparation (IMPORTANT)</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">4. Skincare Preparation (IMPORTANT)</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p className="font-semibold text-white">Avoid for 5-7 days before your facial:</p>
           <BulletList items={skincarePrepAvoidItems} compact />
@@ -200,7 +201,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Lifestyle Restrictions</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">5. Lifestyle Restrictions</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p className="font-semibold text-white">Avoid for 24-48 hours before your facial:</p>
           <BulletList items={lifestyleRestrictionItems} compact />
@@ -215,7 +216,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">On the Day of Treatment</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">6. On the Day of Treatment</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p className="font-semibold text-white">Please arrive with:</p>
           <BulletList items={arriveWithItems} compact />
@@ -234,7 +235,7 @@ export default function GuidelinesFacials() {
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
         <h2 className="text-lg font-bold text-white md:text-xl">
-          What to Expect Post Treatment (This include risks and side effects)
+          7. What to Expect Post Treatment (This include risks and side effects)
         </h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>Please note that some of these reactions are normal and expected:</p>
@@ -243,7 +244,9 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Immediately After Treatment - First 24 Hours</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">
+          8. Immediately After Treatment - First 24 Hours
+        </h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <BulletList items={first24HoursItems} compact />
           <p>Reason: your skin barrier is temporarily more porous and reactive.</p>
@@ -252,7 +255,7 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Day 2-7</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">9. Day 2-7</h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>This is the skin-calming and repairing phase.</p>
           <BulletList items={dayTwoToSevenItems} compact />
@@ -266,7 +269,9 @@ export default function GuidelinesFacials() {
       </section>
 
       <section className="rounded-2xl border border-white/12 bg-black/35 p-5 md:p-6">
-        <h2 className="text-lg font-bold text-white md:text-xl">Disclaimers &amp; When to Contact the Clinic</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">
+          10. Disclaimers &amp; When to Contact the Clinic
+        </h2>
         <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-200 md:text-lg">
           <p>
             Results vary depending on skin type, lifestyle, hormones, and the consistency of your
