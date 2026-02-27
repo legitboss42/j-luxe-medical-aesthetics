@@ -57,13 +57,13 @@ At a biological level, microneedling initiates a cascade of repair mechanisms. T
 
 Importantly, microneedling is dose dependent. The depth, pressure, number of passes, and spacing between treatments directly influence tissue response. When these variables are poorly controlled, collagen stimulation is either insufficient or excessive, both of which compromise results.
 
-Microneedling should therefore be understood as a biological stimulus, not a cosmetic enhancement. It does not fill, lift, or tighten skin in the way injectable or energy-based treatments do. Its role sits firmly within skin regeneration and optimization, making correct indication and protocol design essential.
+Microneedling should therefore be understood as a biological stimulus, not a cosmetic enhancement. It does not fill, lift, or tighten skin in the way injectable or energy-based treatments do. Its role sits firmly within skin regeneration and optimisation, making correct indication and protocol design essential.
 
 This distinction is critical. When microneedling is positioned or used outside its clinical scope, expectations become misaligned and outcomes disappoint.
 
 ## What Microneedling Can and Cannot Treat
 
-Microneedling is effective when used within its clinical scope. It is a treatment for skin quality optimization, not a solution for structural ageing or volume-related concerns. Clear distinction at this stage is essential for appropriate treatment selection and client satisfaction.
+Microneedling is effective when used within its clinical scope. It is a treatment for skin quality optimisation, not a solution for structural ageing or volume-related concerns. Clear distinction at this stage is essential for appropriate treatment selection and client satisfaction.
 
 ### What Microneedling Treats Effectively
 
@@ -149,7 +149,7 @@ Establishing suitability ensures:
 - **Reduced risk profile**
 - **Realistic expectations**
 
-This is what differentiates a clinical microneedling protocol from a standardized service.
+This is what differentiates a clinical microneedling protocol from a standardised service.
 
 ## How Microneedling Is Performed in Clinic
 
@@ -157,7 +157,7 @@ A clinical microneedling treatment is methodical, adaptive, and indication led. 
 
 ### Pre-Treatment Preparation
 
-Before needling begins, the skin is prepared to minimize risk and optimize response:
+Before needling begins, the skin is prepared to minimise risk and optimise response:
 
 - **Thorough cleansing to remove surface debris and oils**
 - **Medical-grade skin disinfection to reduce infection risk**
@@ -463,7 +463,7 @@ Outcome quality is driven by:
 
 Protocols create results not machines.
 
-Recognising these variables helps contextualise outcomes and reinforces why microneedling should be delivered as a personalized clinical treatment, not a standardized service.
+Recognising these variables helps contextualise outcomes and reinforces why microneedling should be delivered as a personalised clinical treatment, not a standardised service.
 
 ## How We Deliver Microneedling at J Luxe Medical Aesthetics
 
@@ -473,7 +473,7 @@ Microneedling at J Luxe is delivered as a prescribed clinical protocol, not a me
 
 We begin with a structured consultation to determine indication and expected benefit, anatomical variability and skin thickness, barrier integrity and inflammatory risk, pigmentation risk and healing capacity, treatment history and cumulative skin load. If microneedling is not the right intervention, we do not proceed.
 
-### Individualized Protocol Design
+### Individualised Protocol Design
 
 Each plan is built around variable depth mapping by facial zone, conservative depth escalation across sessions, indication-led spacing to allow full collagen remodelling, combination planning where microneedling alone is insufficient. Uniform depth or standard packages are avoided because they dilute outcomes.
 
@@ -491,7 +491,7 @@ Clear written aftercare and recovery guidance. Defined review pathways if concer
 
 ## Booking and Next Steps
 
-Book a microneedling consultation to assess suitability and build a personalized plan.
+Book a microneedling consultation to assess suitability and build a personalised plan.
 
 - **[Book a consultation](/pricing)**
 - **[WhatsApp us](https://wa.me/447883050603) to discuss whether microneedling is appropriate before booking**

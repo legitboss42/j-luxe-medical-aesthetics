@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
+import { Merriweather, Work_Sans } from "next/font/google";
 
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
+
+const blogSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-blog-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const blogSerif = Merriweather({
+  subsets: ["latin"],
+  variable: "--font-blog-serif",
+  weight: ["400", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Aesthetics Blog | J Luxe Aesthetics Hackney",
@@ -52,5 +67,9 @@ export default function BlogLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <div className={`${blogSans.variable} ${blogSerif.variable} blog-font-theme`}>
+      {children}
+    </div>
+  );
 }

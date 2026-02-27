@@ -60,12 +60,31 @@ main :where(.uppercase) {
   }
 }
 
+/* Blog-only font system */
+.blog-font-theme {
+  font-family: var(--font-blog-sans), "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.blog-font-theme .font-serif,
+.blog-font-theme h1,
+.blog-font-theme h2,
+.blog-font-theme h3,
+.blog-font-theme h4,
+.blog-font-theme h5,
+.blog-font-theme h6 {
+  font-family: var(--font-blog-serif), "Times New Roman", serif;
+}
+
 /* Blog article markdown styling */
+.blog-content {
+  font-family: var(--font-blog-sans), "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
 .blog-content h1,
 .blog-content h2,
 .blog-content h3,
 .blog-content h4 {
-  font-family: var(--font-cormorant), "Times New Roman", serif;
+  font-family: var(--font-blog-serif), "Times New Roman", serif;
   color: #d4af37;
   font-weight: 700;
 }
@@ -77,18 +96,12 @@ main :where(.uppercase) {
   line-height: 0.98;
 }
 
-.blog-content h2 {
+.blog-content h2,
+.blog-content h3 {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   font-size: clamp(1.5rem, 3.8vw, 2.1rem);
   line-height: 1.06;
-}
-
-.blog-content h3 {
-  margin-top: 1.35rem;
-  margin-bottom: 0.55rem;
-  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
-  line-height: 1.15;
 }
 
 .blog-content p,
