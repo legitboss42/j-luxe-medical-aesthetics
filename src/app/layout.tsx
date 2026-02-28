@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "J Luxe Medical Aesthetics | Premier Clinic in London",
   description:
     "J Luxe Medical Aesthetics is a medical aesthetics clinic in Hackney London offering dermal fillers, anti-wrinkle injections, facials, and body sculpting.",
+  verification: {
+    google: "d8HvuqklUDr1brwkrRtCzZBcpKLo1gnDa-NgU8CNnZQ",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
