@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const COUNTDOWN_STORAGE_KEY = "jluxe_site_coming_soon_target_v1";
-const EIGHT_DAYS_MS = 8 * 24 * 60 * 60 * 1000;
+// Shared fallback target so all visitors see the same countdown even without env config.
+const FALLBACK_TARGET_ISO = "2026-03-08T00:00:00.000Z";
 
 type CountdownState = {
   days: number;
@@ -30,24 +30,16 @@ function padTime(value: number) {
   return String(value).padStart(2, "0");
 }
 
-function resolveTargetTimestamp(now: number): number {
+function resolveTargetTimestamp(): number {
   const envTarget = process.env.NEXT_PUBLIC_SITE_COMING_SOON_TARGET;
   if (envTarget) {
     const parsed = Date.parse(envTarget);
-    if (Number.isFinite(parsed) && parsed > now) {
+    if (Number.isFinite(parsed)) {
       return parsed;
     }
   }
 
-  const storedTarget = Number(window.localStorage.getItem(COUNTDOWN_STORAGE_KEY));
-  const hasValidStoredTarget = Number.isFinite(storedTarget) && storedTarget > now;
-  if (hasValidStoredTarget) {
-    return storedTarget;
-  }
-
-  const generated = now + EIGHT_DAYS_MS;
-  window.localStorage.setItem(COUNTDOWN_STORAGE_KEY, String(generated));
-  return generated;
+  return Date.parse(FALLBACK_TARGET_ISO);
 }
 
 export default function SiteComingSoonOverlay() {
@@ -59,8 +51,7 @@ export default function SiteComingSoonOverlay() {
   });
 
   useEffect(() => {
-    const now = Date.now();
-    const targetTimestamp = resolveTargetTimestamp(now);
+    const targetTimestamp = resolveTargetTimestamp();
 
     const updateCountdown = () => {
       const diff = targetTimestamp - Date.now();
@@ -125,4 +116,3 @@ export default function SiteComingSoonOverlay() {
     </div>
   );
 }
-
