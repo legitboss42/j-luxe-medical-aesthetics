@@ -9,7 +9,6 @@ import {
   Laptop,
   PlayCircle,
   ShieldCheck,
-  X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
@@ -202,8 +201,6 @@ export default function TrainingAcademyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div aria-hidden className="pointer-events-none select-none blur-[6px]">
-
       {/* HERO */}
       <section className="relative min-h-[72vh] overflow-hidden border-b border-[#D4AF37]/20">
         <motion.div
@@ -486,35 +483,6 @@ export default function TrainingAcademyPage() {
           </div>
         </div>
       </section>
-      </div>
-
-      <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/65 px-4 backdrop-blur-sm">
-        <div className="relative w-full max-w-xl rounded-2xl border border-[#D4AF37]/35 bg-[#0b0b0b]/95 p-6 text-center shadow-[0_20px_60px_rgba(0,0,0,0.55)] md:p-8">
-          <Link
-            href="/"
-            aria-label="Close and return to homepage"
-            className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
-          >
-            <X className="h-4 w-4" />
-          </Link>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
-            J Luxe Training Academy
-          </p>
-          <h1 className="mt-3 text-4xl font-serif font-bold uppercase leading-tight md:text-5xl">
-            Coming Soon
-          </h1>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-gray-300 md:text-base">
-            Training enrolment is currently unavailable. Please check back shortly for launch
-            updates.
-          </p>
-          <Link
-            href="/"
-            className="mt-6 inline-flex min-h-[42px] items-center justify-center rounded-full border border-[#D4AF37]/45 px-6 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#D4AF37] transition-colors hover:bg-[#D4AF37] hover:text-black"
-          >
-            Close
-          </Link>
-        </div>
-      </div>
     </main>
   );
 }
