@@ -3,6 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // Canonical host redirect: apex -> www
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "jluxemedicalaesthetics.com" }],
+        destination: "https://www.jluxemedicalaesthetics.com/:path*",
+        permanent: true,
+      },
+
       // Keep old Yoast sitemap endpoint working
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
 

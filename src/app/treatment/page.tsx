@@ -193,13 +193,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://jluxemedicalaesthetics.com/",
+      item: "https://www.jluxemedicalaesthetics.com/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Treatments",
-      item: "https://jluxemedicalaesthetics.com/treatment",
+      item: "https://www.jluxemedicalaesthetics.com/treatment",
     },
   ],
 };

@@ -54,13 +54,13 @@ export default async function BlogHubPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://jluxemedicalaesthetics.com/blog",
+        item: "https://www.jluxemedicalaesthetics.com/blog",
       },
     ],
   };

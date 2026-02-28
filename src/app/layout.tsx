@@ -7,7 +7,7 @@ import ScrollToTopOnLoad from "./ScrollToTopOnLoad";
 import FirstVisitSkinAdvisor from "@/src/components/ai/FirstVisitSkinAdvisor";
 import SiteComingSoonOverlay from "@/src/components/site/SiteComingSoonOverlay";
 
-const siteUrl = "https://jluxemedicalaesthetics.com";
+const siteUrl = "https://www.jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
 
 // Premium font pairing: editorial serif + clean luxury sans

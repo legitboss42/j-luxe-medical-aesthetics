@@ -164,13 +164,13 @@ export default function TermsOfUsePage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Terms of Use",
-        item: "https://jluxemedicalaesthetics.com/terms-of-use",
+        item: "https://www.jluxemedicalaesthetics.com/terms-of-use",
       },
     ],
   };
@@ -181,7 +181,7 @@ export default function TermsOfUsePage() {
     name: "Terms of Use | J Luxe Medical Aesthetics",
     description:
       "Terms of Use for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London.",
-    url: "https://jluxemedicalaesthetics.com/terms-of-use",
+    url: "https://www.jluxemedicalaesthetics.com/terms-of-use",
   };
 
   return (

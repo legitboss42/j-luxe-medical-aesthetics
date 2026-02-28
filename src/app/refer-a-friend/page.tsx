@@ -115,7 +115,7 @@ function getCurrentOrigin() {
   if (typeof window !== "undefined" && window.location.origin) {
     return window.location.origin;
   }
-  return "https://jluxemedicalaesthetics.com";
+  return "https://www.jluxemedicalaesthetics.com";
 }
 
 type NavigatorShare = Navigator & {
@@ -206,7 +206,7 @@ export default function ReferAFriendPage() {
       name: "Refer a Friend | J Luxe Medical Aesthetics",
       description:
         "Generate a trackable referral link at a medical aesthetics clinic in Hackney London and unlock treatment discounts.",
-      url: "https://jluxemedicalaesthetics.com/refer-a-friend",
+      url: "https://www.jluxemedicalaesthetics.com/refer-a-friend",
       about: primaryKeyword,
     }),
     [],

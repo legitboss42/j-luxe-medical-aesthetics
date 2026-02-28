@@ -83,8 +83,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       "@type": "Organization",
       name: post.author,
     },
-    image: [`https://jluxemedicalaesthetics.com${post.heroImageSrc}`],
-    mainEntityOfPage: `https://jluxemedicalaesthetics.com/blog/${post.slug}`,
+    image: [`https://www.jluxemedicalaesthetics.com${post.heroImageSrc}`],
+    mainEntityOfPage: `https://www.jluxemedicalaesthetics.com/blog/${post.slug}`,
     publisher: {
       "@type": "Organization",
       name: "J Luxe Medical Aesthetics",
@@ -99,19 +99,19 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://jluxemedicalaesthetics.com/blog",
+        item: "https://www.jluxemedicalaesthetics.com/blog",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: post.title,
-        item: `https://jluxemedicalaesthetics.com/blog/${post.slug}`,
+        item: `https://www.jluxemedicalaesthetics.com/blog/${post.slug}`,
       },
     ],
   };

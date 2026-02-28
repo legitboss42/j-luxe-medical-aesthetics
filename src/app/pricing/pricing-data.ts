@@ -76,7 +76,7 @@ export const pricingCategories: PricingCategory[] = [
       {
         name: "Vampire Facial",
         price: "£180",
-        link: "https://jluxemedicalaesthetics.com/book-now/",
+        link: "https://www.jluxemedicalaesthetics.com/book-now/",
       },
       {
         name: "Customized Luxury Facial",
@@ -771,7 +771,7 @@ export const pricingCategories: PricingCategory[] = [
       {
         name: "Iron Booster",
         price: "Book Consultation",
-        link: "https://jluxemedicalaesthetics.com/book-now/",
+        link: "https://www.jluxemedicalaesthetics.com/book-now/",
       },
     ],
   },

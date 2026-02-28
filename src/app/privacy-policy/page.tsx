@@ -168,13 +168,13 @@ export default function PrivacyPolicyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Privacy Policy",
-        item: "https://jluxemedicalaesthetics.com/privacy-policy",
+        item: "https://www.jluxemedicalaesthetics.com/privacy-policy",
       },
     ],
   };
@@ -185,7 +185,7 @@ export default function PrivacyPolicyPage() {
     name: "Privacy Policy | J Luxe Medical Aesthetics",
     description:
       "Privacy Policy for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London.",
-    url: "https://jluxemedicalaesthetics.com/privacy-policy",
+    url: "https://www.jluxemedicalaesthetics.com/privacy-policy",
   };
 
   return (

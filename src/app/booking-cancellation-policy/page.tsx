@@ -98,13 +98,13 @@ export default function BookingCancellationPolicyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Booking and Cancellation Policy",
-        item: "https://jluxemedicalaesthetics.com/booking-cancellation-policy",
+        item: "https://www.jluxemedicalaesthetics.com/booking-cancellation-policy",
       },
     ],
   };
@@ -115,7 +115,7 @@ export default function BookingCancellationPolicyPage() {
     name: "Booking and Cancellation Policy | J Luxe Medical Aesthetics",
     description:
       "Booking and cancellation policy for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London.",
-    url: "https://jluxemedicalaesthetics.com/booking-cancellation-policy",
+    url: "https://www.jluxemedicalaesthetics.com/booking-cancellation-policy",
   };
 
   return (

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/src/lib/blog";
 import { getTreatmentFormSlugs } from "@/src/lib/treatment-forms";
 
-const siteUrl = "https://jluxemedicalaesthetics.com";
+const siteUrl = "https://www.jluxemedicalaesthetics.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

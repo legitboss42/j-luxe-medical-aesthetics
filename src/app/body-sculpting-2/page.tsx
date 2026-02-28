@@ -246,12 +246,12 @@ export default function BodySculptingPage() {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://jluxemedicalaesthetics.com/" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.jluxemedicalaesthetics.com/" },
         {
           "@type": "ListItem",
           position: 2,
           name: "Body Sculpting and Fat Dissolving",
-          item: "https://jluxemedicalaesthetics.com/body-sculpting-2",
+          item: "https://www.jluxemedicalaesthetics.com/body-sculpting-2",
         },
       ],
     }),

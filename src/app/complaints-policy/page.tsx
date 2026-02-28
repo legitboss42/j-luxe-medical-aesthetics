@@ -133,13 +133,13 @@ export default function ComplaintsPolicyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://jluxemedicalaesthetics.com/",
+        item: "https://www.jluxemedicalaesthetics.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Complaints Policy",
-        item: "https://jluxemedicalaesthetics.com/complaints-policy",
+        item: "https://www.jluxemedicalaesthetics.com/complaints-policy",
       },
     ],
   };
@@ -150,7 +150,7 @@ export default function ComplaintsPolicyPage() {
     name: "Complaints Policy | J Luxe Medical Aesthetics",
     description:
       "Complaints policy for J Luxe Medical Aesthetics, a medical aesthetics clinic in Hackney London.",
-    url: "https://jluxemedicalaesthetics.com/complaints-policy",
+    url: "https://www.jluxemedicalaesthetics.com/complaints-policy",
   };
 
   return (
