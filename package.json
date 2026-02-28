@@ -9,7 +9,9 @@
     "lint": "eslint",
     "blog:seo-audit": "node scripts/blog-seo-audit.mjs",
     "seo:audit-pages": "node scripts/seo-audit-all-pages.mjs",
-    "readme:pdf": "node scripts/readme-to-pdf.mjs"
+    "readme:pdf": "node scripts/readme-to-pdf.mjs",
+    "deploy:preview": "vercel",
+    "deploy:prod": "node -e \"console.error('Do not run prod from here'); process.exit(1)\""
   },
   "dependencies": {
     "cheerio": "^1.2.0",

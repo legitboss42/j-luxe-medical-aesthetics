@@ -24,7 +24,7 @@ npm run dev
 
 Local URL: `http://localhost:3000`
 
-Production domain target: `https://jluxemedicalaesthetics.com`
+Production domain target: `https://www.jluxemedicalaesthetics.com`
 
 ## 3) Website Page Map (What Each Page Stands For)
 
@@ -141,6 +141,11 @@ Generated files are saved in:
 - Keep route slugs stable to preserve SEO history and indexing continuity.
 - If replacing any old WordPress URL, ensure redirect mapping is maintained.
 - Re-run SEO audits after major content or metadata edits.
+
+### Preview-Only Deployment Policy
+- Never run `vercel --prod`.
+- Production is controlled only by merges to the production branch and/or the Vercel dashboard.
+- From local terminal, use only: `npm run deploy:preview` (or `vercel` without `--prod`).
 
 ## 8) Consultation Form Integration
 Consultation forms now submit to:
