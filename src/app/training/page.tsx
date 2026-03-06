@@ -14,6 +14,7 @@ import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
+import SiteComingSoonOverlay from "@/src/components/site/SiteComingSoonOverlay";
 
 type VirtualFeature = {
   title: string;
@@ -193,6 +194,7 @@ export default function TrainingAcademyPage() {
 
   return (
     <main className="relative min-h-screen bg-[#0a0a0a] font-sans text-white">
+      <SiteComingSoonOverlay />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingSchema) }}

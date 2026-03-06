@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 // Shared fallback target so all visitors see the same countdown even without env config.
-const FALLBACK_TARGET_ISO = "2026-03-08T00:00:00.000Z";
+const FALLBACK_TARGET_ISO = "2026-03-16T20:47:31.8933860+01:00";
 
 type CountdownState = {
   days: number;
@@ -44,7 +44,7 @@ function resolveTargetTimestamp(): number {
 
 export default function SiteComingSoonOverlay() {
   const [countdown, setCountdown] = useState<CountdownState>({
-    days: 8,
+    days: 10,
     hours: 0,
     minutes: 0,
     seconds: 0,
