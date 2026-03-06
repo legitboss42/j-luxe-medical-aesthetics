@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollToTopOnLoad from "./ScrollToTopOnLoad";
 import FirstVisitSkinAdvisor from "@/src/components/ai/FirstVisitSkinAdvisor";
+import SiteComingSoonOverlay from "@/src/components/site/SiteComingSoonOverlay";
 
 const siteUrl = "https://www.jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
@@ -95,6 +96,7 @@ export default function RootLayout({
         <ScrollToTopOnLoad />
         <Navbar />
         <FirstVisitSkinAdvisor />
+        <SiteComingSoonOverlay />
         {/* Sticky header sits in flow, so no manual top offset needed */}
         <main className="flex-grow">
           {children}
