@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Sparkles, X } from "lucide-react";
+import TurnstileWidget from "@/src/components/security/TurnstileWidget";
 
 type AdvisorFormState = {
   primaryConcern: string;
@@ -109,6 +110,8 @@ export default function FirstVisitSkinAdvisor() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [recommendation, setRecommendation] = useState<AdvisorRecommendation | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -156,6 +159,11 @@ export default function FirstVisitSkinAdvisor() {
       return;
     }
 
+    if (turnstileSiteKey && !turnstileToken) {
+      setError("Please complete the quick verification before continuing.");
+      return;
+    }
+
     setSubmitting(true);
     setError("");
 
@@ -165,7 +173,7 @@ export default function FirstVisitSkinAdvisor() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({ ...formState, turnstileToken }),
       });
 
       const result = (await response.json()) as AdvisorApiResponse;
@@ -345,6 +353,17 @@ export default function FirstVisitSkinAdvisor() {
                 />
               </label>
 
+              {turnstileSiteKey ? (
+                <div className="mt-1">
+                  <TurnstileWidget
+                    siteKey={turnstileSiteKey}
+                    onVerify={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken("")}
+                    onError={() => setTurnstileToken("")}
+                  />
+                </div>
+              ) : null}
+
               {error ? (
                 <p className="rounded-xl border border-red-400/40 bg-red-900/25 px-3 py-2 text-sm text-red-200">
                   {error}
@@ -436,4 +455,3 @@ export default function FirstVisitSkinAdvisor() {
     </div>
   );
 }
-

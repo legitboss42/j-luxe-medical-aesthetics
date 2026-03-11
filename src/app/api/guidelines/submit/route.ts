@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFImage } from "pdf-lib";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { checkRateLimit } from "@/src/lib/security/rate-limit";
+import { verifyTurnstile } from "@/src/lib/security/turnstile";
 
 type FieldValue = string | string[];
 
@@ -28,6 +30,7 @@ type GuidelineSubmissionPayload = {
   data?: unknown;
   fieldBlueprint?: unknown;
   contentBlueprint?: unknown;
+  turnstileToken?: unknown;
 };
 
 type EmailDeliveryResult = {
@@ -880,7 +883,23 @@ async function emailGuidelinePdfToClinic(
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = await checkRateLimit(request, "treatment-guidelines", { limit: 3, window: "1 m" });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again in a moment." },
+        { status: 429 },
+      );
+    }
+
     const body = (await request.json()) as GuidelineSubmissionPayload;
+    const rawToken = typeof body.turnstileToken === "string" ? body.turnstileToken : undefined;
+    const turnstile = await verifyTurnstile(request, rawToken);
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { ok: false, error: turnstile.error ?? "Verification failed." },
+        { status: 400 },
+      );
+    }
 
     const treatmentName = typeof body.treatmentName === "string" && body.treatmentName.trim().length > 0
       ? body.treatmentName.trim()
