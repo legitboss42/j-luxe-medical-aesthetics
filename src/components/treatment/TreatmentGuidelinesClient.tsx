@@ -17,6 +17,7 @@ import GuidelinesSkinBoosters from "@/src/components/treatment/guidelines/Guidel
 import GuidelinesTeethWhitening from "@/src/components/treatment/guidelines/GuidelinesTeethWhitening";
 import GuidelinesWaxing from "@/src/components/treatment/guidelines/GuidelinesWaxing";
 import type { TreatmentFormTemplate } from "@/src/lib/treatment-forms";
+import TurnstileWidget from "@/src/components/security/TurnstileWidget";
 
 type TreatmentGuidelinesClientProps = {
   slug: string;
@@ -281,6 +282,8 @@ export default function TreatmentGuidelinesClient({
 }: TreatmentGuidelinesClientProps) {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const titleByTemplate: Record<TreatmentFormTemplate, string> = {
     antiWrinkle: "Anti-Wrinkle Pre & Post-Treatment Guidelines",
@@ -351,6 +354,12 @@ export default function TreatmentGuidelinesClient({
       return;
     }
 
+    if (turnstileSiteKey && !turnstileToken) {
+      setSubmitState("error");
+      setSubmitMessage("Please complete the verification before submitting.");
+      return;
+    }
+
     const formData = new FormData(formElement);
     const data = toSubmissionData(formData);
     const fieldBlueprint = extractGuidelineFieldBlueprint(formElement);
@@ -371,6 +380,7 @@ export default function TreatmentGuidelinesClient({
           data,
           fieldBlueprint,
           contentBlueprint,
+          turnstileToken,
         }),
       });
 
@@ -482,6 +492,16 @@ export default function TreatmentGuidelinesClient({
             {supportsSubmission ? (
               <form onSubmit={handleSubmit} className="space-y-8">
                 {renderedGuidelines}
+                {turnstileSiteKey ? (
+                  <div>
+                    <TurnstileWidget
+                      siteKey={turnstileSiteKey}
+                      onVerify={(token) => setTurnstileToken(token)}
+                      onExpire={() => setTurnstileToken("")}
+                      onError={() => setTurnstileToken("")}
+                    />
+                  </div>
+                ) : null}
                 <button
                   type="submit"
                   disabled={submitState === "submitting"}

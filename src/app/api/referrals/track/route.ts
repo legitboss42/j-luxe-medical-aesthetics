@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit } from "@/src/lib/security/rate-limit";
 
 type ReferralTrackPayload = {
   event?: string;
@@ -11,6 +12,11 @@ type ReferralTrackPayload = {
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = await checkRateLimit(request, "referral-track", { limit: 10, window: "1 m" });
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ ok: false }, { status: 429 });
+    }
+
     const body = (await request.json()) as ReferralTrackPayload;
     const payload = {
       event: body.event ?? "referral_visit",

@@ -4,6 +4,8 @@ import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import nodemailer from "nodemailer";
+import { checkRateLimit } from "@/src/lib/security/rate-limit";
+import { verifyTurnstile } from "@/src/lib/security/turnstile";
 
 export const runtime = "nodejs";
 
@@ -23,6 +25,7 @@ type FormSubmissionPayload = {
   submittedAt?: string;
   data?: Record<string, FieldValue>;
   fieldBlueprint?: PdfFieldBlueprintItem[];
+  turnstileToken?: string;
 };
 
 type MailerLiteField = {
@@ -1749,7 +1752,22 @@ async function emailPdfToClinic(
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = await checkRateLimit(request, "consultation-form", { limit: 3, window: "1 m" });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again in a moment." },
+        { status: 429 },
+      );
+    }
+
     const body = (await request.json()) as FormSubmissionPayload;
+    const turnstile = await verifyTurnstile(request, body.turnstileToken);
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { ok: false, error: turnstile.error ?? "Verification failed." },
+        { status: 400 },
+      );
+    }
 
     const treatmentName = typeof body.treatmentName === "string" && body.treatmentName.trim().length > 0
       ? body.treatmentName.trim()

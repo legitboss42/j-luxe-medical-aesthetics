@@ -4,6 +4,8 @@ import {
   TREATMENT_CATALOG,
   type TreatmentCatalogItem,
 } from "@/src/lib/skin-advisor/treatment-catalog";
+import { checkRateLimit } from "@/src/lib/security/rate-limit";
+import { verifyTurnstile } from "@/src/lib/security/turnstile";
 
 export const runtime = "nodejs";
 
@@ -15,6 +17,7 @@ type AdvisorAnswers = {
   injectablePreference: string;
   downtimeTolerance: string;
   notes: string;
+  turnstileToken?: string;
 };
 
 type OpenAiRecommendationShape = {
@@ -364,7 +367,24 @@ async function requestOpenAiRecommendation(answers: AdvisorAnswers): Promise<Rec
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = await checkRateLimit(request, "ai-skin-advisor", { limit: 5, window: "1 m" });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again in a moment." },
+        { status: 429 },
+      );
+    }
+
     const body = (await request.json()) as unknown;
+    const rawToken = isRecord(body) ? (body.turnstileToken as string | undefined) : undefined;
+    const turnstile = await verifyTurnstile(request, rawToken);
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { ok: false, error: turnstile.error ?? "Verification failed." },
+        { status: 400 },
+      );
+    }
+
     const answers = normalizeAnswers(body);
     if (!answers) {
       return NextResponse.json(
@@ -422,4 +442,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

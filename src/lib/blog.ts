@@ -2,9 +2,57 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import { remark } from "remark";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+const defaultAttributes = (defaultSchema.attributes ?? {}) as Record<string, unknown>;
+const getDefaultAttributesForTag = (tag: string): unknown[] => {
+  const value = defaultAttributes[tag];
+  return Array.isArray(value) ? value : [];
+};
+
+const BLOG_SANITIZE_SCHEMA = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultAttributes,
+    "*": [
+      ...getDefaultAttributesForTag("*"),
+      "className",
+      "style",
+      "id",
+    ],
+    a: [
+      ...getDefaultAttributesForTag("a"),
+      "target",
+      "rel",
+      "className",
+      "style",
+    ],
+    img: [
+      ...getDefaultAttributesForTag("img"),
+      "alt",
+      "title",
+      "width",
+      "height",
+      "loading",
+      "decoding",
+      "className",
+      "style",
+    ],
+    div: [
+      ...getDefaultAttributesForTag("div"),
+      "className",
+      "style",
+    ],
+    span: [
+      ...getDefaultAttributesForTag("span"),
+      "className",
+      "style",
+    ],
+  },
+};
 
 type FrontmatterData = {
   title?: string;
@@ -188,7 +236,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
       const markdownWithLead = renderLeadMagnetToken(content);
       const processed = await remark()
-        .use(html, { sanitize: false })
+        .use(remarkRehype)
+        .use(rehypeSanitize, BLOG_SANITIZE_SCHEMA as Parameters<typeof rehypeSanitize>[0])
+        .use(rehypeStringify)
         .process(markdownWithLead);
       const normalizedHtml = processed
         .toString()

@@ -19,6 +19,7 @@ import TemplateSkinBoosters from "@/src/components/treatment/templates/TemplateS
 import TemplateTeethWhitening from "@/src/components/treatment/templates/TemplateTeethWhitening";
 import TemplateWaxing from "@/src/components/treatment/templates/TemplateWaxing";
 import SignaturePadField from "@/src/components/treatment/templates/SignaturePadField";
+import TurnstileWidget from "@/src/components/security/TurnstileWidget";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -357,6 +358,8 @@ export default function TreatmentFormsClient({
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [submitMessage, setSubmitMessage] = useState<string>("");
   const formRef = useRef<HTMLFormElement | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
   const nowDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const years = useMemo(() => {
     const current = new Date().getFullYear();
@@ -525,6 +528,12 @@ export default function TreatmentFormsClient({
       return;
     }
 
+    if (turnstileSiteKey && !turnstileToken) {
+      setSubmitState("error");
+      setSubmitMessage("Please complete the verification before submitting.");
+      return;
+    }
+
     setSubmitState("submitting");
     setSubmitMessage("");
 
@@ -545,6 +554,7 @@ export default function TreatmentFormsClient({
           submittedAt: new Date().toISOString(),
           data,
           fieldBlueprint,
+          turnstileToken,
         }),
       });
 
@@ -747,6 +757,17 @@ export default function TreatmentFormsClient({
                   />
                 </section>
               )}
+
+              {turnstileSiteKey ? (
+                <div>
+                  <TurnstileWidget
+                    siteKey={turnstileSiteKey}
+                    onVerify={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken("")}
+                    onError={() => setTurnstileToken("")}
+                  />
+                </div>
+              ) : null}
 
               <button
                 type="submit"
