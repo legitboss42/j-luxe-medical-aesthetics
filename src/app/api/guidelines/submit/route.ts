@@ -4,6 +4,8 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { checkRateLimit } from "@/src/lib/security/rate-limit";
 import { verifyTurnstile } from "@/src/lib/security/turnstile";
+import { parseJsonBodyWithLimit } from "@/src/lib/security/body-limit";
+import { assertAllowedOrigin } from "@/src/lib/security/origin-check";
 
 type FieldValue = string | string[];
 
@@ -47,6 +49,7 @@ const PAGE = {
   marginTop: 52,
   marginBottom: 48,
 };
+const MAX_GUIDELINES_REQUEST_BYTES = 2_000_000;
 
 function toSingleString(value: FieldValue | undefined): string {
   if (!value) {
@@ -883,6 +886,11 @@ async function emailGuidelinePdfToClinic(
 
 export async function POST(request: Request) {
   try {
+    const originCheck = assertAllowedOrigin(request);
+    if (!originCheck.ok) {
+      return NextResponse.json({ ok: false, error: originCheck.error }, { status: originCheck.status });
+    }
+
     const rateLimit = await checkRateLimit(request, "treatment-guidelines", { limit: 3, window: "1 m" });
     if (!rateLimit.allowed) {
       return NextResponse.json(
@@ -891,7 +899,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = (await request.json()) as GuidelineSubmissionPayload;
+    const parsed = await parseJsonBodyWithLimit(request, MAX_GUIDELINES_REQUEST_BYTES);
+    if (!parsed.ok) {
+      return NextResponse.json({ ok: false, error: parsed.error }, { status: parsed.status });
+    }
+
+    const body = parsed.data as GuidelineSubmissionPayload;
     const rawToken = typeof body.turnstileToken === "string" ? body.turnstileToken : undefined;
     const turnstile = await verifyTurnstile(request, rawToken);
     if (!turnstile.ok) {

@@ -59,6 +59,10 @@ function toSubmissionData(formData: FormData): Record<string, FieldPayload> {
   const payload: Record<string, FieldPayload> = {};
 
   for (const [key, rawValue] of formData.entries()) {
+    if (key.trim().toLowerCase() === "cf-turnstile-response") {
+      continue;
+    }
+
     if (typeof rawValue !== "string") {
       continue;
     }

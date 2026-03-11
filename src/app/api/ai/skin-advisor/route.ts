@@ -6,6 +6,8 @@ import {
 } from "@/src/lib/skin-advisor/treatment-catalog";
 import { checkRateLimit } from "@/src/lib/security/rate-limit";
 import { verifyTurnstile } from "@/src/lib/security/turnstile";
+import { parseJsonBodyWithLimit } from "@/src/lib/security/body-limit";
+import { assertAllowedOrigin } from "@/src/lib/security/origin-check";
 
 export const runtime = "nodejs";
 
@@ -39,6 +41,7 @@ type RecommendationResult = {
 const OPENAI_URL = "https://api.openai.com/v1/responses";
 const DEFAULT_MODEL = "gpt-5-mini";
 const DEFAULT_FALLBACK_TREATMENT = "facials";
+const MAX_SKIN_ADVISOR_REQUEST_BYTES = 64_000;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -367,6 +370,11 @@ async function requestOpenAiRecommendation(answers: AdvisorAnswers): Promise<Rec
 
 export async function POST(request: Request) {
   try {
+    const originCheck = assertAllowedOrigin(request);
+    if (!originCheck.ok) {
+      return NextResponse.json({ ok: false, error: originCheck.error }, { status: originCheck.status });
+    }
+
     const rateLimit = await checkRateLimit(request, "ai-skin-advisor", { limit: 5, window: "1 m" });
     if (!rateLimit.allowed) {
       return NextResponse.json(
@@ -375,7 +383,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = (await request.json()) as unknown;
+    const parsed = await parseJsonBodyWithLimit(request, MAX_SKIN_ADVISOR_REQUEST_BYTES);
+    if (!parsed.ok) {
+      return NextResponse.json({ ok: false, error: parsed.error }, { status: parsed.status });
+    }
+
+    const body = parsed.data;
     const rawToken = isRecord(body) ? (body.turnstileToken as string | undefined) : undefined;
     const turnstile = await verifyTurnstile(request, rawToken);
     if (!turnstile.ok) {
