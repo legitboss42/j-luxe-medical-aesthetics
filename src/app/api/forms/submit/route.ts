@@ -6,6 +6,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import nodemailer from "nodemailer";
 import { checkRateLimit } from "@/src/lib/security/rate-limit";
 import { verifyTurnstile } from "@/src/lib/security/turnstile";
+import { parseJsonBodyWithLimit } from "@/src/lib/security/body-limit";
+import { assertAllowedOrigin } from "@/src/lib/security/origin-check";
 
 export const runtime = "nodejs";
 
@@ -48,6 +50,12 @@ type EmailDeliveryResult = {
 };
 
 const MAILERLITE_BASE_URL = "https://connect.mailerlite.com/api";
+const MAX_FORMS_REQUEST_BYTES = 2_000_000;
+
+function isTechnicalSubmissionField(key: string): boolean {
+  const normalized = key.trim().toLowerCase();
+  return normalized === "cf-turnstile-response" || normalized === "turnstiletoken";
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -79,6 +87,10 @@ function normalizeData(value: unknown): Record<string, FieldValue> {
   const normalized: Record<string, FieldValue> = {};
 
   for (const [key, rawValue] of Object.entries(value)) {
+    if (isTechnicalSubmissionField(key)) {
+      continue;
+    }
+
     const parsed = normalizeFieldValue(rawValue);
     if (!parsed) {
       continue;
@@ -1193,6 +1205,41 @@ function isInternalOnlyBlueprintItem(item: PdfFieldBlueprintItem): boolean {
   return false;
 }
 
+function shouldExcludeFromClientPdfByName(name: string): boolean {
+  if (isTechnicalSubmissionField(name)) {
+    return true;
+  }
+
+  const canonical = toPdfCanonicalKey(name);
+  if (canonical.includes("employee")) {
+    return true;
+  }
+
+  if (canonical === "assessment" || canonical === "batch" || canonical === "units" || canonical === "postComments") {
+    return true;
+  }
+
+  return false;
+}
+
+function filterDataForClientPdf(data: Record<string, FieldValue>): Record<string, FieldValue> {
+  const filtered: Record<string, FieldValue> = {};
+
+  for (const [key, value] of Object.entries(data)) {
+    if (shouldExcludeFromClientPdfByName(key)) {
+      continue;
+    }
+
+    filtered[key] = value;
+  }
+
+  return filtered;
+}
+
+function filterBlueprintForClientPdf(fieldBlueprint: PdfFieldBlueprintItem[]): PdfFieldBlueprintItem[] {
+  return fieldBlueprint.filter((item) => !isInternalOnlyBlueprintItem(item) && !shouldExcludeFromClientPdfByName(item.name));
+}
+
 type PdfFieldEntry = {
   key: string;
   label: string;
@@ -1752,6 +1799,11 @@ async function emailPdfToClinic(
 
 export async function POST(request: Request) {
   try {
+    const originCheck = assertAllowedOrigin(request);
+    if (!originCheck.ok) {
+      return NextResponse.json({ ok: false, error: originCheck.error }, { status: originCheck.status });
+    }
+
     const rateLimit = await checkRateLimit(request, "consultation-form", { limit: 3, window: "1 m" });
     if (!rateLimit.allowed) {
       return NextResponse.json(
@@ -1760,7 +1812,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = (await request.json()) as FormSubmissionPayload;
+    const parsed = await parseJsonBodyWithLimit(request, MAX_FORMS_REQUEST_BYTES);
+    if (!parsed.ok) {
+      return NextResponse.json({ ok: false, error: parsed.error }, { status: parsed.status });
+    }
+
+    const body = parsed.data as FormSubmissionPayload;
     const turnstile = await verifyTurnstile(request, body.turnstileToken);
     if (!turnstile.ok) {
       return NextResponse.json(
@@ -1791,11 +1848,20 @@ export async function POST(request: Request) {
     }
 
     const mailerLite = await syncToMailerLite(treatmentName, treatmentPath, template, submittedAt, data);
-    const pdfBytes = await buildPrintablePdf(treatmentName, template, submittedAt, data, fieldBlueprint);
+    const clinicPdfBytes = await buildPrintablePdf(treatmentName, template, submittedAt, data, fieldBlueprint);
+    const clientPdfData = filterDataForClientPdf(data);
+    const clientPdfBlueprint = filterBlueprintForClientPdf(fieldBlueprint);
+    const clientPdfBytes = await buildPrintablePdf(
+      treatmentName,
+      template,
+      submittedAt,
+      clientPdfData,
+      clientPdfBlueprint,
+    );
     const submissionReference = createSubmissionReference(treatmentName, submittedAt);
     const downloadFileName = createDownloadFilename(treatmentName, data);
     try {
-      const pdfPath = await savePdfForClinicOnly(submissionReference, pdfBytes);
+      const pdfPath = await savePdfForClinicOnly(submissionReference, clinicPdfBytes);
       console.info("[FormSubmit][PdfSaved]", { submissionReference, pdfPath });
     } catch (error) {
       console.error("[FormSubmit][PdfSaveFailed]", { submissionReference, error });
@@ -1808,7 +1874,7 @@ export async function POST(request: Request) {
       template,
       submittedAt,
       data,
-      pdfBytes,
+      clinicPdfBytes,
     );
 
     if (clinicEmail.ok) {
@@ -1827,7 +1893,7 @@ export async function POST(request: Request) {
       pdf: {
         fileName: downloadFileName,
         mimeType: "application/pdf",
-        base64: Buffer.from(pdfBytes).toString("base64"),
+        base64: Buffer.from(clientPdfBytes).toString("base64"),
       },
     });
   } catch (error) {
