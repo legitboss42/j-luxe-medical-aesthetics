@@ -6,6 +6,9 @@ import Footer from "./Footer";
 import ScrollToTopOnLoad from "./ScrollToTopOnLoad";
 import FirstVisitSkinAdvisor from "@/src/components/ai/FirstVisitSkinAdvisor";
 import SiteComingSoonOverlay from "@/src/components/site/SiteComingSoonOverlay";
+import AnalyticsScripts from "@/src/components/analytics/AnalyticsScripts";
+import AnalyticsRouteTracker from "@/src/components/analytics/AnalyticsRouteTracker";
+import AnalyticsCtaTracker from "@/src/components/analytics/AnalyticsCtaTracker";
 
 const siteUrl = "https://www.jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
@@ -93,6 +96,9 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${cormorant.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen antialiased`}
       >
+        <AnalyticsScripts />
+        <AnalyticsRouteTracker />
+        <AnalyticsCtaTracker />
         <ScrollToTopOnLoad />
         <Navbar />
         <FirstVisitSkinAdvisor />

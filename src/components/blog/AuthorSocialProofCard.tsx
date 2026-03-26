@@ -69,12 +69,18 @@ export default function AuthorSocialProofCard({
           <div className="mt-4 flex flex-wrap gap-2.5">
             <Link
               href="/contact-us"
+              data-cta-name="contact"
+              data-cta-location="blog_author_card"
+              data-page-type="blog_post"
               className="inline-flex items-center justify-center rounded-full border border-white/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
             >
               Contact Team
             </Link>
             <Link
               href="/pricing"
+              data-cta-name="book_consultation"
+              data-cta-location="blog_author_card"
+              data-page-type="blog_post"
               className="inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500"
             >
               Book Consultation

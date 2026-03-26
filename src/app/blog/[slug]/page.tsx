@@ -197,12 +197,18 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/pricing"
+              data-cta-name="book_consultation"
+              data-cta-location="blog_post_cta"
+              data-page-type="blog_post"
               className="cta-button inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black hover:bg-yellow-500 transition-colors"
             >
               Book Consultation
             </Link>
             <Link
               href="/contact-us"
+              data-cta-name="contact"
+              data-cta-location="blog_post_cta"
+              data-page-type="blog_post"
               className="cta-button inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
             >
               Contact Us

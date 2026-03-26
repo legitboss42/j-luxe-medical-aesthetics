@@ -288,12 +288,18 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href="/pricing"
+                    data-cta-name="book_consultation"
+                    data-cta-location="homepage_hero"
+                    data-page-type="homepage"
                     className="cta-button inline-block bg-[#D4AF37] text-black font-bold py-3 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300"
                   >
                     BOOK NOW
                   </Link>
                   <Link
                     href="/treatment"
+                    data-cta-name="view_treatment"
+                    data-cta-location="homepage_hero"
+                    data-page-type="homepage"
                     className="cta-button inline-block border border-white/35 text-white font-bold py-3 px-6 rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors duration-300"
                   >
                     VIEW TREATMENTS
@@ -388,6 +394,9 @@ export default function HomePage() {
               <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/pricing"
+                  data-cta-name="book_consultation"
+                  data-cta-location="homepage_intro"
+                  data-page-type="homepage"
                   className="cta-button inline-block bg-[#D4AF37] text-black font-bold py-3 px-7 rounded-full hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -743,6 +752,10 @@ export default function HomePage() {
                 </ul>
                 <Link
                   href="/anti-wrinkle-injection"
+                  data-cta-name="view_treatment"
+                  data-cta-location="homepage_treatment_card"
+                  data-page-type="homepage"
+                  data-treatment-name="Anti-Wrinkle Injections"
                   className="cta-button mt-5 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
                 >
                   View Treatment
@@ -762,6 +775,9 @@ export default function HomePage() {
           >
             <Link
               href="/treatment"
+              data-cta-name="view_treatment"
+              data-cta-location="homepage_treatment_grid"
+              data-page-type="homepage"
               className="cta-button inline-block border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black font-bold py-3 px-8 rounded-full transition-colors"
             >
               SEE ALL SERVICES
@@ -895,6 +911,9 @@ export default function HomePage() {
             <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/pricing"
+                data-cta-name="book_consultation"
+                data-cta-location="homepage_glow_cta"
+                data-page-type="homepage"
                 className="cta-button bg-[#D4AF37] text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-500 transition-colors"
               >
                 BOOK CONSULTATION

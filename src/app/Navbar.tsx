@@ -105,6 +105,9 @@ export default function Navbar() {
         <div className="flex items-center gap-3 z-50">
           <Link
             href="/pricing"
+            data-cta-name="book_consultation"
+            data-cta-location="navbar_mobile"
+            data-page-type="global_navigation"
             className="cta-button bg-[#D4AF37] text-black text-xs font-extrabold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors"
           >
             BOOK NOW
@@ -159,6 +162,9 @@ export default function Navbar() {
               href={socialLinks.whatsapp}
               target="_blank"
               rel="noreferrer"
+              data-cta-name="whatsapp"
+              data-cta-location="navbar_social"
+              data-page-type="global_navigation"
               aria-label="WhatsApp"
               className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:brightness-110 transition-all"
             >
@@ -172,6 +178,9 @@ export default function Navbar() {
 
           <Link
             href="/pricing"
+            data-cta-name="book_consultation"
+            data-cta-location="navbar_desktop"
+            data-page-type="global_navigation"
             className="cta-button bg-[#D4AF37] text-black font-extrabold uppercase tracking-wide py-3 px-8 rounded-full hover:bg-[#f0c24f] transition-colors"
           >
             Book a Treatment
@@ -346,6 +355,9 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/pricing"
+                  data-cta-name="book_consultation"
+                  data-cta-location="navbar_mobile_menu"
+                  data-page-type="global_navigation"
                   onClick={() => {
                     setIsOpen(false);
                     setIsMobileTreatmentOpen(false);

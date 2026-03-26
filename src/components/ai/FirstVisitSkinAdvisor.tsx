@@ -430,6 +430,10 @@ export default function FirstVisitSkinAdvisor() {
               <Link
                 href={recommendation.treatmentPath}
                 onClick={closeModal}
+                data-cta-name="view_treatment"
+                data-cta-location="ai_popup_result"
+                data-page-type="ai_popup"
+                data-treatment-name={recommendation.treatmentName}
                 className="inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black transition-colors hover:bg-yellow-500"
               >
                 View Treatment
@@ -437,6 +441,10 @@ export default function FirstVisitSkinAdvisor() {
               <Link
                 href="/pricing"
                 onClick={closeModal}
+                data-cta-name="book_consultation"
+                data-cta-location="ai_popup_result"
+                data-page-type="ai_popup"
+                data-treatment-name={recommendation.treatmentName}
                 className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
               >
                 Book Consultation

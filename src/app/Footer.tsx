@@ -59,6 +59,9 @@ export default function Footer() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/pricing"
+                data-cta-name="book_consultation"
+                data-cta-location="footer_primary"
+                data-page-type="footer"
                 className="cta-button inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-bold text-black hover:bg-[#f0c24f] transition-colors"
               >
                 BOOK CONSULTATION
@@ -66,6 +69,9 @@ export default function Footer() {
               </Link>
               <a
                 href="tel:+447883050603"
+                data-cta-name="call_now"
+                data-cta-location="footer_primary"
+                data-page-type="footer"
                 className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
               >
                 CALL NOW
@@ -122,6 +128,9 @@ export default function Footer() {
                 href={socialLinks.whatsapp}
                 target="_blank"
                 rel="noreferrer"
+                data-cta-name="whatsapp"
+                data-cta-location="footer_social"
+                data-page-type="footer"
                 aria-label="WhatsApp"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white hover:brightness-110 transition-all"
               >
@@ -178,7 +187,13 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-[#D4AF37]" />
-                <a href="tel:+447883050603" className="hover:text-[#D4AF37] transition-colors">
+                <a
+                  href="tel:+447883050603"
+                  data-cta-name="call_now"
+                  data-cta-location="footer_contact"
+                  data-page-type="footer"
+                  className="hover:text-[#D4AF37] transition-colors"
+                >
                   +44 7883 050603
                 </a>
               </li>
@@ -186,6 +201,9 @@ export default function Footer() {
                 <Mail className="h-4 w-4 shrink-0 text-[#D4AF37]" />
                 <a
                   href="mailto:admin@jluxemedicalaesthetics.com"
+                  data-cta-name="contact"
+                  data-cta-location="footer_contact"
+                  data-page-type="footer"
                   className="hover:text-[#D4AF37] transition-colors break-all"
                 >
                   admin@jluxemedicalaesthetics.com

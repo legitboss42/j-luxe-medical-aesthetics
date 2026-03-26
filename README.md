@@ -258,3 +258,14 @@ Common fields for all templates:
 
 `standard` template fields:
 - `mainConcern`, `medicalHistory`, `consentSignature`
+# Analytics
+
+- Set `NEXT_PUBLIC_GA_ID` in `.env.local` or Vercel environment variables for GA4.
+- Set `NEXT_PUBLIC_CLARITY_ID` in `.env.local` or Vercel environment variables for Microsoft Clarity.
+- Global analytics wiring lives in `src/app/layout.tsx` through:
+  - `src/components/analytics/AnalyticsScripts.tsx`
+  - `src/components/analytics/AnalyticsRouteTracker.tsx`
+  - `src/components/analytics/AnalyticsCtaTracker.tsx`
+- Reusable helpers live in `src/lib/analytics.ts`.
+- CTA tracking uses `data-cta-name`, `data-cta-location`, `data-treatment-name`, and `data-page-type` where helpful.
+- To track a new CTA, add those `data-*` attributes to the existing button or link. The global tracker will handle the event automatically.
