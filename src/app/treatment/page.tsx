@@ -332,6 +332,9 @@ export default function TreatmentPage() {
               <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/pricing"
+                  data-cta-name="book_consultation"
+                  data-cta-location="treatment_hub_hero"
+                  data-page-type="treatment_hub"
                   className="cta-button inline-flex items-center gap-2 bg-[#D4AF37] text-black font-bold py-3 px-7 rounded-full hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -339,6 +342,9 @@ export default function TreatmentPage() {
                 </Link>
                 <Link
                   href="/contact-us"
+                  data-cta-name="contact"
+                  data-cta-location="treatment_hub_hero"
+                  data-page-type="treatment_hub"
                   className="cta-button inline-flex items-center gap-2 border border-white/30 text-white font-bold py-3 px-7 rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
                 >
                   TALK TO OUR TEAM
@@ -541,6 +547,9 @@ export default function TreatmentPage() {
               <motion.div whileHover={{ y: -2, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 <Link
                   href="/contact-us"
+                  data-cta-name="contact"
+                  data-cta-location="treatment_hub_contact"
+                  data-page-type="treatment_hub"
                   className="cta-button inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 text-white font-bold py-3 px-6 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
                 >
                   CONTACT US
@@ -550,6 +559,9 @@ export default function TreatmentPage() {
               <motion.div whileHover={{ y: -2, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 <Link
                   href="/pricing"
+                  data-cta-name="book_consultation"
+                  data-cta-location="treatment_hub_contact"
+                  data-page-type="treatment_hub"
                   className="cta-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] text-black font-bold py-3 px-6 hover:bg-yellow-500 transition-colors"
                 >
                   BOOK CONSULTATION
@@ -558,6 +570,9 @@ export default function TreatmentPage() {
               </motion.div>
               <motion.a
                 href="tel:+447883050603"
+                data-cta-name="call_now"
+                data-cta-location="treatment_hub_contact"
+                data-page-type="treatment_hub"
                 whileHover={{ y: -2, scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 className="cta-button inline-flex items-center justify-center rounded-full border border-[#D4AF37]/45 bg-black/35 px-6 py-3 text-sm font-semibold text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/55 transition-colors"

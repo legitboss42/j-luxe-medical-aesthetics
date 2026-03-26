@@ -328,6 +328,9 @@ export default function PricingPage() {
             <div className="mt-8">
               <Link
                 href="/treatment"
+                data-cta-name="pricing"
+                data-cta-location="pricing_hero"
+                data-page-type="pricing_page"
                 className="cta-button inline-flex items-center gap-2 border border-[#D4AF37] text-white font-bold py-3 px-8 rounded-full hover:bg-[#D4AF37] hover:text-black transition-colors text-sm uppercase tracking-[0.1em]"
               >
                 Explore Treatments
@@ -505,6 +508,10 @@ export default function PricingPage() {
                                 </span>
                                 <Link
                                   href={item.link}
+                                  data-cta-name="online_booking"
+                                  data-cta-location="pricing_service_list"
+                                  data-page-type="pricing_page"
+                                  data-treatment-name={item.name}
                                   className="cta-button inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-neutral-700 bg-neutral-800 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#D4AF37] hover:text-black sm:min-h-0 sm:px-5 sm:py-2"
                                 >
                                   BOOK

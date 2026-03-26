@@ -310,6 +310,9 @@ export default function ContactPage() {
                   <motion.a
                     key={action.label}
                     href={action.href}
+                    data-cta-name={action.href.startsWith("tel:") ? "call_now" : "contact"}
+                    data-cta-location="contact_hero"
+                    data-page-type="contact_page"
                     className="inline-flex items-center rounded-full border border-[#D4AF37]/30 bg-[#141006]/85 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f4dda1] transition-colors hover:border-[#D4AF37]/70 hover:text-[#ffedb5]"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.985 }}
@@ -370,6 +373,9 @@ export default function ContactPage() {
                   href={googleMapsPlaceUrl}
                   target="_blank"
                   rel="noreferrer"
+                  data-cta-name="contact"
+                  data-cta-location="contact_hero"
+                  data-page-type="contact_page"
                   className="cta-button mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#D4AF37]/55 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#D4AF37] transition-colors hover:bg-[#D4AF37] hover:text-black"
                   whileTap={{ scale: 0.98 }}
                 >
@@ -378,6 +384,9 @@ export default function ContactPage() {
                 </motion.a>
                 <motion.a
                   href={clinicPhoneHref}
+                  data-cta-name="call_now"
+                  data-cta-location="contact_hero"
+                  data-page-type="contact_page"
                   className="cta-button mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
                   whileTap={{ scale: 0.98 }}
                 >
