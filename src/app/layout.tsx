@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollToTopOnLoad from "./ScrollToTopOnLoad";
 import FirstVisitSkinAdvisor from "@/src/components/ai/FirstVisitSkinAdvisor";
-import SiteComingSoonOverlay from "@/src/components/site/SiteComingSoonOverlay";
 import AnalyticsScripts from "@/src/components/analytics/AnalyticsScripts";
 import AnalyticsRouteTracker from "@/src/components/analytics/AnalyticsRouteTracker";
 import AnalyticsCtaTracker from "@/src/components/analytics/AnalyticsCtaTracker";
@@ -102,7 +101,6 @@ export default function RootLayout({
         <ScrollToTopOnLoad />
         <Navbar />
         <FirstVisitSkinAdvisor />
-        <SiteComingSoonOverlay />
         {/* Sticky header sits in flow, so no manual top offset needed */}
         <main className="flex-grow">
           {children}

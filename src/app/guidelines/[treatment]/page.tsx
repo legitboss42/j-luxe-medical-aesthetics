@@ -67,7 +67,6 @@ export default async function TreatmentGuidelinesPage({ params }: TreatmentGuide
 
   return (
     <TreatmentGuidelinesClient
-      slug={config.slug}
       treatmentName={config.treatmentName}
       treatmentPath={config.treatmentPath}
       imageSrc={config.imageSrc}

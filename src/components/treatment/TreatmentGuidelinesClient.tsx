@@ -2,7 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
-import { ArrowRight, BookOpen, ClipboardList } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import GuidelinesAntiWrinkle from "@/src/components/treatment/guidelines/GuidelinesAntiWrinkle";
@@ -20,7 +20,6 @@ import type { TreatmentFormTemplate } from "@/src/lib/treatment-forms";
 import TurnstileWidget from "@/src/components/security/TurnstileWidget";
 
 type TreatmentGuidelinesClientProps = {
-  slug: string;
   treatmentName: string;
   treatmentPath: `/${string}`;
   imageSrc: `/${string}`;
@@ -278,7 +277,6 @@ function base64ToBlob(base64: string, mimeType: string): Blob {
 }
 
 export default function TreatmentGuidelinesClient({
-  slug,
   treatmentName,
   treatmentPath,
   imageSrc,
@@ -458,13 +456,6 @@ export default function TreatmentGuidelinesClient({
               >
                 Back To Treatment
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href={`/forms/${slug}`}
-                className="cta-button inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/55 bg-black/35 px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-[#E7C97C] hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
-              >
-                Consultation Form
-                <ClipboardList className="h-4 w-4" />
               </Link>
             </div>
           </div>

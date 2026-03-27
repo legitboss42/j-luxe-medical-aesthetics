@@ -71,8 +71,8 @@ export async function generateMetadata({ params }: TreatmentFormsPageProps): Pro
       images: [config.imageSrc],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
     },
   };
 }

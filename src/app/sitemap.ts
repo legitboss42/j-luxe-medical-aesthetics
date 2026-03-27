@@ -32,9 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/complaints-policy",
     "/booking-cancellation-policy",
   ];
-  const formRoutes = getTreatmentFormSlugs().map((slug) => `/forms/${slug}`);
   const guidelineRoutes = getTreatmentFormSlugs().map((slug) => `/guidelines/${slug}`);
-  const allRoutes = [...routes, ...formRoutes, ...guidelineRoutes];
+  const allRoutes = [...routes, ...guidelineRoutes];
 
   const staticRoutes = allRoutes.map<MetadataRoute.Sitemap[number]>((route) => ({
     url: `${siteUrl}${route}`,
