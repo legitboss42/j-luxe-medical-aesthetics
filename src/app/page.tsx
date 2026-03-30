@@ -9,6 +9,8 @@ import {
   ChevronRight,
   Droplet,
   FileText,
+  MessageCircle,
+  Phone,
   ShieldCheck,
   Sparkles,
   Star,
@@ -295,6 +297,18 @@ export default function HomePage() {
                   >
                     BOOK NOW
                   </Link>
+                  <a
+                    href="https://wa.me/447883050603"
+                    target="_blank"
+                    rel="noreferrer"
+                    data-cta-name="whatsapp"
+                    data-cta-location="homepage_hero"
+                    data-page-type="homepage"
+                    className="cta-button inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/35 px-6 py-3 font-bold text-white transition-colors duration-300 hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                  >
+                    <MessageCircle className="h-4 w-4 text-[#D4AF37]" />
+                    WHATSAPP US
+                  </a>
                   <Link
                     href="/treatment"
                     data-cta-name="view_treatment"
@@ -308,6 +322,75 @@ export default function HomePage() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="border-b border-neutral-800 bg-[#060606] px-4 py-8 md:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-3">
+          <Link
+            href="/pricing"
+            data-cta-name="book_consultation"
+            data-cta-location="homepage_booking_routes"
+            data-page-type="homepage"
+            className="cta-button rounded-[24px] border border-[#D4AF37]/30 bg-gradient-to-br from-[#17120a] via-[#0a0a0a] to-[#090909] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
+              Fastest Route
+            </p>
+            <div className="mt-3 flex items-start gap-3">
+              <BookOpen className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Book Consultation</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Best if you already know the treatment you want or want to compare live pricing first.
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          <a
+            href="https://wa.me/447883050603"
+            target="_blank"
+            rel="noreferrer"
+            data-cta-name="whatsapp"
+            data-cta-location="homepage_booking_routes"
+            data-page-type="homepage"
+            className="cta-button rounded-[24px] border border-[#D4AF37]/25 bg-gradient-to-br from-[#17120a] via-[#060606] to-[#090909] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
+              Need Guidance?
+            </p>
+            <div className="mt-3 flex items-start gap-3">
+              <MessageCircle className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Ask On WhatsApp</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Best if you are unsure which treatment fits your concern and want a quick response first.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="tel:+447883050603"
+            data-cta-name="call_now"
+            data-cta-location="homepage_booking_routes"
+            data-page-type="homepage"
+            className="cta-button rounded-[24px] border border-white/15 bg-gradient-to-br from-[#111111] via-[#090909] to-[#060606] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
+              Prefer To Speak?
+            </p>
+            <div className="mt-3 flex items-start gap-3">
+              <Phone className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Call The Clinic</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Best if you want to talk through timing, suitability, pricing, and availability in one step.
+                </p>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -575,6 +658,53 @@ export default function HomePage() {
               confidence-boosting results.
             </motion.p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
+            className="mb-8 rounded-[28px] border border-[#D4AF37]/20 bg-gradient-to-r from-[#17120a]/80 via-[#0a0a0a] to-[#080808] p-5 md:p-6"
+          >
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
+                  Booking Intent Pages
+                </p>
+                <h3 className="mt-2 text-2xl font-serif font-bold text-white md:text-3xl">
+                  Searching by area? Start with our Hackney treatment pages.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-300">
+                  These pages are built for visitors who already know the service they want and
+                  just need the fastest route into pricing, consultation, and booking.
+                </p>
+              </div>
+              <Link
+                href="/treatment"
+                className="cta-button inline-flex items-center gap-2 self-start rounded-full border border-white/25 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37] md:self-center"
+              >
+                View All Treatments
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+            <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-5">
+              {[
+                { label: "Anti-Wrinkle in Hackney", href: "/hackney/anti-wrinkle-injections" },
+                { label: "Dermal Fillers in Hackney", href: "/hackney/dermal-fillers" },
+                { label: "Facials in Hackney", href: "/hackney/facials" },
+                { label: "Chemical Peels in Hackney", href: "/hackney/chemical-peels" },
+                { label: "Body Sculpting in Hackney", href: "/hackney/body-sculpting" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="cta-button rounded-2xl border border-white/12 bg-black/35 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
 
           <motion.div
             initial="hidden"
@@ -1463,3 +1593,4 @@ export default function HomePage() {
     </main>
   );
 }
+

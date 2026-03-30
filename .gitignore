@@ -43,6 +43,7 @@ next-env.d.ts
 
 # generated form submissions
 reports/submissions/
+backups/
 
 .vercel
 .env*.local

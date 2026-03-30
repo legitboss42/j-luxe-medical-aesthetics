@@ -166,7 +166,7 @@ export default function Navbar() {
               data-cta-location="navbar_social"
               data-page-type="global_navigation"
               aria-label="WhatsApp"
-              className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:brightness-110 transition-all"
+              className="w-8 h-8 rounded-full border border-[#D4AF37]/35 bg-[#17120a] text-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] hover:text-black transition-all"
             >
               <FaWhatsapp className="w-4 h-4" />
             </a>
@@ -374,3 +374,4 @@ export default function Navbar() {
     </header>
   );
 }
+

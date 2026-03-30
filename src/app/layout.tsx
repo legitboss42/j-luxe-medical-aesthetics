@@ -8,6 +8,7 @@ import FirstVisitSkinAdvisor from "@/src/components/ai/FirstVisitSkinAdvisor";
 import AnalyticsScripts from "@/src/components/analytics/AnalyticsScripts";
 import AnalyticsRouteTracker from "@/src/components/analytics/AnalyticsRouteTracker";
 import AnalyticsCtaTracker from "@/src/components/analytics/AnalyticsCtaTracker";
+import StickyBookingBar from "@/src/components/site/StickyBookingBar";
 
 const siteUrl = "https://www.jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
@@ -93,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${cormorant.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen antialiased`}
+        className={`${manrope.variable} ${cormorant.variable} bg-[#0a0a0a] text-white flex flex-col min-h-screen pb-20 antialiased md:pb-0`}
       >
         <AnalyticsScripts />
         <AnalyticsRouteTracker />
@@ -106,6 +107,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <StickyBookingBar />
       </body>
     </html>
   );

@@ -8,6 +8,7 @@ import {
   ChevronDown,
   Clock3,
   MapPin,
+  MessageCircle,
   ShieldAlert,
   Sparkles,
   Star,
@@ -307,6 +308,15 @@ export default function FacialsPage() {
                 >
                   Book Your Glow
                   <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://wa.me/447883050603"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  <MessageCircle className="h-4 w-4 text-[#D4AF37]" />
+                  Ask On WhatsApp
                 </a>
                 <Link
                   href="/pricing"
@@ -647,6 +657,9 @@ export default function FacialsPage() {
             Book your consultation-led facial treatment at our medical aesthetics clinic in Hackney
             London and receive a personalized skincare plan designed around your goals.
           </p>
+          <p className="mx-auto mt-3 max-w-2xl text-xs uppercase tracking-[0.14em] text-[#D4AF37]/90">
+            Not sure which facial fits your skin? WhatsApp the clinic for a quicker starting point.
+          </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/pricing"
@@ -654,6 +667,15 @@ export default function FacialsPage() {
             >
               Book Now
               <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://wa.me/447883050603"
+              target="_blank"
+              rel="noreferrer"
+              className="cta-button inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            >
+              <MessageCircle className="h-4 w-4 text-[#D4AF37]" />
+              WhatsApp Us
             </a>
             <Link
               href="/contact-us"
@@ -726,5 +748,7 @@ export default function FacialsPage() {
     </main>
   );
 }
+
+
 
 

@@ -369,6 +369,7 @@ If you want a safe, structured **guide to dermal fillers** translated into a per
 
 - View treatment details: [Dermal Fillers](/fillers)
 - Compare services: [Treatment Menu](/treatment)
+- Looking specifically for a local booking page? Start here: [Dermal Fillers in Hackney London](/hackney/dermal-fillers)
 
 ## Lead magnet
 [LEAD|Download the Dermal Filler Consultation Checklist (PDF)|/downloads/dermal-filler-consultation-checklist.pdf]

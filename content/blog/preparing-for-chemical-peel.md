@@ -361,6 +361,7 @@ Book a consultation if you want a clinically guided peel plan that prioritizes s
 
 - Explore treatment options: [Chemical Peels](/chemical-peels)
 - Speak with the team: [Contact Us](/contact-us)
+- Want a local booking route? See [Chemical Peels in Hackney London](/hackney/chemical-peels)
 
 ## Lead magnet
 [LEAD|Download the Chemical Peel Prep & Aftercare Checklist (PDF)|/downloads/chemical-peel-prep-aftercare-checklist.pdf]

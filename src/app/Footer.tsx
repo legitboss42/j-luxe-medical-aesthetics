@@ -132,7 +132,7 @@ export default function Footer() {
                 data-cta-location="footer_social"
                 data-page-type="footer"
                 aria-label="WhatsApp"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white hover:brightness-110 transition-all"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/35 bg-[#17120a] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
               >
                 <FaWhatsapp className="h-4 w-4" />
               </a>
@@ -248,3 +248,4 @@ export default function Footer() {
     </footer>
   );
 }
+

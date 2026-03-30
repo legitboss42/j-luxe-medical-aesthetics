@@ -495,6 +495,7 @@ Book a microneedling consultation to assess suitability and build a personalised
 
 - **[Book a consultation](/pricing)**
 - **[WhatsApp us](https://wa.me/447883050603) to discuss whether microneedling is appropriate before booking**
+- **[Facials in Hackney London](/hackney/facials) if you want a lower-friction local starting point for skin treatment and consultation**
 
 ### Related Reading
 

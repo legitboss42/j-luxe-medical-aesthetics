@@ -1,4 +1,5 @@
 import { getTreatmentFormConfig, getTreatmentFormSlugs } from "@/src/lib/treatment-forms";
+import { getLocalLandingPageBySlug } from "@/src/lib/seo/local-landing-pages";
 
 export type AnalyticsPageContext = {
   pageType: string;
@@ -92,6 +93,19 @@ export function getAnalyticsPageContext(pathname: string): AnalyticsPageContext 
 
   if (pathname.startsWith("/blog/")) {
     return { pageType: "blog_post", contentGroup: "blog" };
+  }
+
+  if (pathname.startsWith("/hackney/")) {
+    const slug = pathname.replace("/hackney/", "");
+    const localPage = getLocalLandingPageBySlug(slug);
+
+    return {
+      pageType: "local_service_page",
+      contentGroup: "treatments",
+      treatmentName: localPage?.treatmentName,
+      treatmentCategory: localPage?.treatmentCategory,
+      treatmentType: localPage?.treatmentType,
+    };
   }
 
   if (pathname.startsWith("/forms/")) {

@@ -303,6 +303,7 @@ If you are considering anti-wrinkle treatment, begin with a consultation so your
 
 - **[Book a consultation](/pricing)**
 - **[WhatsApp us](https://wa.me/447883050603) to discuss whether anti-wrinkle treatment is appropriate before booking**
+- **[Anti-Wrinkle Injections in Hackney London](/hackney/anti-wrinkle-injections) if you want a faster local route into treatment details and booking**
 
 ### Related Reading
 

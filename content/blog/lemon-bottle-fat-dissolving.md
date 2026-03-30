@@ -347,6 +347,7 @@ Book a consultation for **fat dissolving treatment** if you want a structured co
 
 - Explore options: [Body Sculpting](/body-sculpting-2)
 - Request guidance: [Contact Us](/contact-us)
+- Looking for a local route into treatment and booking? Start with [Body Sculpting in Hackney London](/hackney/body-sculpting)
 
 ## Lead magnet
 [LEAD|Download the Fat Dissolving Injections Consultation Checklist (PDF)|/downloads/fat-dissolving-injections-checklist.pdf]

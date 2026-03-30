@@ -3,9 +3,12 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   ArrowRight,
+  CalendarDays,
   ChevronLeft,
   ChevronRight,
   MapPin,
+  MessageCircle,
+  Phone,
   Sparkles,
   Star,
 } from "lucide-react";
@@ -340,6 +343,18 @@ export default function TreatmentPage() {
                   BOOK CONSULTATION
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+                <a
+                  href="https://wa.me/447883050603"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cta-name="whatsapp"
+                  data-cta-location="treatment_hub_hero"
+                  data-page-type="treatment_hub"
+                  className="cta-button inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/35 px-7 py-3 font-bold text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
+                  WHATSAPP US
+                </a>
                 <Link
                   href="/contact-us"
                   data-cta-name="contact"
@@ -388,6 +403,117 @@ export default function TreatmentPage() {
               </motion.div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="border-b border-neutral-800 bg-[#060606] px-4 py-8 md:px-8">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3">
+          <Link
+            href="/pricing"
+            data-cta-name="book_consultation"
+            data-cta-location="treatment_hub_booking_routes"
+            data-page-type="treatment_hub"
+            className="cta-button rounded-[24px] border border-[#D4AF37]/25 bg-gradient-to-br from-[#17120a] via-[#0a0a0a] to-[#090909] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">Book Directly</p>
+            <div className="mt-3 flex items-start gap-3">
+              <CalendarDays className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Start With Consultation</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Compare treatments, check pricing, and move straight into booking from one place.
+                </p>
+              </div>
+            </div>
+          </Link>
+          <a
+            href="https://wa.me/447883050603"
+            target="_blank"
+            rel="noreferrer"
+            data-cta-name="whatsapp"
+            data-cta-location="treatment_hub_booking_routes"
+            data-page-type="treatment_hub"
+            className="cta-button rounded-[24px] border border-[#D4AF37]/25 bg-gradient-to-br from-[#17120a] via-[#060606] to-[#090909] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">Need Help Choosing?</p>
+            <div className="mt-3 flex items-start gap-3">
+              <MessageCircle className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Message The Clinic</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Tell us your concern and we can point you toward the most suitable treatment path.
+                </p>
+              </div>
+            </div>
+          </a>
+          <a
+            href="tel:+447883050603"
+            data-cta-name="call_now"
+            data-cta-location="treatment_hub_booking_routes"
+            data-page-type="treatment_hub"
+            className="cta-button rounded-[24px] border border-white/15 bg-gradient-to-br from-[#111111] via-[#090909] to-[#060606] p-5"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">Prefer A Call?</p>
+            <div className="mt-3 flex items-start gap-3">
+              <Phone className="mt-0.5 h-5 w-5 text-[#D4AF37]" />
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white">Speak To Our Team</h3>
+                <p className="mt-2 text-sm text-gray-300">
+                  Get quick answers on suitability, downtime, price guidance, and appointment availability.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section className="px-4 pb-6 md:px-8">
+        <div className="mx-auto max-w-6xl rounded-[28px] border border-[#D4AF37]/20 bg-gradient-to-r from-[#17120a]/80 via-[#0a0a0a] to-[#080808] p-5 md:p-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
+                Local Booking Pages
+              </p>
+              <h2 className="mt-2 text-2xl font-serif font-bold text-white md:text-3xl">
+                Fast-track booking with our Hackney treatment landing pages.
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-gray-300">
+                If you already know the treatment you want, these local pages take you straight to
+                the most relevant service, pricing route, and clinic contact options.
+              </p>
+            </div>
+            <Link
+              href="/pricing"
+              data-cta-name="book_consultation"
+              data-cta-location="treatment_hub_local_pages"
+              data-page-type="treatment_hub"
+              className="cta-button inline-flex items-center gap-2 self-start rounded-full border border-white/25 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:border-[#D4AF37] hover:text-[#D4AF37] md:self-center"
+            >
+              View Pricing
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-5">
+            {[
+              { label: "Anti-Wrinkle in Hackney", href: "/hackney/anti-wrinkle-injections" },
+              { label: "Dermal Fillers in Hackney", href: "/hackney/dermal-fillers" },
+              { label: "Facials in Hackney", href: "/hackney/facials" },
+              { label: "Chemical Peels in Hackney", href: "/hackney/chemical-peels" },
+              { label: "Body Sculpting in Hackney", href: "/hackney/body-sculpting" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                data-cta-name="treatment_page_cta"
+                data-cta-location="treatment_hub_local_pages"
+                data-page-type="treatment_hub"
+                className="cta-button rounded-2xl border border-white/12 bg-black/35 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -770,3 +896,4 @@ export default function TreatmentPage() {
     </main>
   );
 }
+

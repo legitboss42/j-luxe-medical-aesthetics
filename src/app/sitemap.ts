@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/src/lib/blog";
 import { getTreatmentFormSlugs } from "@/src/lib/treatment-forms";
+import { localLandingPages } from "@/src/lib/seo/local-landing-pages";
 
 const siteUrl = "https://www.jluxemedicalaesthetics.com";
 
@@ -32,8 +33,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/complaints-policy",
     "/booking-cancellation-policy",
   ];
+  const localLandingRoutes = localLandingPages.map((page) => page.path);
   const guidelineRoutes = getTreatmentFormSlugs().map((slug) => `/guidelines/${slug}`);
-  const allRoutes = [...routes, ...guidelineRoutes];
+  const allRoutes = [...routes, ...localLandingRoutes, ...guidelineRoutes];
 
   const staticRoutes = allRoutes.map<MetadataRoute.Sitemap[number]>((route) => ({
     url: `${siteUrl}${route}`,
