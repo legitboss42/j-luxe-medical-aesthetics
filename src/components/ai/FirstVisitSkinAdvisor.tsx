@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Sparkles, X } from "lucide-react";
 import TurnstileWidget from "@/src/components/security/TurnstileWidget";
+import { APRIL_FOOLS_STORAGE_KEY, isAprilFoolsWindow } from "@/src/lib/april-fools";
 
 type AdvisorFormState = {
   primaryConcern: string;
@@ -120,6 +121,12 @@ export default function FirstVisitSkinAdvisor() {
 
     const hasSeen = window.localStorage.getItem(STORAGE_KEY);
     if (hasSeen) {
+      return;
+    }
+
+    const shouldHoldForAprilFools =
+      isAprilFoolsWindow(new Date()) && !window.localStorage.getItem(APRIL_FOOLS_STORAGE_KEY);
+    if (shouldHoldForAprilFools) {
       return;
     }
 
