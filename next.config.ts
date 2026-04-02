@@ -19,7 +19,7 @@ const securityHeaders = [
       "base-uri 'self'",
       "object-src 'none'",
       "frame-ancestors 'self'",
-      "frame-src 'self' https://challenges.cloudflare.com",
+      "frame-src 'self' https://challenges.cloudflare.com https://www.google.com https://maps.google.com",
       "form-action 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
       "style-src 'self' 'unsafe-inline' https:",
