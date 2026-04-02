@@ -9,7 +9,6 @@ import AnalyticsScripts from "@/src/components/analytics/AnalyticsScripts";
 import AnalyticsRouteTracker from "@/src/components/analytics/AnalyticsRouteTracker";
 import AnalyticsCtaTracker from "@/src/components/analytics/AnalyticsCtaTracker";
 import StickyBookingBar from "@/src/components/site/StickyBookingBar";
-import AprilFoolsPopup from "@/src/components/site/AprilFoolsPopup";
 
 const siteUrl = "https://www.jluxemedicalaesthetics.com";
 const primaryKeyword = "medical aesthetics clinic in Hackney London";
@@ -102,7 +101,6 @@ export default function RootLayout({
         <AnalyticsCtaTracker />
         <ScrollToTopOnLoad />
         <Navbar />
-        <AprilFoolsPopup />
         <FirstVisitSkinAdvisor />
         {/* Sticky header sits in flow, so no manual top offset needed */}
         <main className="flex-grow">
