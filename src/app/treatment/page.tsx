@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MapEmbed from "../../components/MapEmbed";
+import { featuredLocalBookingLinks } from "@/src/lib/seo/local-landing-pages";
 
 type Treatment = {
   id: string;
@@ -472,7 +473,7 @@ export default function TreatmentPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="max-w-2xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF37]">
-                Local Booking Pages
+                Nearby Booking Pages
               </p>
               <h2 className="mt-2 text-2xl font-serif font-bold text-white md:text-3xl">
                 Fast-track booking with our Hackney treatment landing pages.
@@ -496,11 +497,7 @@ export default function TreatmentPage() {
 
           <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-5">
             {[
-              { label: "Anti-Wrinkle in Hackney", href: "/hackney/anti-wrinkle-injections" },
-              { label: "Dermal Fillers in Hackney", href: "/hackney/dermal-fillers" },
-              { label: "Facials in Hackney", href: "/hackney/facials" },
-              { label: "Chemical Peels in Hackney", href: "/hackney/chemical-peels" },
-              { label: "Body Sculpting in Hackney", href: "/hackney/body-sculpting" },
+              ...featuredLocalBookingLinks,
             ].map((item) => (
               <Link
                 key={item.href}
@@ -896,4 +893,6 @@ export default function TreatmentPage() {
     </main>
   );
 }
+
+
 

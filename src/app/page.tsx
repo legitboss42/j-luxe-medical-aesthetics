@@ -19,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MapEmbed from "../components/MapEmbed";
+import { featuredLocalBookingLinks } from "@/src/lib/seo/local-landing-pages";
 
 export default function HomePage() {
   const heroStagger: Variants = {
@@ -672,11 +673,10 @@ export default function HomePage() {
                   Booking Intent Pages
                 </p>
                 <h3 className="mt-2 text-2xl font-serif font-bold text-white md:text-3xl">
-                  Searching by area? Start with our Hackney treatment pages.
+                  Searching by area? Start with our nearby booking pages.
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-300">
-                  These pages are built for visitors who already know the service they want and
-                  just need the fastest route into pricing, consultation, and booking.
+                  These pages are built for visitors already searching with booking intent who want the quickest route into consultation, pricing, and treatment selection.
                 </p>
               </div>
               <Link
@@ -687,13 +687,9 @@ export default function HomePage() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-5">
               {[
-                { label: "Anti-Wrinkle in Hackney", href: "/hackney/anti-wrinkle-injections" },
-                { label: "Dermal Fillers in Hackney", href: "/hackney/dermal-fillers" },
-                { label: "Facials in Hackney", href: "/hackney/facials" },
-                { label: "Chemical Peels in Hackney", href: "/hackney/chemical-peels" },
-                { label: "Body Sculpting in Hackney", href: "/hackney/body-sculpting" },
+                ...featuredLocalBookingLinks,
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -1593,4 +1589,6 @@ export default function HomePage() {
     </main>
   );
 }
+
+
 

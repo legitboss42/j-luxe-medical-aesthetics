@@ -6,7 +6,7 @@ import {
   getLocalLandingPagesForArea,
 } from "@/src/lib/seo/local-landing-pages";
 
-const area = "hackney";
+const area = "bow";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
