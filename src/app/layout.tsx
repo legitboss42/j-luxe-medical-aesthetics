@@ -110,8 +110,8 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyBookingBar />
-        <Analytics />
-        <SpeedInsights />
+        <Analytics mode="production" />
+        <SpeedInsights sampleRate={1} />
       </body>
     </html>
   );
