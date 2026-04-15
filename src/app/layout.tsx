@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -108,6 +110,8 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyBookingBar />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
